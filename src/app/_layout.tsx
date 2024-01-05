@@ -35,6 +35,7 @@ const HomeLayout = () => {
         <Tabs.Screen name="discover" options={{ title: "Discover" }} />
         <Tabs.Screen name="dashboard" options={{ title: "Dashboard" }} />
         <Tabs.Screen name="settings" options={{ title: "Settings" }} />
+        <Tabs.Screen name="modal" options={{ href: null }} />
       </Tabs>
     </ThemeProvider>
   );
