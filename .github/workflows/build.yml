@@ -49,19 +49,6 @@ jobs:
       - name: 🏗 Setup EAS local builds
         run: yarn global add eas-cli-local-build-plugin
 
-      - name: 🧹 Clean project
-        run: |
-          watchman watch-del-all
-          rm -rf node_modules
-          npm cache verify
-          rm -rf ios/build
-          rm -rf ~/Library/Developer/Xcode/DerivedData
-
-      - name: 🔄 Reinstall dependencies
-        run: |
-          npm ci
-          cd ios && pod install && cd ..
-
       - name: 👷 Build app
         run: |
           eas build --local \
