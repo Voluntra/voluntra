@@ -22,6 +22,8 @@ const experiences = async (jwtToken: XelloResponse["data"]["jwtToken"]) => {
       res.data.map((experience) => {
         console.table(experience);
       });
+
+      return res;
     })
     .catch((err: AxiosError) => {
       console.error(err);
@@ -94,3 +96,4 @@ export const postExperiences = async () => {
       console.error(err);
     });
 };
+

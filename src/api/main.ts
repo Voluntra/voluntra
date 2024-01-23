@@ -1,4 +1,5 @@
-import { getExperiences, postExperiences } from "./xello/experiences";
+import { getExperiences } from "./xello/experiences";
 
 getExperiences();
-postExperiences();
+// postExperiences();
+
