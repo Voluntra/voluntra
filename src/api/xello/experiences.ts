@@ -9,7 +9,7 @@ dotenv.config();
 const experiences = async (jwtToken: XelloResponse["data"]["jwtToken"]) => {
   if (!jwtToken) throw new Error("No JWT token provided");
 
-  await axios
+  return axios
     .get("https://student.xello.world/api/experiences", {
       headers: {
         Culture: "en-US",
@@ -27,17 +27,18 @@ const experiences = async (jwtToken: XelloResponse["data"]["jwtToken"]) => {
     })
     .catch((err: AxiosError) => {
       console.error(err);
+      throw err; // Throw the error
     });
 };
 
 export const getExperiences = async () => {
-  await getToken(
+  return getToken(
     process.env.EXPO_PUBLIC_XELLO_USERNAME,
     process.env.EXPO_PUBLIC_XELLO_PASSWORD
   )
     .then((res) => {
       if (!res) throw new Error("No JWT token provided");
-      experiences(res);
+      return experiences(res);
     })
     .catch((err) => {
       console.error("Login failed");

@@ -25,14 +25,36 @@ axios
   .get(endpoint)
   .then((res) => {
     const $ = cheerio.load(res.data);
-    // Sort through all elements to find classname `title`
+    // Find all elements with classname `title`
     const $title = $(".title");
 
     // For each element found, log the innerHTML
     $title.each((index, element) => {
       console.log($(element).html().trim());
     });
+
+    return $title;
   })
   .catch((err) => {
     console.error(err);
   });
+
+export const getFoodBankOppurtunities = async () => {
+  return await axios
+    .get(endpoint)
+    .then((res) => {
+      const $ = cheerio.load(res.data);
+      // Find all elements with classname `title`
+      const $title = $(".title");
+
+      // For each element found, log the innerHTML
+      $title.each((index, element) => {
+        console.log($(element).html().trim());
+      });
+
+      return $title;
+    })
+    .catch((err) => {
+      console.error(err);
+    });
+};
