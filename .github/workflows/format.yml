@@ -2,8 +2,12 @@ name: Format Code w/ Prettier
 on: push
 
 jobs:
-  format:
+  format-code:
     runs-on: ubuntu-latest
+
+    permissions:
+      contents: write
+
     steps:
       - name: 🏗 Setup repo
         uses: actions/checkout@v4
