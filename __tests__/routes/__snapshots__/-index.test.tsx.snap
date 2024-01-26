@@ -1,0 +1,284 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<View
+  style={
+    [
+      {
+        "minHeight": 1334,
+      },
+    ]
+  }
+>
+  <Text
+    style={
+      [
+        {
+          "color": "#E0E0E0",
+        },
+        {
+          "letterSpacing": 0.25,
+        },
+        {
+          "fontSize": 18,
+          "lineHeight": 28,
+        },
+        {
+          "textAlign": "center",
+        },
+      ]
+    }
+  >
+    You're currently in the home section!
+  </Text>
+  <View
+    accessibilityRole="button"
+    accessibilityState={
+      {
+        "busy": undefined,
+        "checked": undefined,
+        "disabled": undefined,
+        "expanded": undefined,
+        "selected": undefined,
+      }
+    }
+    accessibilityValue={
+      {
+        "max": undefined,
+        "min": undefined,
+        "now": undefined,
+        "text": undefined,
+      }
+    }
+    accessible={true}
+    collapsable={false}
+    focusable={true}
+    onClick={[Function]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      {
+        "opacity": 1,
+      }
+    }
+  >
+    <View
+      style={
+        [
+          {},
+        ]
+      }
+    >
+      <Text
+        style={
+          [
+            {
+              "color": "#007AFF",
+              "fontSize": 18,
+              "margin": 8,
+              "textAlign": "center",
+            },
+          ]
+        }
+      >
+        Notifications test
+      </Text>
+    </View>
+  </View>
+  <View
+    accessibilityRole="button"
+    accessibilityState={
+      {
+        "busy": undefined,
+        "checked": undefined,
+        "disabled": undefined,
+        "expanded": undefined,
+        "selected": undefined,
+      }
+    }
+    accessibilityValue={
+      {
+        "max": undefined,
+        "min": undefined,
+        "now": undefined,
+        "text": undefined,
+      }
+    }
+    accessible={true}
+    collapsable={false}
+    focusable={true}
+    onClick={[Function]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      {
+        "opacity": 1,
+      }
+    }
+  >
+    <View
+      style={
+        [
+          {},
+        ]
+      }
+    >
+      <Text
+        style={
+          [
+            {
+              "color": "#007AFF",
+              "fontSize": 18,
+              "margin": 8,
+              "textAlign": "center",
+            },
+          ]
+        }
+      >
+        Toast test
+      </Text>
+    </View>
+  </View>
+  <View
+    accessibilityRole="button"
+    accessibilityState={
+      {
+        "busy": undefined,
+        "checked": undefined,
+        "disabled": undefined,
+        "expanded": undefined,
+        "selected": undefined,
+      }
+    }
+    accessibilityValue={
+      {
+        "max": undefined,
+        "min": undefined,
+        "now": undefined,
+        "text": undefined,
+      }
+    }
+    accessible={true}
+    collapsable={false}
+    focusable={true}
+    onClick={[Function]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      {
+        "opacity": 1,
+      }
+    }
+  >
+    <View
+      style={
+        [
+          {},
+        ]
+      }
+    >
+      <Text
+        style={
+          [
+            {
+              "color": "#007AFF",
+              "fontSize": 18,
+              "margin": 8,
+              "textAlign": "center",
+            },
+          ]
+        }
+      >
+        Alert test
+      </Text>
+    </View>
+  </View>
+  <View
+    menuConfig={
+      {
+        "menuItems": [
+          {
+            "actionKey": "key-01",
+            "actionTitle": "Toggled action",
+            "menuState": "on",
+          },
+          {
+            "actionKey": "key-02",
+            "actionTitle": "Disabled Action",
+            "icon": {
+              "imageValue": {
+                "systemName": "nosign",
+              },
+              "type": "IMAGE_SYSTEM",
+            },
+            "menuAttributes": [
+              "disabled",
+            ],
+          },
+          {
+            "actionKey": "key-03",
+            "actionTitle": "Destructive Action",
+            "icon": {
+              "imageValue": {
+                "systemName": "trash",
+              },
+              "type": "IMAGE_SYSTEM",
+            },
+            "menuAttributes": [
+              "destructive",
+            ],
+          },
+          {
+            "actionKey": "key-04",
+            "actionSubtitle": "This is a subtitle",
+            "actionTitle": "With Subtitle",
+            "icon": {
+              "imageValue": {
+                "systemName": "doc.plaintext",
+              },
+              "type": "IMAGE_SYSTEM",
+            },
+          },
+        ],
+        "menuTitle": "Basic Title Here",
+      }
+    }
+    onPressMenuPreview={[Function]}
+    previewConfig={
+      {
+        "backgroundColor": "#1b1b1b",
+        "borderRadius": 10,
+        "isResizeAnimated": true,
+        "preferredCommitStyle": "pop",
+        "previewSize": "STRETCH",
+        "previewType": "CUSTOM",
+      }
+    }
+    renderPreview={[Function]}
+  >
+    <Text
+      style={
+        [
+          {
+            "color": "#E0E0E0",
+          },
+        ]
+      }
+    >
+      Press And Hold To Show Context Menu
+    </Text>
+  </View>
+</View>
+`;
