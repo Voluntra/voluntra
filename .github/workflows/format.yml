@@ -19,7 +19,9 @@ jobs:
         run: npm ci
 
       - name: 👷 Format code
-        run: npm run format
+        uses: actionsx/prettier@v3
+        with:
+          args: --write .
 
       - name: 🎨 Commit changes
         uses: stefanzweifel/git-auto-commit-action@v5
