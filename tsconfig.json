@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "types": ["nativewind/types", "jest"]
+    "types": ["nativewind/types"]
   },
   "extends": "expo/tsconfig.base",
   "include": [
@@ -11,4 +11,3 @@
     "tailwind.config.js"
   ]
 }
-
