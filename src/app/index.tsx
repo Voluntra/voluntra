@@ -6,6 +6,13 @@ import { ContextMenuView } from "react-native-ios-context-menu";
 const App = () => {
   return (
     <View className="min-h-screen">
+      <Button
+        title="Press me"
+        onPress={() => {
+          throw new Error("Hello, Sentry!");
+        }}
+      />
+
       <Text className="text-foreground tracking-wide whitespace-nowrap text-lg text-center">
         You're currently in the home section!
       </Text>

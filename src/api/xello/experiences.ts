@@ -97,4 +97,3 @@ export const postExperiences = async () => {
       console.error(err);
     });
 };
-
