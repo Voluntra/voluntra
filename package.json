@@ -9,7 +9,7 @@
     "web": "expo start --web"
   },
   "dependencies": {
-    "@sentry/react-native": "5.17.0",
+    "@sentry/react-native": "5.19.1",
     "@types/react": "~18.2.14",
     "axios": "^1.6.2",
     "burnt": "^0.12.2",
