@@ -1,15 +1,8 @@
 import { DarkTheme, ThemeProvider } from "@react-navigation/native";
-import * as Sentry from "@sentry/react-native";
 import { Tabs } from "expo-router";
 import resolveConfig from "tailwindcss/resolveConfig";
 import tailwindConfig from "../../tailwind.config";
 import Blur from "../components/blur";
-
-Sentry.init({
-  dsn: "https://5da9676a7efb087b4ea732217defcc41@us.sentry.io/4506651781955584",
-  debug: process.env.NODE_ENV !== "production",
-  enableNative: true,
-});
 
 const HomeLayout = () => {
   const {
@@ -47,4 +40,4 @@ const HomeLayout = () => {
   );
 };
 
-export default Sentry.wrap(HomeLayout);
+export default HomeLayout;
