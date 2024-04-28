@@ -1,18 +1,11 @@
 import * as Burnt from "burnt";
 import "expo-dev-client";
-import { Alert, Button, Text, View } from "react-native";
+import { Alert, Button, ScrollView, Text, View } from "react-native";
 import { ContextMenuView } from "react-native-ios-context-menu";
 
 const App = () => {
   return (
-    <View className="min-h-screen">
-      <Button
-        title="Press me"
-        onPress={() => {
-          throw new Error("Hello, Sentry!");
-        }}
-      />
-
+    <ScrollView>
       <Text className="text-foreground tracking-wide whitespace-nowrap text-lg text-center">
         You're currently in the home section!
       </Text>
@@ -53,7 +46,6 @@ const App = () => {
           isResizeAnimated: true,
           borderRadius: 10,
           backgroundColor: "#1b1b1b",
-
           preferredCommitStyle: "pop",
         }}
         renderPreview={() => (
@@ -115,7 +107,7 @@ const App = () => {
           Press And Hold To Show Context Menu
         </Text>
       </ContextMenuView>
-    </View>
+    </ScrollView>
   );
 };
 

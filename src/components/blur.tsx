@@ -3,8 +3,13 @@ import { StyleSheet } from "react-native";
 
 const Blur = () => {
   return (
-    <BlurView tint="dark" intensity={100} style={StyleSheet.absoluteFill} />
+    <BlurView
+      tint="systemUltraThinMaterialDark"
+      intensity={70}
+      style={StyleSheet.absoluteFill}
+    />
   );
 };
 
 export default Blur;
+
