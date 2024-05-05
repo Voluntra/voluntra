@@ -1,14 +1,47 @@
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import * as Burnt from "burnt";
 import "expo-dev-client";
-import { Alert, Button, ScrollView, Text, View } from "react-native";
+import { router } from "expo-router";
+import { useEffect } from "react";
+import { Button, ScrollView, Text, View } from "react-native";
 import { ContextMenuView } from "react-native-ios-context-menu";
 
 const App = () => {
+  const findKey = async (key: string) => {
+    const value = await AsyncStorage.getItem(key);
+    return value;
+  };
+
+  useEffect(() => {
+    findKey("onboarding").then((val) => {
+      // If the user has not seen the onboarding screen show it here
+      // and set the "onboarding" key to true to keep track of it
+      if (val === null || val === "false") {
+        AsyncStorage.setItem("onboarding", "true").then(() => {
+          Burnt.toast({
+            title: "Welcome to Burnt!",
+            message: "This is a toast message",
+            preset: "done",
+            haptic: "success",
+          });
+        });
+      }
+    });
+  }, []);
+
   return (
     <ScrollView>
       <Text className="text-foreground tracking-wide whitespace-nowrap text-lg text-center">
         You're currently in the home section!
       </Text>
+      <Button
+        title="Test Onboarding Screen"
+        onPress={async () => {
+          await AsyncStorage.setItem("onboarding", "false").then(() => {
+            console.log("Success");
+          });
+        }}
+      ></Button>
       <Button
         title="Notifications test"
         onPress={() => {
@@ -54,10 +87,13 @@ const App = () => {
           </View>
         )}
         onPressMenuPreview={() => {
-          Alert.alert(
-            "onPressMenuPreview Event",
-            `Menu preview was pressed...`
-          );
+          router.navigate("discover");
+          Burnt.toast({
+            title: "Navigated to discover page",
+            preset: "done",
+            message: "This is a test function",
+            duration: 3,
+          });
         }}
         menuConfig={{
           menuTitle: "Basic Title Here",
@@ -103,7 +139,7 @@ const App = () => {
           ],
         }}
       >
-        <Text className="text-foreground">
+        <Text className="text-foreground bg-black">
           Press And Hold To Show Context Menu
         </Text>
       </ContextMenuView>
