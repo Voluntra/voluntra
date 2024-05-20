@@ -41,7 +41,8 @@ const App = () => {
             console.log("Success");
           });
         }}
-      ></Button>
+      />
+      <Button title="Popover Test" />
       <Button
         title="Notifications test"
         onPress={() => {
