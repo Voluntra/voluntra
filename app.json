@@ -39,13 +39,6 @@
           }
         }
       ],
-      [
-        "@sentry/react-native/expo",
-        {
-          "organization": "voluntra",
-          "project": "voluntra"
-        }
-      ],
       "expo-router",
       "expo-build-properties"
     ],
