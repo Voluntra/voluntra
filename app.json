@@ -21,7 +21,7 @@
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "package": "com.voluntra.voluntra"
+      "package": "org.voluntra.voluntra"
     },
     "extra": {
       "eas": {
