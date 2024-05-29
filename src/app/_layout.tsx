@@ -48,7 +48,7 @@ const HomeLayout = () => {
             setPreviousRoute(target);
           },
         }}
-        // TODO: Fix headerTransparent prop moving all Viewson all screens up
+        // TODO: Fix headerTransparent prop moving all Views on all screens up
         screenOptions={{
           headerBackground: Blur,
           headerTransparent: false,
