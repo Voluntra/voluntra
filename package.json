@@ -24,7 +24,7 @@
     "expo-haptics": "~12.8.1",
     "expo-linking": "~6.2.2",
     "expo-notifications": "~0.27.7",
-    "expo-quick-actions": "^0.2.8",
+    "expo-quick-actions": "^1.0.0",
     "expo-router": "~3.4.10",
     "expo-status-bar": "~1.11.1",
     "nativewind": "^2.0.11",
