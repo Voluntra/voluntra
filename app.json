@@ -9,7 +9,7 @@
     "splash": {
       "image": "./assets/splash-screen.png",
       "resizeMode": "contain",
-      "backgroundColor": "#151515"
+      "backgroundColor": "#1B1B1B"
     },
     "assetBundlePatterns": ["**/*"],
     "ios": {
@@ -19,7 +19,7 @@
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#ffffff"
+        "backgroundColor": "#151515"
       },
       "package": "org.voluntra.voluntra"
     },
