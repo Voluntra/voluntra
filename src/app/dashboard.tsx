@@ -14,7 +14,14 @@ const Dashboard = () => {
     let source: EventSource<Events> | null = null;
 
     if (stream) {
-      source = new EventSource<Events>("https://voluntra.org/api/workers");
+      source = new EventSource<Events>("https://voluntra.org/api/workers", {
+        method: "POST",
+        body: JSON.stringify({
+          question: 0,
+          organization: "Frisco Ford Stadium",
+        }),
+        withCredentials: true,
+      });
       setLoading(true);
 
       const listener: EventSourceListener<Events> = (event) => {
@@ -30,6 +37,7 @@ const Dashboard = () => {
           setStream(false); // Set stream state to false after receiving all events
         } else if (event.type === "error") {
           console.error("Connection error:", event.message);
+          source.close();
         } else if (event.type === "exception") {
           console.error("Error:", event.message, event.error);
         }
@@ -55,7 +63,7 @@ const Dashboard = () => {
     if (data) {
       setData(""); // Clear the data state variable when the button is pressed (to reset the streamable component
     }
-    setStream(true); // Set stream state to true when the button is pressed
+    setStream((prev) => !prev); // Set stream state to true when the button is pressed
   };
 
   return (
@@ -72,4 +80,3 @@ const Dashboard = () => {
 };
 
 export default Dashboard;
-

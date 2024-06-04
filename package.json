@@ -33,7 +33,6 @@
     "react-native": "0.73.6",
     "react-native-circular-chart": "^1.0.9",
     "react-native-gesture-handler": "~2.14.0",
-    "react-native-ios-context-menu": "^2.3.0",
     "react-native-ios-utilities": "^4.2.3",
     "react-native-reanimated": "~3.6.2",
     "react-native-safe-area-context": "4.8.2",
@@ -53,3 +52,4 @@
   "resolutions": {},
   "private": true
 }
+

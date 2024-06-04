@@ -1,10 +1,11 @@
-# Learn more https://docs.github.com/en/get-started/getting-started-with-git/ignoring-files
-
-# dependencies
+# Dependencies
 node_modules/
 
 # Testing
 coverage/**/*
+
+# Credentials
+google-services.json
 
 # Expo
 .expo/
@@ -23,7 +24,7 @@ credentials.json
 # Metro
 .metro-health-check*
 
-# debug
+# Debug
 npm-debug.*
 yarn-debug.*
 yarn-error.*

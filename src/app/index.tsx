@@ -1,10 +1,8 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import * as Burnt from "burnt";
 import "expo-dev-client";
-import { router } from "expo-router";
 import { useEffect } from "react";
-import { Button, ScrollView, Text, View } from "react-native";
-import { ContextMenuView } from "react-native-ios-context-menu";
+import { Button, ScrollView, Text } from "react-native";
 
 const App = () => {
   const findKey = async (key: string) => {
@@ -73,77 +71,6 @@ const App = () => {
           });
         }}
       />
-      <ContextMenuView
-        previewConfig={{
-          previewType: "CUSTOM",
-          previewSize: "STRETCH",
-          isResizeAnimated: true,
-          borderRadius: 10,
-          backgroundColor: "#1b1b1b",
-          preferredCommitStyle: "pop",
-        }}
-        renderPreview={() => (
-          <View className="flex flex-1 contaienr items-center align-middle">
-            <Text className="text-foreground">Custom Preview</Text>
-          </View>
-        )}
-        onPressMenuPreview={() => {
-          router.navigate("discover");
-          Burnt.toast({
-            title: "Navigated to discover page",
-            preset: "done",
-            message: "This is a test function",
-            duration: 3,
-          });
-        }}
-        menuConfig={{
-          menuTitle: "Basic Title Here",
-          menuItems: [
-            {
-              actionKey: "key-01",
-              actionTitle: "Toggled action",
-              menuState: "on",
-            },
-            {
-              actionKey: "key-02",
-              actionTitle: "Disabled Action",
-              icon: {
-                type: "IMAGE_SYSTEM",
-                imageValue: {
-                  systemName: "nosign",
-                },
-              },
-              menuAttributes: ["disabled"],
-            },
-            {
-              actionKey: "key-03",
-              menuAttributes: ["destructive"],
-              icon: {
-                type: "IMAGE_SYSTEM",
-                imageValue: {
-                  systemName: "trash",
-                },
-              },
-              actionTitle: "Destructive Action",
-            },
-            {
-              actionKey: "key-04",
-              actionTitle: "With Subtitle",
-              actionSubtitle: "This is a subtitle",
-              icon: {
-                type: "IMAGE_SYSTEM",
-                imageValue: {
-                  systemName: "doc.plaintext",
-                },
-              },
-            },
-          ],
-        }}
-      >
-        <Text className="text-foreground bg-black">
-          Press And Hold To Show Context Menu
-        </Text>
-      </ContextMenuView>
     </ScrollView>
   );
 };

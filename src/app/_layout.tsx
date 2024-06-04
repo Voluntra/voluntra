@@ -3,6 +3,7 @@ import { DarkTheme, ThemeProvider } from "@react-navigation/native";
 import * as Haptics from "expo-haptics";
 import { Tabs } from "expo-router";
 import { useState } from "react";
+import { Platform } from "react-native";
 import resolveConfig from "tailwindcss/resolveConfig";
 import tailwindConfig from "../../tailwind.config";
 import Blur from "../components/blur";
@@ -10,6 +11,9 @@ import tabsList from "../config/tabs";
 
 const HomeLayout = () => {
   const [previousRoute, setPreviousRoute] = useState("index");
+
+  const profileImageSource =
+    "https://images.unsplash.com/photo-1504730030853-eff311f57d3c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=934&q=80";
 
   const {
     theme: { colors },
@@ -57,7 +61,10 @@ const HomeLayout = () => {
             fontSize: 26,
           },
           tabBarStyle: {
-            height: 90,
+            height: Platform.OS === "android" ? 80 : 90,
+          },
+          tabBarLabelStyle: {
+            paddingBottom: Platform.OS === "android" ? 20 : 0,
           },
         }}
       >
