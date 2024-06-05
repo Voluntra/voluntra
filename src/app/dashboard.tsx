@@ -18,6 +18,9 @@ const Dashboard = () => {
           question: 0,
           organization: "Frisco Ford Stadium",
         }),
+        headers: {
+          "Content-Type": "text/html",
+        },
         withCredentials: true,
       });
 
