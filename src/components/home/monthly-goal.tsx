@@ -1,3 +1,4 @@
+import { LinearGradient } from "expo-linear-gradient";
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
 import { DonutChart, DonutItem } from "react-native-circular-chart";
@@ -39,7 +40,13 @@ const MonthlyGoal = ({ hoursLeft, monthlyGoal }: MonthlyGoalProps) => {
   });
 
   return (
-    <View className="h-2/5 bg-neutral-800 rounded-xl shadow-sm m-3.5 p-5 flex flex-row justify-between align-middle items-center">
+    <View className="h-2/5 bg-neutral-800 rounded-xl shadow-sm m-3.5 p-5 flex flex-row justify-between align-middle items-center border border-neutral-800">
+      {/*  Background Linear Gradient */}
+      <LinearGradient
+        colors={[twColors["neutral"]["700"], twColors["neutral"]["900"]]}
+        className="absolute left-0 right-0 top-0 bottom-0 rounded-xl"
+      />
+
       {/* Dynamic text identifying the component and hours left to volunteer */}
       <View className="flex flex-col gap-PX justify-center align-middle">
         <Text className="font-bold text-2xl text-neutral-100">
