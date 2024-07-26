@@ -62,7 +62,9 @@ module.exports = {
         900: "#1b1b1b",
       },
     },
-    extend: {},
+    extend: {
+      colors: {},
+    },
   },
   plugins: [],
 };

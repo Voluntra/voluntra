@@ -1,6 +1,6 @@
-import { BlurView } from "expo-blur";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import React from "react";
-import { Button, StyleSheet } from "react-native";
+import { Button } from "react-native";
 import {
   Gesture,
   GestureDetector,
@@ -45,12 +45,6 @@ const Settings = () => {
     };
   });
 
-  const blurStyle = useAnimatedStyle(() => {
-    return {
-      opacity: translateY.value === 0 ? withTiming(70) : withTiming(0),
-    };
-  });
-
   const pan = Gesture.Pan()
     .onChange((event) => {
       offset.value += clamp(
@@ -79,8 +73,16 @@ const Settings = () => {
         />
       </GestureDetector>
       <Button onPress={handlePress} title="Toggle Popover" />
+      <Button
+        title="Test Onboarding Screen"
+        onPress={async () => {
+          await AsyncStorage.setItem("onboarding", "false").then(() => {
+            console.log("Success");
+          });
+        }}
+      />
     </GestureHandlerRootView>
   );
-  };
+};
 
 export default Settings;
