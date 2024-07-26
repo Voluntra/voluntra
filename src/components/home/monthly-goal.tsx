@@ -1,7 +1,7 @@
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
 import { DonutChart, DonutItem } from "react-native-circular-chart";
-import twColors from "../../lib/colors";
+import twColors from "../../lib/palette";
 
 interface MonthlyGoalProps {
   hoursLeft: number;

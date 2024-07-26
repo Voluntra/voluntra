@@ -7,7 +7,7 @@ import { useState } from "react";
 import { Platform } from "react-native";
 import Blur from "../components/blur";
 import tabsList from "../config/tabs";
-import palette from "../lib/colors";
+import palette from "../lib/palette";
 
 const HomeLayout = () => {
   const [previousRoute, setPreviousRoute] = useState("index");
