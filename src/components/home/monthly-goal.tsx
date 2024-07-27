@@ -2,7 +2,7 @@ import { LinearGradient } from "expo-linear-gradient";
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
 import { DonutChart, DonutItem } from "react-native-circular-chart";
-import twColors from "../../lib/palette";
+import palette from "../../lib/palette";
 
 interface MonthlyGoalProps {
   hoursLeft: number;
@@ -20,19 +20,19 @@ const MonthlyGoal = ({ hoursLeft, monthlyGoal }: MonthlyGoalProps) => {
     {
       name: "hours",
       value: monthlyGoal - hoursLeft,
-      color: twColors["purple"]["900"],
+      color: palette["purple"]["900"],
     },
     {
       name: "hours",
       value: hoursLeft,
-      color: twColors["purple"]["100"],
+      color: palette["purple"]["100"],
     },
   ];
 
   const styles = StyleSheet.create({
     centerLabelText: {
       fontSize: 20,
-      color: twColors["white"] as string,
+      color: palette["white"] as string,
     },
     centerLabelCaption: {
       fontSize: 10,
@@ -43,7 +43,7 @@ const MonthlyGoal = ({ hoursLeft, monthlyGoal }: MonthlyGoalProps) => {
     <View className="h-2/5 bg-neutral-800 rounded-xl shadow-sm m-3.5 p-5 flex flex-row justify-between align-middle items-center border border-neutral-800">
       {/*  Background Linear Gradient */}
       <LinearGradient
-        colors={[twColors["neutral"]["700"], twColors["neutral"]["900"]]}
+        colors={[palette["neutral"]["700"], palette["neutral"]["900"]]}
         className="absolute left-0 right-0 top-0 bottom-0 rounded-xl"
       />
 
