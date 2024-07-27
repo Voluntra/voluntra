@@ -30,8 +30,10 @@ const App = () => {
   }, []);
 
   return (
-    <View>
-      <MonthlyGoal hoursLeft={2} monthlyGoal={10} />
+    <View className="pt-offset pb-offset">
+      <View className="flex min-h-screen m-3.5">
+        <MonthlyGoal hoursLeft={2} monthlyGoal={10} />
+      </View>
     </View>
   );
 };

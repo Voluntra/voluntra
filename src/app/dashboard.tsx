@@ -71,14 +71,16 @@ const Dashboard = () => {
   };
 
   return (
-    <View className="p-5 min-h-screen flex items-center space-y-4">
-      <Pressable
-        onPress={handlePress}
-        className="transition-opacity ease-in-out duration-200 bg-neutral-800 w-full h-11 rounded-md flex items-center justify-center mb-4 active:opacity-50"
-      >
-        <Text className="text-neutral-200 text-lg font-bold">Generate</Text>
-      </Pressable>
-      {data && <Streamable data={data} />}
+    <View className="pt-offset pb-offset">
+      <View className="p-5 min-h-screen flex items-center space-y-4">
+        <Pressable
+          onPress={handlePress}
+          className="transition-opacity ease-in-out duration-200 bg-neutral-800 w-full h-11 rounded-md flex items-center justify-center mb-4 active:opacity-50"
+        >
+          <Text className="text-neutral-200 text-lg font-bold">Generate</Text>
+        </Pressable>
+        {data && <Streamable data={data} />}
+      </View>
     </View>
   );
 };

@@ -63,7 +63,9 @@ module.exports = {
       },
     },
     extend: {
-      colors: {},
+      padding: {
+        offset: "90px",
+      },
     },
   },
   plugins: [],

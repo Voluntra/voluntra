@@ -40,7 +40,7 @@ const MonthlyGoal = ({ hoursLeft, monthlyGoal }: MonthlyGoalProps) => {
   });
 
   return (
-    <View className="h-2/5 bg-neutral-800 rounded-xl shadow-sm m-3.5 p-5 flex flex-row justify-between align-middle items-center border border-neutral-800">
+    <View className="h-28 bg-neutral-800 rounded-xl shadow-sm p-5 flex flex-row justify-between align-middle items-center border border-neutral-800">
       {/*  Background Linear Gradient */}
       <LinearGradient
         colors={[palette["neutral"]["700"], palette["neutral"]["900"]]}

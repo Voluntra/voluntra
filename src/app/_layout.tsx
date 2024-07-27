@@ -1,5 +1,5 @@
 import { Feather } from "@expo/vector-icons";
-import { DarkTheme, ThemeProvider } from "@react-navigation/native";
+import { ThemeProvider } from "@react-navigation/native";
 import * as Haptics from "expo-haptics";
 import { Tabs } from "expo-router";
 import { StatusBar } from "expo-status-bar";
@@ -7,22 +7,10 @@ import { useState } from "react";
 import { Platform } from "react-native";
 import Blur from "../components/blur";
 import tabsList from "../config/tabs";
-import palette from "../lib/palette";
+import theme from "../lib/theme";
 
 const HomeLayout = () => {
   const [previousRoute, setPreviousRoute] = useState("index");
-
-  const theme = {
-    dark: true,
-    colors: {
-      primary: palette.purple["100"],
-      background: palette.background as string,
-      card: palette.neutral["900"],
-      text: palette.foreground as string,
-      border: palette.neutral["800"],
-      notification: palette.purple["100"],
-    },
-  } satisfies typeof DarkTheme;
 
   const handleIcon = (color: string, name: keyof typeof Feather.glyphMap) => {
     return <Feather name={name} size={24} color={color} />;
@@ -45,21 +33,23 @@ const HomeLayout = () => {
               setPreviousRoute(target);
             },
           }}
-          // TODO: Fix headerTransparent prop moving all Views on all screens up
           screenOptions={{
             headerBackground: Blur,
-            headerTransparent: false,
+            headerTransparent: true,
             headerTitleAlign: "left",
             headerTitleStyle: {
               fontSize: 26,
             },
+            headerShadowVisible: false,
             tabBarStyle: {
               height: Platform.OS === "android" ? 80 : 90,
+              position: "absolute",
             },
             tabBarLabelPosition: "below-icon",
             tabBarLabelStyle: {
               paddingBottom: Platform.OS === "android" ? 20 : 0,
             },
+            tabBarBackground: Blur,
           }}
         >
           {tabsList.map(({ iconName, name, title }) => (

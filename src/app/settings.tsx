@@ -59,7 +59,11 @@ const Settings = () => {
 
   return (
     <GestureHandlerRootView
-      style={{ flex: 1, alignItems: "center", justifyContent: "center" }}
+      style={{
+        flex: 1,
+        alignItems: "center",
+        justifyContent: "center",
+      }}
     >
       <GestureDetector gesture={pan}>
         <Animated.View
