@@ -6,6 +6,7 @@ import { StatusBar } from "expo-status-bar";
 import { useState } from "react";
 import { Platform } from "react-native";
 import Blur from "../components/blur";
+import NavBackground from "../components/nav-background";
 import tabsList from "../config/tabs";
 import theme from "../lib/theme";
 
@@ -34,7 +35,7 @@ const HomeLayout = () => {
             },
           }}
           screenOptions={{
-            headerBackground: Blur,
+            headerBackground: Platform.OS === "android" ? NavBackground : Blur,
             headerTransparent: true,
             headerTitleAlign: "left",
             headerTitleStyle: {
@@ -49,7 +50,7 @@ const HomeLayout = () => {
             tabBarLabelStyle: {
               paddingBottom: Platform.OS === "android" ? 20 : 0,
             },
-            tabBarBackground: Blur,
+            tabBarBackground: Platform.OS === "android" ? NavBackground : Blur,
           }}
         >
           {tabsList.map(({ iconName, name, title }) => (

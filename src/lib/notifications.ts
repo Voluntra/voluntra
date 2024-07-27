@@ -3,8 +3,14 @@ import * as Device from "expo-device";
 import * as Notifications from "expo-notifications";
 import { Platform } from "react-native";
 
+/**
+ * This function will perform a series of checks, and handle platform differences between iOS
+ * and Android.
+ *
+ * @returns Promise<string> The push token by which notifications are sent to a mobile device
+ */
 export const registerForPushNotificationsAsync = async () => {
-  let token;
+  let token: string;
 
   if (Platform.OS === "android") {
     await Notifications.setNotificationChannelAsync("default", {
@@ -28,9 +34,6 @@ export const registerForPushNotificationsAsync = async () => {
       alert("Failed to get push token for push notification!");
       return;
     }
-    // Learn more about projectId:
-    // https://docs.expo.dev/push-notifications/push-notifications-setup/#configure-projectid
-    // EAS projectId is used here.
     try {
       const projectId =
         Constants?.expoConfig?.extra?.eas?.projectId ??
@@ -55,14 +58,13 @@ export const registerForPushNotificationsAsync = async () => {
 };
 
 export const schedulePushNotification = async () => {
-  console.info("Scheduling notification!");
   await Notifications.scheduleNotificationAsync({
     content: {
       title: "You've got mail! 📬",
       body: "Here is the notification body",
       data: { data: "goes here", test: { test1: "more data" } },
     },
-    trigger: { seconds: 2 },
+    trigger: { seconds: 1 },
   }).catch((e) => {
     console.error(e);
   });

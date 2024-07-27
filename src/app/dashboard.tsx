@@ -8,7 +8,7 @@ const Dashboard = () => {
   const [stream, setStream] = useState(false);
   const [data, setData] = useState<string>(null);
 
-  const onDataChange = useEffect(() => {
+  useEffect(() => {
     let source: EventSource<Events> | null = null;
 
     if (stream) {
