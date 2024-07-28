@@ -37,7 +37,9 @@
     "react-native-screens": "3.31.1",
     "react-native-sse": "^1.2.1",
     "react-native-svg": "15.2.0",
-    "typescript": "^5.1.3"
+    "typescript": "^5.1.3",
+    "expo-font": "~12.0.9",
+    "expo-system-ui": "~3.0.7"
   },
   "devDependencies": {
     "@babel/core": "^7.24.0",

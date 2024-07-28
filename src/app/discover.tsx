@@ -1,25 +1,10 @@
-import { Button, View } from "react-native";
-import { schedulePushNotification } from "../lib/notifications";
+import { Text, View } from "react-native";
 
 export default function App() {
   return (
     <View className="pt-offset pb-offset">
-      <View className="flex items-center">
-        <Button
-          title="Press to schedule a notification"
-          onPress={async () => {
-            await schedulePushNotification(
-              {
-                title: "Test Notification",
-                body: "Sent by Voluntra",
-                data: { hello: "yes" },
-              },
-              {
-                seconds: 1,
-              }
-            );
-          }}
-        />
+      <View className="flex flex-col justify-center items-center align-middle">
+        <Text className="text-foreground mt-5">Discover Page</Text>
       </View>
     </View>
   );

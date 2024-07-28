@@ -4,16 +4,19 @@ export default (): ExpoConfig => ({
   name: "Voluntra",
   slug: "voluntra",
   version: "1.0.0",
+  runtimeVersion: {
+    policy: "appVersion",
+  },
   orientation: "portrait",
   icon: "./assets/icon.png",
   userInterfaceStyle: "dark",
   androidStatusBar: {
-    barStyle: "dark-content",
+    barStyle: "light-content",
   },
   splash: {
     image: "./assets/splash-screen.png",
     resizeMode: "contain",
-    backgroundColor: "#1B1B1B",
+    backgroundColor: "#000000",
   },
   assetBundlePatterns: ["**/*"],
   ios: {
@@ -24,7 +27,7 @@ export default (): ExpoConfig => ({
     googleServicesFile: process.env.GOOGLE_SERVICES_JSON,
     adaptiveIcon: {
       foregroundImage: "./assets/adaptive-icon.png",
-      backgroundColor: "#151515",
+      backgroundColor: "#000000",
     },
     package: "org.voluntra.voluntra",
   },
@@ -44,12 +47,18 @@ export default (): ExpoConfig => ({
         },
       },
     ],
+    [
+      "expo-dev-launcher",
+      {
+        launchMode: "most-recent",
+      },
+    ],
     "expo-router",
     "expo-build-properties",
     "expo-asset",
+    "expo-font",
   ],
   experiments: {
     typedRoutes: true,
   },
 });
-

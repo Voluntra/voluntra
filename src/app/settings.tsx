@@ -1,4 +1,3 @@
-import AsyncStorage from "@react-native-async-storage/async-storage";
 import React from "react";
 import { Button } from "react-native";
 import {
@@ -77,14 +76,6 @@ const Settings = () => {
         />
       </GestureDetector>
       <Button onPress={handlePress} title="Toggle Popover" />
-      <Button
-        title="Test Onboarding Screen"
-        onPress={async () => {
-          await AsyncStorage.setItem("onboarding", "false").then(() => {
-            console.log("Success");
-          });
-        }}
-      />
     </GestureHandlerRootView>
   );
 };

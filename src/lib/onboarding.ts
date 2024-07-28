@@ -7,9 +7,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
  * @param key A string that is utilized as a key in a key-value pair.
  * @returns Promise<String> Containing the value for the provided `key`.
  */
-const findKey = async (key: string) => {
+export const findKey = async (key: string) => {
   const value = await AsyncStorage.getItem(key);
   return value;
 };
-
-export default findKey;
