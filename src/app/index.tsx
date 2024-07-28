@@ -6,7 +6,7 @@ import { useEffect } from "react";
 import { View } from "react-native";
 import MonthlyGoal from "../components/home/monthly-goal";
 import { registerForPushNotificationsAsync } from "../lib/notifications";
-import { findKey } from "../lib/onboarding";
+import findKey from "../lib/onboarding";
 
 const App = () => {
   Notifications.setNotificationHandler({

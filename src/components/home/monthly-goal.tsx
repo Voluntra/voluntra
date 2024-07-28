@@ -40,11 +40,11 @@ const MonthlyGoal = ({ hoursLeft, monthlyGoal }: MonthlyGoalProps) => {
   });
 
   return (
-    <View className="h-28 bg-neutral-900 rounded-xl shadow-sm p-5 flex flex-row justify-between align-middle items-center border-2 border-neutral-800">
+    <View className="h-28 bg-neutral-900 rounded-xl shadow-sm p-5 flex flex-row justify-between align-middle items-center border border-neutral-800 overflow-hidden">
       {/*  Background Linear Gradient */}
       <LinearGradient
-        colors={[palette["neutral"]["700"], palette["neutral"]["900"]]}
-        className="absolute left-0 right-0 top-0 bottom-0 rounded-xl"
+        colors={[palette["neutral"]["800"], palette["neutral"]["900"]]}
+        className="absolute left-0 right-0 top-0 bottom-0"
       />
 
       {/* Dynamic text identifying the component and hours left to volunteer */}
