@@ -16,7 +16,7 @@ const Dashboard = () => {
         method: "POST",
         body: JSON.stringify({
           question: 0,
-          organization: "Frisco Ford Stadium",
+          organization: "Public Library",
         }),
         headers: {
           "Content-Type": "text/html",

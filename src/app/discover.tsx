@@ -8,7 +8,16 @@ export default function App() {
         <Button
           title="Press to schedule a notification"
           onPress={async () => {
-            await schedulePushNotification();
+            await schedulePushNotification(
+              {
+                title: "Test Notification",
+                body: "Sent by Voluntra",
+                data: { hello: "yes" },
+              },
+              {
+                seconds: 1,
+              }
+            );
           }}
         />
       </View>

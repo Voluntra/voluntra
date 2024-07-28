@@ -7,7 +7,7 @@ import { Platform } from "react-native";
  * This function will perform a series of checks, and handle platform differences between iOS
  * and Android.
  *
- * @returns Promise<string> The push token by which notifications are sent to a mobile device
+ * @returns Promise<string> The push token by which notifications are sent to a mobile device.
  */
 export const registerForPushNotificationsAsync = async () => {
   let token: string;
@@ -57,14 +57,20 @@ export const registerForPushNotificationsAsync = async () => {
   return token;
 };
 
-export const schedulePushNotification = async () => {
+/**
+ * This function is a placeholder for the time being, until a `usePushNotifications` hook
+ * is made, and provides a basic wrapper in which notifications can be sent from the frontend.
+ *
+ * @param content Describes the shape of the data that will be displayed to the user, generally containing a `title`, a `body`, and some `data`.
+ * @param trigger Defines the time to wait until the notification is sent among other things.
+ */
+export const schedulePushNotification = async (
+  content: Notifications.NotificationContentInput,
+  trigger: Notifications.NotificationTriggerInput
+) => {
   await Notifications.scheduleNotificationAsync({
-    content: {
-      title: "You've got mail! 📬",
-      body: "Here is the notification body",
-      data: { data: "goes here", test: { test1: "more data" } },
-    },
-    trigger: { seconds: 1 },
+    content: content,
+    trigger: trigger,
   }).catch((e) => {
     console.error(e);
   });
