@@ -7,7 +7,7 @@ import Events from "../types/streaming/events";
 
 const Dashboard = () => {
   const [stream, setStream] = useState(false);
-  const [data, setData] = useState<string>(null);
+  const [data, setData] = useState<string[]>([]);
 
   useEffect(() => {
     let source: EventSource<Events> | null = null;
@@ -28,13 +28,13 @@ const Dashboard = () => {
       const listener: EventSourceListener<Events> = (event) => {
         switch (event.type) {
           case "open": {
-            setData("");
+            setData([]);
             Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
             break;
           }
           case "update": {
             let parsed = JSON.parse(event.data);
-            setData((prev) => prev + parsed.response);
+            setData((prev) => [...prev, parsed.response]);
             break;
           }
           case "complete": {
@@ -68,7 +68,7 @@ const Dashboard = () => {
 
     if (data) {
       // Reset state variable, and therefore the `Streamable` component
-      setData("");
+      setData([]);
     }
     // Allow for re-streaming whenever the button is toggled
     setStream((prev) => !prev);
@@ -81,11 +81,11 @@ const Dashboard = () => {
           onPress={onPress}
           className="bg-neutral-900 w-full h-14 rounded-xl flex items-center justify-center mb-4 active:opacity-80 border border-neutral-800"
         >
-          <Text className="text-foreground text-lg font-popRegular active:opacity-80">
+          <Text className="text-foreground text-lg  active:opacity-80">
             Generate
           </Text>
         </Pressable>
-        {data && <Streamable data={data} />}
+        {data.length > 0 && <Streamable data={data} />}
       </View>
     </View>
   );

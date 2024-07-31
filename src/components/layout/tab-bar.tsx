@@ -3,6 +3,7 @@ import * as Haptics from "expo-haptics";
 import { useState } from "react";
 import { LayoutChangeEvent, Platform, View } from "react-native";
 import Animated, {
+  ReduceMotion,
   useAnimatedStyle,
   useSharedValue,
   withSpring,
@@ -66,6 +67,8 @@ const TabBar = ({ state, descriptors, navigation }: BottomTabBarProps) => {
         const onPress = () => {
           tabPositionX.value = withSpring(buttonWidth * index, {
             duration: 1000,
+            dampingRatio: 0.7,
+            reduceMotion: ReduceMotion.System,
           });
 
           const event = navigation.emit({
