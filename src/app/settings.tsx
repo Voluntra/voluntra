@@ -1,5 +1,6 @@
+import * as Haptics from "expo-haptics";
 import React from "react";
-import { Button } from "react-native";
+import { Pressable, Text } from "react-native";
 import {
   Gesture,
   GestureDetector,
@@ -24,7 +25,9 @@ const Settings = () => {
     duration: 150,
   } as WithTimingConfig;
 
-  const handlePress = () => {
+  const onPress = () => {
+    Haptics.selectionAsync();
+
     translateY.value =
       translateY.value === 0
         ? withTiming(popoverHeight, config)
@@ -57,13 +60,7 @@ const Settings = () => {
     });
 
   return (
-    <GestureHandlerRootView
-      style={{
-        flex: 1,
-        alignItems: "center",
-        justifyContent: "center",
-      }}
-    >
+    <GestureHandlerRootView className="flex flex-1 pt-offset pb-offset mx-page mt-page">
       <GestureDetector gesture={pan}>
         <Animated.View
           className="bg-neutral-700 mx-3 z-50 rounded-3xl shadow-md absolute bottom-0 left-0 right-0"
@@ -75,7 +72,14 @@ const Settings = () => {
           ]}
         />
       </GestureDetector>
-      <Button onPress={handlePress} title="Toggle Popover" />
+      <Pressable
+        onPress={onPress}
+        className="bg-neutral-900 w-full h-14 rounded-xl flex items-center justify-center active:opacity-80 border border-neutral-800"
+      >
+        <Text className="text-foreground text-lg font-popRegular active:opacity-80">
+          Toggle Popover
+        </Text>
+      </Pressable>
     </GestureHandlerRootView>
   );
 };

@@ -45,4 +45,3 @@ export const iconName: IconMap = tabsList.reduce((acc, tab) => {
   acc[tab.name] = tab.iconName;
   return acc;
 }, {} as IconMap);
-4;

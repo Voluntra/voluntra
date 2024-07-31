@@ -34,7 +34,7 @@ const TabBarButton = ({
       <Text
         className={`${
           isFocused ? "text-purple-100" : "text-neutral-400"
-        }  capitalize text-xs`}
+        }  capitalize text-xs font-popRegular`}
       >
         {routeName === "index" ? "home" : routeName}
       </Text>

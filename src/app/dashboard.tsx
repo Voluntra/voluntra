@@ -1,3 +1,4 @@
+import * as Haptics from "expo-haptics";
 import { useEffect, useState } from "react";
 import { Pressable, Text, View } from "react-native";
 import EventSource, { EventSourceListener } from "react-native-sse";
@@ -28,6 +29,7 @@ const Dashboard = () => {
         switch (event.type) {
           case "open": {
             setData("");
+            Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
             break;
           }
           case "update": {
@@ -61,7 +63,9 @@ const Dashboard = () => {
     };
   }, [stream]);
 
-  const handlePress = () => {
+  const onPress = () => {
+    Haptics.selectionAsync();
+
     if (data) {
       // Reset state variable, and therefore the `Streamable` component
       setData("");
@@ -72,12 +76,14 @@ const Dashboard = () => {
 
   return (
     <View className="pt-offset pb-offset">
-      <View className="p-5 min-h-screen flex items-center space-y-4">
+      <View className="m-page min-h-screen flex items-center">
         <Pressable
-          onPress={handlePress}
-          className="transition-opacity ease-in-out duration-200 bg-neutral-800 w-full h-11 rounded-md flex items-center justify-center mb-4 active:opacity-50"
+          onPress={onPress}
+          className="bg-neutral-900 w-full h-14 rounded-xl flex items-center justify-center mb-4 active:opacity-80 border border-neutral-800"
         >
-          <Text className="text-neutral-200 text-lg font-bold">Generate</Text>
+          <Text className="text-foreground text-lg font-popRegular active:opacity-80">
+            Generate
+          </Text>
         </Pressable>
         {data && <Streamable data={data} />}
       </View>

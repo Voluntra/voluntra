@@ -5,7 +5,7 @@ import MonthlyGoal from "../components/home/monthly-goal";
 const App = () => {
   return (
     <View className="pt-offset pb-offset">
-      <View className="flex min-h-screen m-3.5">
+      <View className="flex min-h-screen m-page">
         <MonthlyGoal hoursLeft={2} monthlyGoal={10} />
       </View>
     </View>

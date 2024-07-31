@@ -17,7 +17,7 @@ import {
   registerForPushNotificationsAsync,
   schedulePushNotification,
 } from "../lib/notifications";
-import { findKey } from "../lib/onboarding";
+import { findKey, setKey } from "../lib/onboarding";
 import theme from "../lib/theme";
 
 const RootLayout = () => {
@@ -71,7 +71,7 @@ const RootLayout = () => {
       // If the user has not seen the onboarding screen show it here
       // and set the "onboarding" key to true to keep track of it
       if (val === null || val === "false") {
-        AsyncStorage.setItem("onboarding", "true").then(() => {
+        setKey("onboarding", "true").then(() => {
           // Onboarding placeholder
           Burnt.toast({
             title: "Welcome to Voluntra!",
@@ -101,6 +101,7 @@ const RootLayout = () => {
             headerTitleAlign: "left",
             headerTitleStyle: {
               fontSize: 26,
+              fontFamily: "Poppins-SemiBold",
             },
             headerShadowVisible: false,
           }}

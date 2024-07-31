@@ -62,9 +62,40 @@ module.exports = {
         900: "#1b1b1b",
       },
     },
+    fontFamily: {
+      popBlack: "Poppins-Black",
+      popBlackItalic: "Poppins-BlackItalic",
+
+      popExtraBold: "Poppins-ExtraBold",
+      popExtraBoldItalic: "Poppins-ExtraBoldItalic",
+
+      popBold: "Poppins-Bold",
+      popBoldItalic: "Poppins-BoldItalic",
+
+      popSemiBold: "Poppins-SemiBold",
+      popSemiBoldItalic: "Poppins-SemiBoldItalic",
+
+      popMedium: "Poppins-Medium",
+      popMediumItalic: "Poppins-MediumItalic",
+
+      popRegular: "Poppins-Regular",
+      popItalic: "Poppins-Italic",
+
+      popLight: "Poppins-Light",
+      popLightItalic: "Poppins-LightItalic",
+
+      popExtraLight: "Poppins-ExtraLight",
+      popExtraLightItalic: "Poppins-ExtraLightItalic",
+
+      popThin: "Poppins-Thin",
+      popThinItalic: "Poppins-ThinItalic",
+    },
     extend: {
       padding: {
         offset: "90px",
+      },
+      margin: {
+        page: "14px",
       },
     },
   },

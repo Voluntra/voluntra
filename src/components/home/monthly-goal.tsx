@@ -49,10 +49,10 @@ const MonthlyGoal = ({ hoursLeft, monthlyGoal }: MonthlyGoalProps) => {
 
       {/* Dynamic text identifying the component and hours left to volunteer */}
       <View className="flex flex-col gap-PX justify-center align-middle">
-        <Text className="font-bold text-2xl text-neutral-100">
+        <Text className="font-popMedium text-2xl text-neutral-100">
           Monthly Goal
         </Text>
-        <Text className="text-lg text-neutral-400">
+        <Text className="text-neutral-400 font-popRegular text-base">
           {hoursLeft} {hoursLeft > 1 ? "hours" : "hour"} of volunteering left
         </Text>
       </View>
@@ -62,8 +62,16 @@ const MonthlyGoal = ({ hoursLeft, monthlyGoal }: MonthlyGoalProps) => {
         data={data}
         strokeWidth={12}
         radius={35}
-        labelValueStyle={styles.centerLabelText}
-        labelTitleStyle={styles.centerLabelCaption}
+        labelValueStyle={{
+          fontSize: 20,
+          fontFamily: "Poppins-Regular",
+          color: palette["neutral"]["100"] as string,
+        }}
+        labelTitleStyle={{
+          fontSize: 10,
+          fontFamily: "Poppins-Regular",
+          color: palette["neutral"]["100"] as string,
+        }}
         containerWidth={100}
         containerHeight={100}
         type="round"
