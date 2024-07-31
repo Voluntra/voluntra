@@ -4,9 +4,6 @@ export default (): ExpoConfig => ({
   name: "Voluntra",
   slug: "voluntra",
   version: "1.0.0",
-  runtimeVersion: {
-    policy: "appVersion",
-  },
   orientation: "portrait",
   icon: "./assets/icon.png",
   userInterfaceStyle: "dark",
