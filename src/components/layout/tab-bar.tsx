@@ -57,7 +57,10 @@ const TabBar = ({ state, descriptors, navigation }: BottomTabBarProps) => {
       />
 
       {/* Load a BlurView on iOS but use the regular on Android due to performance limitations */}
-      {Platform.OS === "android" ? <NavBackground /> : <Blur />}
+      {Platform.select({
+        android: <NavBackground />,
+        ios: <Blur />,
+      })}
 
       {/* Map through defined routes (minus built-in expo routes) */}
       {filteredRoutes.map((route, index) => {
