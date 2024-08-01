@@ -1,16 +1,16 @@
-import { BottomTabBarProps } from "@react-navigation/bottom-tabs";
-import * as Haptics from "expo-haptics";
-import { useState } from "react";
-import { LayoutChangeEvent, Platform, View } from "react-native";
+import { BottomTabBarProps } from '@react-navigation/bottom-tabs';
+import * as Haptics from 'expo-haptics';
+import { useState } from 'react';
+import { LayoutChangeEvent, Platform, View } from 'react-native';
 import Animated, {
   ReduceMotion,
   useAnimatedStyle,
   useSharedValue,
   withSpring,
-} from "react-native-reanimated";
-import Blur from "./blur";
-import NavBackground from "./nav-background";
-import TabBarButton from "./tab-bar-button";
+} from 'react-native-reanimated';
+import Blur from './blur';
+import NavBackground from './nav-background';
+import TabBarButton from './tab-bar-button';
 
 const TabBar = ({ state, descriptors, navigation }: BottomTabBarProps) => {
   const [dimensions, setDimensions] = useState({ height: 20, width: 100 });
@@ -18,7 +18,7 @@ const TabBar = ({ state, descriptors, navigation }: BottomTabBarProps) => {
 
   // Filter routes to exclude built-in expo routes
   const filteredRoutes = state.routes.filter(
-    (route) => !["_sitemap", "+not-found"].includes(route.name),
+    (route) => !['_sitemap', '+not-found'].includes(route.name)
   );
 
   // Calculate the number of omitted routes
@@ -75,7 +75,7 @@ const TabBar = ({ state, descriptors, navigation }: BottomTabBarProps) => {
           });
 
           const event = navigation.emit({
-            type: "tabPress",
+            type: 'tabPress',
             target: route.key,
             canPreventDefault: true,
           });
@@ -88,7 +88,7 @@ const TabBar = ({ state, descriptors, navigation }: BottomTabBarProps) => {
 
         const onLongPress = () => {
           navigation.emit({
-            type: "tabLongPress",
+            type: 'tabLongPress',
             target: route.key,
           });
         };

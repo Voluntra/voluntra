@@ -1,5 +1,5 @@
-import { Text, View } from "react-native";
-import Animated, { FadeIn } from "react-native-reanimated";
+import { Text, View } from 'react-native';
+import Animated, { FadeIn } from 'react-native-reanimated';
 
 interface StreamableProps {
   data: string[];
@@ -17,7 +17,7 @@ const Streamable = ({ data }: StreamableProps) => {
           >
             <Text
               className={`text-neutral-100 font-popRegular text-base ${
-                idx === 0 ? "ml-1" : ""
+                idx === 0 ? 'ml-1' : ''
               }`}
             >
               {text}

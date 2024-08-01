@@ -1,8 +1,8 @@
-import { LinearGradient } from "expo-linear-gradient";
-import React from "react";
-import { StyleSheet, Text, View } from "react-native";
-import { DonutChart, DonutItem } from "react-native-circular-chart";
-import palette from "../../lib/palette";
+import { LinearGradient } from 'expo-linear-gradient';
+import React from 'react';
+import { Text, View } from 'react-native';
+import { DonutChart, DonutItem } from 'react-native-circular-chart';
+import palette from '../../lib/palette';
 
 interface MonthlyGoalProps {
   hoursLeft: number;
@@ -12,38 +12,28 @@ interface MonthlyGoalProps {
 const MonthlyGoal = ({ hoursLeft, monthlyGoal }: MonthlyGoalProps) => {
   if (hoursLeft > monthlyGoal) {
     throw new Error(
-      "MonthlyGoal component requires that its prop `hoursLeft` be less than `monthlyGoal`",
+      'MonthlyGoal component requires that its prop `hoursLeft` be less than `monthlyGoal`'
     );
   }
 
   const data: DonutItem[] = [
     {
-      name: "hours",
+      name: 'hours',
       value: monthlyGoal - hoursLeft,
-      color: palette["purple"]["900"],
+      color: palette['purple']['900'],
     },
     {
-      name: "hours",
+      name: 'hours',
       value: hoursLeft,
-      color: palette["purple"]["100"],
+      color: palette['purple']['100'],
     },
   ];
-
-  const styles = StyleSheet.create({
-    centerLabelText: {
-      fontSize: 20,
-      color: palette["white"] as string,
-    },
-    centerLabelCaption: {
-      fontSize: 10,
-    },
-  });
 
   return (
     <View className="h-28 bg-neutral-900 rounded-xl shadow-sm p-5 flex flex-row justify-between align-middle items-center border border-neutral-800 overflow-hidden">
       {/*  Background Linear Gradient */}
       <LinearGradient
-        colors={[palette["neutral"]["800"], palette["neutral"]["900"]]}
+        colors={[palette['neutral']['800'], palette['neutral']['900']]}
         className="absolute left-0 right-0 top-0 bottom-0"
       />
 
@@ -53,7 +43,7 @@ const MonthlyGoal = ({ hoursLeft, monthlyGoal }: MonthlyGoalProps) => {
           Monthly Goal
         </Text>
         <Text className="text-neutral-400 font-popRegular text-base">
-          {hoursLeft} {hoursLeft > 1 ? "hours" : "hour"} of volunteering left
+          {hoursLeft} {hoursLeft > 1 ? 'hours' : 'hour'} of volunteering left
         </Text>
       </View>
 
@@ -64,13 +54,13 @@ const MonthlyGoal = ({ hoursLeft, monthlyGoal }: MonthlyGoalProps) => {
         radius={35}
         labelValueStyle={{
           fontSize: 20,
-          fontFamily: "Poppins-Regular",
-          color: palette["neutral"]["100"] as string,
+          fontFamily: 'Poppins-Regular',
+          color: palette['neutral']['100'] as string,
         }}
         labelTitleStyle={{
           fontSize: 10,
-          fontFamily: "Poppins-Regular",
-          color: palette["neutral"]["100"] as string,
+          fontFamily: 'Poppins-Regular',
+          color: palette['neutral']['100'] as string,
         }}
         containerWidth={100}
         containerHeight={100}

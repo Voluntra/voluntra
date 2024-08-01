@@ -1,7 +1,7 @@
-import Constants from "expo-constants";
-import * as Device from "expo-device";
-import * as Notifications from "expo-notifications";
-import { Platform } from "react-native";
+import Constants from 'expo-constants';
+import * as Device from 'expo-device';
+import * as Notifications from 'expo-notifications';
+import { Platform } from 'react-native';
 
 /**
  * This function will perform a series of checks, and handle platform differences between iOS
@@ -12,12 +12,12 @@ import { Platform } from "react-native";
 export const registerForPushNotificationsAsync = async () => {
   let token: string;
 
-  if (Platform.OS === "android") {
-    await Notifications.setNotificationChannelAsync("default", {
-      name: "default",
+  if (Platform.OS === 'android') {
+    await Notifications.setNotificationChannelAsync('default', {
+      name: 'default',
       importance: Notifications.AndroidImportance.MAX,
       vibrationPattern: [0, 250, 250, 250],
-      lightColor: "#FF231F7C",
+      lightColor: '#FF231F7C',
     });
   }
 
@@ -25,13 +25,13 @@ export const registerForPushNotificationsAsync = async () => {
     const { status: existingStatus } =
       await Notifications.getPermissionsAsync();
     let finalStatus = existingStatus;
-    if (existingStatus !== "granted") {
+    if (existingStatus !== 'granted') {
       const { status } = await Notifications.requestPermissionsAsync();
 
       finalStatus = status;
     }
-    if (finalStatus !== "granted") {
-      console.error("Failed to get push token for push notification!");
+    if (finalStatus !== 'granted') {
+      console.error('Failed to get push token for push notification!');
       return;
     }
     try {
@@ -39,7 +39,7 @@ export const registerForPushNotificationsAsync = async () => {
         Constants?.expoConfig?.extra?.eas?.projectId ??
         Constants?.easConfig?.projectId;
       if (!projectId) {
-        throw new Error("Project ID not found");
+        throw new Error('Project ID not found');
       }
       token = (
         await Notifications.getExpoPushTokenAsync({
@@ -50,7 +50,7 @@ export const registerForPushNotificationsAsync = async () => {
       token = `${e}`;
     }
   } else {
-    console.error("Must use physical device for Push Notifications");
+    console.error('Must use physical device for Push Notifications');
   }
 
   return token;
@@ -65,7 +65,7 @@ export const registerForPushNotificationsAsync = async () => {
  */
 export const schedulePushNotification = async (
   content: Notifications.NotificationContentInput,
-  trigger: Notifications.NotificationTriggerInput,
+  trigger: Notifications.NotificationTriggerInput
 ) => {
   await Notifications.scheduleNotificationAsync({
     content: content,

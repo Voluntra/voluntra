@@ -1,4 +1,4 @@
-import { Feather } from "@expo/vector-icons";
+import { Feather } from '@expo/vector-icons';
 
 interface Tab {
   name: string;
@@ -7,7 +7,7 @@ interface Tab {
 }
 
 type IconMap = {
-  [K in (typeof tabsList)[number]["name"]]: (typeof tabsList)[number]["iconName"];
+  [K in (typeof tabsList)[number]['name']]: (typeof tabsList)[number]['iconName'];
 };
 
 /**
@@ -16,24 +16,24 @@ type IconMap = {
  */
 export const tabsList: Tab[] = [
   {
-    name: "index",
-    title: "Home",
-    iconName: "home",
+    name: 'index',
+    title: 'Home',
+    iconName: 'home',
   },
   {
-    name: "discover",
-    title: "Discover",
-    iconName: "compass",
+    name: 'discover',
+    title: 'Discover',
+    iconName: 'compass',
   },
   {
-    name: "dashboard",
-    title: "Dashboard",
-    iconName: "bar-chart-2",
+    name: 'dashboard',
+    title: 'Dashboard',
+    iconName: 'bar-chart-2',
   },
   {
-    name: "settings",
-    title: "Settings",
-    iconName: "settings",
+    name: 'settings',
+    title: 'Settings',
+    iconName: 'settings',
   },
 ];
 

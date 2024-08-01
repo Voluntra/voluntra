@@ -1,6 +1,6 @@
-import "expo-dev-client";
-import { View } from "react-native";
-import MonthlyGoal from "../components/home/monthly-goal";
+import 'expo-dev-client';
+import { View } from 'react-native';
+import MonthlyGoal from '../components/home/monthly-goal';
 
 const App = () => {
   return (

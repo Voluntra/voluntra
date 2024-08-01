@@ -1,4 +1,4 @@
-import { BlurView, BlurViewProps } from "expo-blur";
+import { BlurView, BlurViewProps } from 'expo-blur';
 
 /**
  * A wrapper around the Expo BlurView component that provides a consistent
@@ -10,7 +10,7 @@ import { BlurView, BlurViewProps } from "expo-blur";
 const Blur = ({ tint, intensity, ...props }: BlurViewProps) => {
   return (
     <BlurView
-      tint={"systemUltraThinMaterialDark"}
+      tint={'systemUltraThinMaterialDark'}
       intensity={70}
       className="absolute top-0 bottom-0 left-0 right-0"
       {...props}

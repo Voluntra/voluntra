@@ -1,5 +1,5 @@
-import { DarkTheme } from "@react-navigation/native";
-import palette from "../lib/palette";
+import { DarkTheme } from '@react-navigation/native';
+import palette from '../lib/palette';
 
 /**
  * This theme object is passed to the `ThemeProvider` from `react-navigation`,
@@ -12,12 +12,12 @@ import palette from "../lib/palette";
 const theme = {
   dark: true,
   colors: {
-    primary: palette.purple["100"],
+    primary: palette.purple['100'],
     background: palette.background as string,
-    card: palette.neutral["900"],
+    card: palette.neutral['900'],
     text: palette.foreground as string,
-    border: palette.neutral["800"],
-    notification: palette.purple["100"],
+    border: palette.neutral['800'],
+    notification: palette.purple['100'],
   },
 } satisfies typeof DarkTheme;
 

@@ -1,9 +1,9 @@
-import * as Haptics from "expo-haptics";
-import { useEffect, useState } from "react";
-import { Pressable, Text, View } from "react-native";
-import EventSource, { EventSourceListener } from "react-native-sse";
-import Streamable from "../components/streamable";
-import Events from "../types/streaming/events";
+import * as Haptics from 'expo-haptics';
+import { useEffect, useState } from 'react';
+import { Pressable, Text, View } from 'react-native';
+import EventSource, { EventSourceListener } from 'react-native-sse';
+import Streamable from '../components/streamable';
+import Events from '../types/streaming/events';
 
 const Dashboard = () => {
   const [stream, setStream] = useState(false);
@@ -13,46 +13,46 @@ const Dashboard = () => {
     let source: EventSource<Events> | null = null;
 
     if (stream) {
-      source = new EventSource<Events>("https://www.voluntra.org/api/workers", {
-        method: "POST",
+      source = new EventSource<Events>('https://www.voluntra.org/api/workers', {
+        method: 'POST',
         body: JSON.stringify({
           question: 0,
-          organization: "Public Library",
+          organization: 'Public Library',
         }),
         headers: {
-          "Content-Type": "text/html",
+          'Content-Type': 'text/html',
         },
         withCredentials: true,
       });
 
       const listener: EventSourceListener<Events> = (event) => {
         switch (event.type) {
-          case "open": {
+          case 'open': {
             setData([]);
             Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
             break;
           }
-          case "update": {
+          case 'update': {
             let parsed = JSON.parse(event.data);
             setData((prev) => [...prev, parsed.response]);
             break;
           }
-          case "complete": {
+          case 'complete': {
             setStream(false);
             break;
           }
-          case "error": {
-            console.error("Connection error:", event.message);
+          case 'error': {
+            console.error('Connection error:', event.message);
             source.close();
             break;
           }
         }
       };
 
-      source.addEventListener("open", listener);
-      source.addEventListener("update", listener);
-      source.addEventListener("complete", listener);
-      source.addEventListener("error", listener);
+      source.addEventListener('open', listener);
+      source.addEventListener('update', listener);
+      source.addEventListener('complete', listener);
+      source.addEventListener('error', listener);
     }
 
     return () => {
