@@ -81,7 +81,7 @@ const Dashboard = () => {
           onPress={onPress}
           className="bg-neutral-900 w-full h-14 rounded-xl flex items-center justify-center mb-4 active:opacity-80 border border-neutral-800"
         >
-          <Text className="text-foreground text-lg  active:opacity-80">
+          <Text className="text-foreground text-lg font-popRegular active:opacity-80">
             Generate
           </Text>
         </Pressable>

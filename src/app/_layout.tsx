@@ -5,6 +5,8 @@ import "expo-dev-client";
 import { registerDevMenuItems } from "expo-dev-menu";
 import { useFonts } from "expo-font";
 import * as Notifications from "expo-notifications";
+import * as QuickActions from "expo-quick-actions";
+import { RouterAction, useQuickActionRouting } from "expo-quick-actions/router";
 import { Tabs } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import { useEffect } from "react";
@@ -13,6 +15,7 @@ import Blur from "../components/layout/blur";
 import NavBackground from "../components/layout/nav-background";
 import TabBar from "../components/layout/tab-bar";
 import { devMenuItems } from "../config/dev-menu";
+import { actions } from "../config/quick-actions";
 import { tabsList } from "../config/tabs";
 import { registerForPushNotificationsAsync } from "../lib/notifications";
 import { findKey, setKey } from "../lib/onboarding";
@@ -34,6 +37,9 @@ const RootLayout = () => {
   // Register custom dev menu items
   registerDevMenuItems(devMenuItems);
 
+  // Enable linking to the `href` param when a quick action is used.
+  useQuickActionRouting();
+
   useEffect(() => {
     // Begin on-boarding process, displaying key information to the user
     findKey("onboarding").then((val) => {
@@ -54,6 +60,9 @@ const RootLayout = () => {
 
     // Register user to receive push notifications
     registerForPushNotificationsAsync();
+
+    // Set quick actions from config
+    QuickActions.setItems<RouterAction>(actions);
   }, []);
 
   return (
