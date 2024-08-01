@@ -65,7 +65,7 @@ export const registerForPushNotificationsAsync = async () => {
  */
 export const schedulePushNotification = async (
   content: Notifications.NotificationContentInput,
-  trigger: Notifications.NotificationTriggerInput
+  trigger: Notifications.NotificationTriggerInput,
 ) => {
   await Notifications.scheduleNotificationAsync({
     content: content,

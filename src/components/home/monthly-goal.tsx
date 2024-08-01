@@ -12,7 +12,7 @@ interface MonthlyGoalProps {
 const MonthlyGoal = ({ hoursLeft, monthlyGoal }: MonthlyGoalProps) => {
   if (hoursLeft > monthlyGoal) {
     throw new Error(
-      "MonthlyGoal component requires that its prop `hoursLeft` be less than `monthlyGoal`"
+      "MonthlyGoal component requires that its prop `hoursLeft` be less than `monthlyGoal`",
     );
   }
 

@@ -38,7 +38,7 @@ const Settings = () => {
     const marginBottom = interpolate(
       translateY.value,
       [0, popoverHeight],
-      [20, 0]
+      [20, 0],
     );
 
     return {
@@ -52,7 +52,7 @@ const Settings = () => {
       offset.value += clamp(
         event.translationY / 50,
         -popoverHeight / 200,
-        popoverHeight / 200
+        popoverHeight / 200,
       );
     })
     .onFinalize((event) => {

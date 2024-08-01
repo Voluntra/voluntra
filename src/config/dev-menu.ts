@@ -21,7 +21,7 @@ export const devMenuItems: Parameters<
         },
         {
           seconds: 1,
-        }
+        },
       );
     },
     shouldCollapse: true,

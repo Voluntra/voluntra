@@ -18,7 +18,7 @@ const TabBar = ({ state, descriptors, navigation }: BottomTabBarProps) => {
 
   // Filter routes to exclude built-in expo routes
   const filteredRoutes = state.routes.filter(
-    (route) => !["_sitemap", "+not-found"].includes(route.name)
+    (route) => !["_sitemap", "+not-found"].includes(route.name),
   );
 
   // Calculate the number of omitted routes
