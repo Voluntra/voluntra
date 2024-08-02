@@ -1,89 +1,98 @@
-import { Feather } from "@expo/vector-icons";
-import { DarkTheme, ThemeProvider } from "@react-navigation/native";
-import * as Haptics from "expo-haptics";
-import { Tabs } from "expo-router";
-import { useState } from "react";
-import { Platform } from "react-native";
-import resolveConfig from "tailwindcss/resolveConfig";
-import tailwindConfig from "../../tailwind.config";
-import Blur from "../components/blur";
-import tabsList from "../config/tabs";
+import Ionicons from '@expo/vector-icons/Ionicons';
+import { ThemeProvider } from '@react-navigation/native';
+import * as Burnt from 'burnt';
+import 'expo-dev-client';
+import { registerDevMenuItems } from 'expo-dev-menu';
+import { useFonts } from 'expo-font';
+import * as Notifications from 'expo-notifications';
+import * as QuickActions from 'expo-quick-actions';
+import { RouterAction, useQuickActionRouting } from 'expo-quick-actions/router';
+import { Tabs } from 'expo-router';
+import { StatusBar } from 'expo-status-bar';
+import { useEffect } from 'react';
+import { Platform } from 'react-native';
+import Blur from '../components/layout/blur';
+import NavBackground from '../components/layout/nav-background';
+import TabBar from '../components/layout/tab-bar';
+import { devMenuItems } from '../config/dev-menu';
+import { actions } from '../config/quick-actions';
+import { tabsList } from '../config/tabs';
+import { registerForPushNotificationsAsync } from '../lib/notifications';
+import { findKey, setKey } from '../lib/onboarding';
+import theme from '../lib/theme';
 
-const HomeLayout = () => {
-  const [previousRoute, setPreviousRoute] = useState("index");
+const RootLayout = () => {
+  // Handle expo vector icons' initial load
+  useFonts({ Ionicons: Ionicons.font });
 
-  const profileImageSource =
-    "https://images.unsplash.com/photo-1504730030853-eff311f57d3c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=934&q=80";
+  // Handle receiving push notifications while app is foregrounded
+  Notifications.setNotificationHandler({
+    handleNotification: async () => ({
+      shouldShowAlert: true,
+      shouldPlaySound: true,
+      shouldSetBadge: false,
+    }),
+  });
 
-  const {
-    theme: { colors },
-  } = resolveConfig(tailwindConfig) as {
-    theme: { colors: Record<string, string> };
-  };
+  // Register custom dev menu items
+  registerDevMenuItems(devMenuItems);
 
-  const theme = {
-    dark: true,
-    colors: {
-      primary: colors.purple["100"],
-      background: colors.background,
-      card: colors.neutral["900"],
-      text: colors.foreground,
-      border: colors.neutral["800"],
-      notification: colors.purple["100"],
-    },
-  } satisfies typeof DarkTheme;
+  // Enable linking to the `href` param when a quick action is used.
+  useQuickActionRouting();
 
-  const handleIcon = (color: string, name: keyof typeof Feather.glyphMap) => {
-    return <Feather name={name} size={24} color={color} />;
-  };
+  useEffect(() => {
+    // Begin on-boarding process, displaying key information to the user
+    findKey('onboarding').then((val) => {
+      // If the user has not seen the onboarding screen show it here
+      // and set the "onboarding" key to true to keep track of it
+      if (val === null || val === 'false') {
+        setKey('onboarding', 'true').then(() => {
+          // Onboarding placeholder
+          Burnt.toast({
+            title: 'Welcome to Voluntra!',
+            message: 'This is a placeholder',
+            preset: 'done',
+            haptic: 'success',
+          });
+        });
+      }
+    });
+
+    // Register user to receive push notifications
+    registerForPushNotificationsAsync();
+
+    // Set quick actions from config
+    QuickActions.setItems<RouterAction>(actions);
+  }, []);
 
   return (
-    <ThemeProvider value={theme}>
-      <Tabs
-        initialRouteName="index"
-        screenListeners={{
-          tabPress: (e) => {
-            const target = e.target?.split("-")[0];
-
-            // If the user does not navigate to the same route twice, vibrate
-            if (target !== previousRoute) {
-              Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
-            }
-            setPreviousRoute(target);
-          },
-        }}
-        // TODO: Fix headerTransparent prop moving all Views on all screens up
-        screenOptions={{
-          headerBackground: Blur,
-          headerTransparent: false,
-          headerTitleAlign: "left",
-          headerTitleStyle: {
-            fontSize: 26,
-          },
-          tabBarStyle: {
-            height: Platform.OS === "android" ? 80 : 90,
-          },
-          tabBarLabelStyle: {
-            paddingBottom: Platform.OS === "android" ? 20 : 0,
-          },
-        }}
-      >
-        {tabsList.map(({ iconName, name, title }) => (
-          <Tabs.Screen
-            key={name}
-            name={name}
-            options={{
-              title: title,
-              tabBarIcon: ({ color }) => handleIcon(color, iconName),
-              tabBarIconStyle: {
-                marginTop: 16,
-              },
-            }}
-          />
-        ))}
-      </Tabs>
-    </ThemeProvider>
+    <>
+      <StatusBar style="light" animated />
+      <ThemeProvider value={theme}>
+        <Tabs
+          initialRouteName="index"
+          tabBar={(props) => <TabBar {...props} />}
+          screenOptions={{
+            headerBackground: Platform.select({
+              android: () => <NavBackground />,
+              ios: () => <Blur />,
+            }),
+            headerTransparent: true,
+            headerTitleAlign: 'left',
+            headerTitleStyle: {
+              fontSize: 26,
+              fontFamily: 'Poppins-SemiBold',
+            },
+            headerShadowVisible: false,
+          }}
+        >
+          {tabsList.map(({ name, title }) => (
+            <Tabs.Screen key={name} name={name} options={{ title: title }} />
+          ))}
+        </Tabs>
+      </ThemeProvider>
+    </>
   );
 };
 
-export default HomeLayout;
+export default RootLayout;

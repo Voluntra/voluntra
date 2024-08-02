@@ -1,53 +1,58 @@
-import { useEffect, useState } from "react";
-import { Pressable, Text, View } from "react-native";
-import EventSource, { EventSourceListener } from "react-native-sse";
-import Streamable from "../components/streamable";
-import { Events } from "../types/streaming/events";
+import * as Haptics from 'expo-haptics';
+import { useEffect, useState } from 'react';
+import { Pressable, Text, View } from 'react-native';
+import EventSource, { EventSourceListener } from 'react-native-sse';
+import Streamable from '../components/streamable';
+import Events from '../types/streaming/events';
 
 const Dashboard = () => {
   const [stream, setStream] = useState(false);
-  const [data, setData] = useState<string>(null);
+  const [data, setData] = useState<string[]>([]);
 
   useEffect(() => {
     let source: EventSource<Events> | null = null;
 
     if (stream) {
-      source = new EventSource<Events>("https://www.voluntra.org/api/workers", {
-        method: "POST",
+      source = new EventSource<Events>('https://www.voluntra.org/api/workers', {
+        method: 'POST',
         body: JSON.stringify({
           question: 0,
-          organization: "Frisco Ford Stadium",
+          organization: 'Public Library',
         }),
+        headers: {
+          'Content-Type': 'text/html',
+        },
         withCredentials: true,
       });
 
       const listener: EventSourceListener<Events> = (event) => {
         switch (event.type) {
-          case "open": {
-            setData("");
+          case 'open': {
+            setData([]);
+            Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
             break;
           }
-          case "update": {
+          case 'update': {
             let parsed = JSON.parse(event.data);
-            setData((prev) => prev + parsed.response);
+            setData((prev) => [...prev, parsed.response]);
             break;
           }
-          case "complete": {
+          case 'complete': {
             setStream(false);
             break;
           }
-          case "error": {
-            console.error("Connection error:", event.message);
+          case 'error': {
+            console.error('Connection error:', event.message);
             source.close();
             break;
           }
         }
       };
 
-      source.addEventListener("open", listener);
-      source.addEventListener("update", listener);
-      source.addEventListener("complete", listener);
-      source.addEventListener("error", listener);
+      source.addEventListener('open', listener);
+      source.addEventListener('update', listener);
+      source.addEventListener('complete', listener);
+      source.addEventListener('error', listener);
     }
 
     return () => {
@@ -58,24 +63,30 @@ const Dashboard = () => {
     };
   }, [stream]);
 
-  const handlePress = () => {
+  const onPress = () => {
+    Haptics.selectionAsync();
+
     if (data) {
       // Reset state variable, and therefore the `Streamable` component
-      setData("");
+      setData([]);
     }
     // Allow for re-streaming whenever the button is toggled
     setStream((prev) => !prev);
   };
 
   return (
-    <View className="p-5 min-h-screen flex items-center space-y-4">
-      <Pressable
-        onPress={handlePress}
-        className="transition-opacity ease-in-out duration-200 bg-neutral-800 w-full h-11 rounded-md flex items-center justify-center mb-4 active:opacity-50"
-      >
-        <Text className="text-neutral-200 text-lg font-bold">Generate</Text>
-      </Pressable>
-      {data && <Streamable data={data} />}
+    <View className="pt-offset pb-offset">
+      <View className="m-page min-h-screen flex items-center">
+        <Pressable
+          onPress={onPress}
+          className="bg-neutral-900 w-full h-14 rounded-xl flex items-center justify-center mb-4 active:opacity-80 border border-neutral-800"
+        >
+          <Text className="text-foreground text-lg font-popRegular active:opacity-80">
+            Generate
+          </Text>
+        </Pressable>
+        {data.length > 0 && <Streamable data={data} />}
+      </View>
     </View>
   );
 };
