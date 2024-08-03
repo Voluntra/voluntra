@@ -29,11 +29,11 @@ const TabBarButton = ({
       <Feather
         name={iconName[routeName]}
         size={26}
-        color={isFocused ? palette['purple']['100'] : palette['neutral']['400']}
+        color={isFocused ? palette['purple']['100'] : palette['neutral']['500']}
       />
       <Text
         className={`${
-          isFocused ? 'text-purple-100' : 'text-neutral-400'
+          isFocused ? 'text-purple-100' : 'text-neutral-500'
         }  capitalize text-xs font-popRegular`}
       >
         {routeName === 'index' ? 'home' : routeName}
