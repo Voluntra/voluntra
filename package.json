@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "expo-router/entry",
   "scripts": {
-        "preinstall": "npx only-allow yarn",
+    "preinstall": "npx only-allow yarn",
     "start": "expo start",
     "android": "expo start --android",
     "ios": "expo start --ios",
@@ -34,6 +34,7 @@
     "nativewind": "^2.0.11",
     "promise": "^8.3.0",
     "react": "18.2.0",
+    "react-error-boundary": "^4.0.13",
     "react-native": "0.74.3",
     "react-native-circular-chart": "^1.0.9",
     "react-native-gesture-handler": "~2.16.1",
