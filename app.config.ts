@@ -1,7 +1,9 @@
 import { ExpoConfig } from 'expo/config';
 
+const IS_DEV = process.env.APP_VARIANT === 'development';
+
 export default (): ExpoConfig => ({
-  name: 'Voluntra',
+  name: IS_DEV ? 'Voluntra (Dev)' : 'Voluntra',
   slug: 'voluntra',
   version: '1.0.0',
   orientation: 'portrait',
@@ -18,7 +20,9 @@ export default (): ExpoConfig => ({
   assetBundlePatterns: ['**/*'],
   ios: {
     supportsTablet: false,
-    bundleIdentifier: 'org.voluntra.voluntra',
+    bundleIdentifier: IS_DEV
+      ? 'org.voluntra.voluntra.dev'
+      : 'org.voluntra.voluntra',
   },
   android: {
     googleServicesFile: process.env.GOOGLE_SERVICES_JSON,
@@ -26,7 +30,7 @@ export default (): ExpoConfig => ({
       foregroundImage: './assets/adaptive-icon.png',
       backgroundColor: '#000000',
     },
-    package: 'org.voluntra.voluntra',
+    package: IS_DEV ? 'org.voluntra.voluntra.dev' : 'org.voluntra.voluntra',
   },
   extra: {
     eas: {

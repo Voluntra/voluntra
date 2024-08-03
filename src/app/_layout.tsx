@@ -10,7 +10,9 @@ import { RouterAction, useQuickActionRouting } from 'expo-quick-actions/router';
 import { Tabs } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 import { useEffect } from 'react';
+import { ErrorBoundary } from 'react-error-boundary';
 import { Platform } from 'react-native';
+import Fallback from '../components/fallback';
 import Blur from '../components/layout/blur';
 import NavBackground from '../components/layout/nav-background';
 import TabBar from '../components/layout/tab-bar';
@@ -66,7 +68,7 @@ const RootLayout = () => {
   }, []);
 
   return (
-    <>
+    <ErrorBoundary FallbackComponent={Fallback}>
       <StatusBar style="light" animated />
       <ThemeProvider value={theme}>
         <Tabs
@@ -91,7 +93,7 @@ const RootLayout = () => {
           ))}
         </Tabs>
       </ThemeProvider>
-    </>
+    </ErrorBoundary>
   );
 };
 
