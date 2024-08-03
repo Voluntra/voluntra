@@ -4,7 +4,7 @@
   "main": "expo-router/entry",
   "scripts": {
     "preinstall": "npx only-allow yarn",
-    "start": "APP_VARIANT=development expo start",
+    "start": "expo start",
     "android": "expo start --android",
     "ios": "expo start --ios",
     "lint": "eslint ."
