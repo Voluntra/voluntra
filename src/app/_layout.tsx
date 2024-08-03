@@ -10,7 +10,7 @@ import { RouterAction, useQuickActionRouting } from 'expo-quick-actions/router';
 import { Tabs } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 import { useEffect } from 'react';
-import { ErrorBoundary } from "react-error-boundary";
+import { ErrorBoundary } from 'react-error-boundary';
 import { Platform } from 'react-native';
 import Fallback from '../components/fallback';
 import Blur from '../components/layout/blur';
