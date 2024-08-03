@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "expo-router/entry",
   "scripts": {
-    "preinstall": "node -e \"if(process.env.npm_execpath.indexOf('yarn') === -1) throw new Error('You must use Yarn to install, not NPM')\"",
+        "preinstall": "npx only-allow yarn",
     "start": "expo start",
     "android": "expo start --android",
     "ios": "expo start --ios",
