@@ -2,6 +2,7 @@ import { LinearGradient } from 'expo-linear-gradient';
 import React from 'react';
 import { Text, View } from 'react-native';
 import { DonutChart, DonutItem } from 'react-native-circular-chart';
+import Animated, { FadeIn } from 'react-native-reanimated';
 import palette from '../../lib/palette';
 
 interface MonthlyGoalProps {
@@ -47,28 +48,36 @@ const MonthlyGoal = ({ hoursLeft, monthlyGoal }: MonthlyGoalProps) => {
         </Text>
       </View>
 
+      {/* TODO: Find a suitable alternative for this chart componenet, looks janky */}
       {/* Donut pie chart to visually display the percentage of the monthly goal completed */}
-      <DonutChart
-        data={data}
-        strokeWidth={12}
-        radius={35}
-        labelValueStyle={{
-          fontSize: 20,
-          fontFamily: 'Poppins-Regular',
-          color: palette['neutral']['100'] as string,
-        }}
-        labelTitleStyle={{
-          fontSize: 10,
-          fontFamily: 'Poppins-Regular',
-          color: palette['neutral']['100'] as string,
-        }}
-        containerWidth={100}
-        containerHeight={100}
-        type="round"
-        startAngle={0}
-        endAngle={360}
-        animationType="slide"
-      />
+      <View className="w-24 h-24 flex justify-center align-middle items-center">
+        <DonutChart
+          data={data}
+          strokeWidth={12}
+          radius={35}
+          labelValueStyle={{
+            display: 'none',
+          }}
+          labelTitleStyle={{
+            display: 'none',
+          }}
+          labelWrapperStyle={{
+            display: 'none',
+          }}
+          containerWidth={100}
+          containerHeight={100}
+          type="round"
+          startAngle={0}
+          endAngle={360}
+          animationType="slide"
+        />
+        <Animated.Text
+          className="absolute inset-0 flex items-center justify-center text-neutral-100 font-popMedium text-2xl top-[34px]"
+          entering={FadeIn}
+        >
+          {((hoursLeft / monthlyGoal) * 100).toFixed(0)}
+        </Animated.Text>
+      </View>
     </View>
   );
 };
