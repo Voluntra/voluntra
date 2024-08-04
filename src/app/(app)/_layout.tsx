@@ -1,0 +1,80 @@
+import { ThemeProvider } from '@react-navigation/native';
+import * as Burnt from 'burnt';
+import 'expo-dev-client';
+import * as Notifications from 'expo-notifications';
+import { Redirect, Tabs } from 'expo-router';
+import { useEffect } from 'react';
+import { Platform } from 'react-native';
+import Blur from '../../components/layout/blur';
+import NavBackground from '../../components/layout/nav-background';
+import TabBar from '../../components/layout/tab-bar';
+import { tabsList } from '../../config/tabs';
+import { registerForPushNotificationsAsync } from '../../lib/notifications';
+import { findKey, setKey } from '../../lib/onboarding';
+import theme from '../../lib/theme';
+
+const RootLayout = () => {
+  let random = Math.random() * 99 + 1;
+  if (random >= 50) {
+    return <Redirect href="/sign-in" />;
+  }
+
+  // Handle receiving push notifications while app is foregrounded
+  Notifications.setNotificationHandler({
+    handleNotification: async () => ({
+      shouldShowAlert: true,
+      shouldPlaySound: true,
+      shouldSetBadge: false,
+    }),
+  });
+
+  useEffect(() => {
+    // Begin on-boarding process, displaying key information to the user
+    findKey('onboarding').then((val) => {
+      // If the user has not seen the onboarding screen show it here
+      // and set the "onboarding" key to true to keep track of it
+      if (val === null || val === 'false') {
+        setKey('onboarding', 'true').then(() => {
+          // Onboarding placeholder
+          Burnt.toast({
+            title: 'Welcome to Voluntra!',
+            message: 'This is a placeholder',
+            preset: 'done',
+            haptic: 'success',
+          });
+        });
+      }
+    });
+
+    // Register user to receive push notifications
+    registerForPushNotificationsAsync();
+  }, []);
+
+  return (
+    <ThemeProvider value={theme}>
+      <Tabs
+        initialRouteName="index"
+        tabBar={(props) => <TabBar {...props} />}
+        screenOptions={{
+          headerBackground: Platform.select({
+            android: () => <NavBackground />,
+            ios: () => <Blur />,
+          }),
+          headerTransparent: true,
+          headerTitleAlign: 'left',
+          headerTitleStyle: {
+            fontSize: 26,
+            fontFamily: 'Poppins-SemiBold',
+          },
+          headerShadowVisible: false,
+        }}
+      >
+        {tabsList.map(({ name, title }) => (
+          <Tabs.Screen key={name} name={name} options={{ title: title }} />
+        ))}
+      </Tabs>
+    </ThemeProvider>
+  );
+};
+
+export default RootLayout;

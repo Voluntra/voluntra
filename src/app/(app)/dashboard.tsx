@@ -2,8 +2,8 @@ import * as Haptics from 'expo-haptics';
 import { useEffect, useState } from 'react';
 import { Pressable, Text, View } from 'react-native';
 import EventSource, { EventSourceListener } from 'react-native-sse';
-import Streamable from '../components/streamable';
-import Events from '../types/streaming/events';
+import Streamable from '../../components/streamable';
+import Events from '../../types/streaming/events';
 
 const Dashboard = () => {
   const [stream, setStream] = useState(false);

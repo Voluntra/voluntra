@@ -1,5 +1,5 @@
 import { View } from 'react-native';
-import MonthlyGoal from '../components/home/monthly-goal';
+import MonthlyGoal from '../../components/home/monthly-goal';
 
 const App = () => {
   return (
