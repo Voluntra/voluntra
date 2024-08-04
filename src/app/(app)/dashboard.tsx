@@ -1,13 +1,16 @@
-import * as Haptics from 'expo-haptics';
 import { useEffect, useState } from 'react';
 import { Pressable, Text, View } from 'react-native';
 import EventSource, { EventSourceListener } from 'react-native-sse';
 import Streamable from '../../components/streamable';
+import { useHaptics } from '../../hooks/useHaptics';
 import Events from '../../types/streaming/events';
 
 const Dashboard = () => {
   const [stream, setStream] = useState(false);
   const [data, setData] = useState<string[]>([]);
+
+  const selectionHaptic = useHaptics();
+  const successHaptic = useHaptics('success');
 
   useEffect(() => {
     let source: EventSource<Events> | null = null;
@@ -29,7 +32,7 @@ const Dashboard = () => {
         switch (event.type) {
           case 'open': {
             setData([]);
-            Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
+            successHaptic();
             break;
           }
           case 'update': {
@@ -64,7 +67,7 @@ const Dashboard = () => {
   }, [stream]);
 
   const onPress = () => {
-    Haptics.selectionAsync();
+    selectionHaptic();
 
     if (data) {
       // Reset state variable, and therefore the `Streamable` component

@@ -1,5 +1,4 @@
 import { BottomTabBarProps } from '@react-navigation/bottom-tabs';
-import * as Haptics from 'expo-haptics';
 import { useState } from 'react';
 import { LayoutChangeEvent, Platform, View } from 'react-native';
 import Animated, {
@@ -8,6 +7,7 @@ import Animated, {
   useSharedValue,
   withSpring,
 } from 'react-native-reanimated';
+import { useHaptics } from '../../hooks/useHaptics';
 import Blur from './blur';
 import NavBackground from './nav-background';
 import TabBarButton from './tab-bar-button';
@@ -15,6 +15,8 @@ import TabBarButton from './tab-bar-button';
 const TabBar = ({ state, descriptors, navigation }: BottomTabBarProps) => {
   const [dimensions, setDimensions] = useState({ height: 20, width: 100 });
   const tabPositionX = useSharedValue(0);
+
+  const lightHaptic = useHaptics('light');
 
   // Filter routes to exclude built-in expo routes
   const filteredRoutes = state.routes.filter(
@@ -82,7 +84,7 @@ const TabBar = ({ state, descriptors, navigation }: BottomTabBarProps) => {
 
           if (!isFocused && !event.defaultPrevented) {
             navigation.navigate(route.name, route.params);
-            Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+            lightHaptic();
           }
         };
 

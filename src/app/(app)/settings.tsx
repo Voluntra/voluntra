@@ -1,4 +1,3 @@
-import * as Haptics from 'expo-haptics';
 import React from 'react';
 import { Pressable, Text } from 'react-native';
 import {
@@ -15,18 +14,21 @@ import Animated, {
   withSpring,
   withTiming,
 } from 'react-native-reanimated';
+import { useHaptics } from '../../hooks/useHaptics';
 
 const Settings = () => {
   const popoverHeight = 250;
   const translateY = useSharedValue(popoverHeight);
   const offset = useSharedValue(0);
 
+  const selectionHaptic = useHaptics();
+
   const config = {
     duration: 150,
   } as WithTimingConfig;
 
   const onPress = () => {
-    Haptics.selectionAsync();
+    selectionHaptic();
 
     translateY.value =
       translateY.value === 0
