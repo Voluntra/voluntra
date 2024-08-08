@@ -1,24 +1,44 @@
-import { router } from 'expo-router';
-import React from 'react';
-import { Pressable, Text, View } from 'react-native';
+import * as AppleAuthentication from 'expo-apple-authentication';
+import { Redirect, router } from 'expo-router';
+import { useEffect, useState } from 'react';
+import { View } from 'react-native';
+import AppleAuthButton from '../components/auth/apple-auth-button';
+import { useAuth } from '../hooks/useAuth';
 import { useHaptics } from '../hooks/useHaptics';
 
 const SignIn = () => {
-  const selectHaptic = useHaptics();
+  const [isAvailable, setIsAvailable] = useState(false);
+  const { session, signIn } = useAuth();
+
+  const selectionHaptic = useHaptics();
+  const successHaptic = useHaptics('success');
+
+  useEffect(() => {
+    const checkAvailability = async () => {
+      const availability = await AppleAuthentication.isAvailableAsync();
+      setIsAvailable(availability);
+    };
+    checkAvailability();
+  }, []);
+
+  if (session) {
+    return <Redirect href="/" />;
+  }
+
+  const onPress = async () => {
+    selectionHaptic();
+    signIn({
+      callbackFn: () => {
+        successHaptic();
+        router.replace('/');
+      },
+    });
+  };
+
   return (
     <View className="pt-offset">
       <View className="min-h-screen m-page flex items-center">
-        <Pressable
-          onPress={() => {
-            selectHaptic();
-            router.replace('/');
-          }}
-          className="bg-neutral-900 w-full h-14 rounded-xl flex items-center justify-center active:opacity-80 border border-neutral-800"
-        >
-          <Text className="text-foreground text-lg font-popRegular active:opacity-80">
-            Authenticate
-          </Text>
-        </Pressable>
+        {isAvailable && <AppleAuthButton onPress={onPress} />}
       </View>
     </View>
   );

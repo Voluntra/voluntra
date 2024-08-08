@@ -1,5 +1,5 @@
 import React from 'react';
-import { Pressable, Text } from 'react-native';
+import { Pressable, Text, View } from 'react-native';
 import {
   Gesture,
   GestureDetector,
@@ -14,14 +14,18 @@ import Animated, {
   withSpring,
   withTiming,
 } from 'react-native-reanimated';
+import { useAuth } from '../../hooks/useAuth';
 import { useHaptics } from '../../hooks/useHaptics';
 
 const Settings = () => {
+  const { signOut } = useAuth();
+
   const popoverHeight = 250;
   const translateY = useSharedValue(popoverHeight);
   const offset = useSharedValue(0);
 
   const selectionHaptic = useHaptics();
+  const successHaptic = useHaptics('success');
 
   const config = {
     duration: 150,
@@ -74,14 +78,31 @@ const Settings = () => {
           ]}
         />
       </GestureDetector>
-      <Pressable
-        onPress={onPress}
-        className="bg-neutral-900 w-full h-14 rounded-xl flex items-center justify-center active:opacity-80 border border-neutral-800"
-      >
-        <Text className="text-foreground text-lg font-popRegular active:opacity-80">
-          Toggle Popover
-        </Text>
-      </Pressable>
+      <View className="flex flex-col justify-center items-center align-middle space-y-2">
+        <Pressable
+          onPress={onPress}
+          className="bg-neutral-900 w-full h-14 rounded-xl flex items-center justify-center active:opacity-80 border border-neutral-800"
+        >
+          <Text className="text-foreground text-lg font-popRegular active:opacity-80">
+            Toggle Popover
+          </Text>
+        </Pressable>
+        <Pressable
+          onPress={() => {
+            selectionHaptic();
+            signOut({
+              callbackFn: () => {
+                successHaptic();
+              },
+            });
+          }}
+          className="bg-red-600 w-full h-14 rounded-xl flex items-center justify-center active:opacity-80 border border-red-500"
+        >
+          <Text className="text-red-100 text-lg font-popRegular active:opacity-80">
+            Sign Out
+          </Text>
+        </Pressable>
+      </View>
     </GestureHandlerRootView>
   );
 };

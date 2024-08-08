@@ -10,6 +10,7 @@ import { StatusBar } from 'expo-status-bar';
 import { useEffect } from 'react';
 import { ErrorBoundary } from 'react-error-boundary';
 import { Platform } from 'react-native';
+import { SessionProvider } from '../components/auth/session-provider';
 import Fallback from '../components/fallback';
 import Blur from '../components/layout/blur';
 import NavBackground from '../components/layout/nav-background';
@@ -36,31 +37,33 @@ const RootLayout = () => {
     <ErrorBoundary FallbackComponent={Fallback}>
       <StatusBar style="light" animated />
       <ThemeProvider value={theme}>
-        <Stack
-          initialRouteName="sign-in"
-          screenOptions={{
-            animation: 'fade',
-            headerTransparent: true,
-            headerTitleStyle: {
-              fontSize: 26,
-              fontFamily: 'Poppins-SemiBold',
-            },
-            headerShadowVisible: false,
-            headerShown: false,
-          }}
-        >
-          <Stack.Screen
-            name="sign-in"
-            options={{
-              headerTitle: 'Sign In',
-              headerShown: true,
-              headerBackground: Platform.select({
-                android: () => <NavBackground />,
-                ios: () => <Blur />,
-              }),
+        <SessionProvider>
+          <Stack
+            initialRouteName="index"
+            screenOptions={{
+              animation: 'fade',
+              headerTransparent: true,
+              headerTitleStyle: {
+                fontSize: 26,
+                fontFamily: 'Poppins-SemiBold',
+              },
+              headerShadowVisible: false,
+              headerShown: false,
             }}
-          />
-        </Stack>
+          >
+            <Stack.Screen
+              name="sign-in"
+              options={{
+                headerTitle: 'Sign In',
+                headerShown: true,
+                headerBackground: Platform.select({
+                  android: () => <NavBackground />,
+                  ios: () => <Blur />,
+                }),
+              }}
+            />
+          </Stack>
+        </SessionProvider>
       </ThemeProvider>
     </ErrorBoundary>
   );

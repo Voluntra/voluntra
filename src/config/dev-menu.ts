@@ -30,9 +30,7 @@ export const devMenuItems: Parameters<
   {
     name: 'Test Onboarding Process',
     callback: async () => {
-      await AsyncStorage.setItem('onboarding', 'false').then(() => {
-        console.log('Success');
-      });
+      await AsyncStorage.setItem('onboarding', 'false');
     },
     shouldCollapse: false,
   },
