@@ -10,7 +10,7 @@ import TabBar from '../../components/layout/tab-bar';
 import { tabsList } from '../../config/tabs';
 import { useAuth } from '../../hooks/useAuth';
 import { registerForPushNotificationsAsync } from '../../lib/notifications';
-import { findKey, setKey } from '../../lib/onboarding';
+import { startOnboarding } from '../../lib/onboarding';
 import theme from '../../lib/theme';
 
 const TabsLayout = () => {
@@ -28,21 +28,14 @@ const TabsLayout = () => {
       });
 
       // Begin on-boarding process, displaying key information to the user
-      findKey('onboarding').then((val) => {
-        // If the user has not seen the onboarding screen show it here
-        // and set the "onboarding" key to true to keep track of it
-        if (val === null || val === 'false') {
-          setKey('onboarding', 'true').then(() => {
-            // Onboarding placeholder
-            Burnt.toast({
-              title: 'Welcome to Voluntra!',
-              message: 'This is a placeholder',
-              preset: 'done',
-              haptic: 'success',
-            });
-          });
-        }
-      });
+      startOnboarding(() =>
+        Burnt.toast({
+          title: 'Welcome to Voluntra!',
+          message: 'This is a placeholder',
+          preset: 'done',
+          haptic: 'success',
+        })
+      );
 
       // Register user to receive push notifications
       registerForPushNotificationsAsync();
@@ -81,7 +74,7 @@ const TabsLayout = () => {
         }}
       >
         {tabsList.map(({ name, title }) => (
-          <Tabs.Screen key={name} name={name} options={{ title: title }} />
+          <Tabs.Screen key={name} name={name} options={{ title }} />
         ))}
       </Tabs>
     </ThemeProvider>

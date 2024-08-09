@@ -1,4 +1,5 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { keyName } from '../config/onboarding';
 
 /**
  * This function does as named, searching the on-device async-storage for a value
@@ -22,4 +23,21 @@ export const findKey = async (key: string) => {
  */
 export const setKey = async (key: string, value: string) => {
   await AsyncStorage.setItem(key, value);
+};
+
+/**
+ * This function is a wrapper that begins the onboarding process.
+ *
+ * @param callbackFn The function to be called to show the onboarding screen.
+ */
+export const startOnboarding = (callbackFn: () => void) => {
+  findKey(keyName).then((val) => {
+    // If the user has not seen the onboarding screen show it here
+    // and set the "onboarding" key to true to keep track of it
+    if (val === null || val === 'false') {
+      setKey(keyName, 'true').then(() => {
+        callbackFn();
+      });
+    }
+  });
 };

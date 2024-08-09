@@ -27,12 +27,10 @@ const SignIn = () => {
 
   const onPress = async () => {
     selectionHaptic();
-    signIn({
-      callbackFn: () => {
-        successHaptic();
-        router.replace('/');
-      },
-    });
+    signIn(() => {
+      successHaptic();
+      router.replace('/');
+    }, 'apple');
   };
 
   return (

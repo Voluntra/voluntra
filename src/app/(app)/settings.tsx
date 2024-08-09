@@ -90,10 +90,8 @@ const Settings = () => {
         <Pressable
           onPress={() => {
             selectionHaptic();
-            signOut({
-              callbackFn: () => {
-                successHaptic();
-              },
+            signOut(() => {
+              successHaptic();
             });
           }}
           className="bg-red-600 w-full h-14 rounded-xl flex items-center justify-center active:opacity-80 border border-red-500"

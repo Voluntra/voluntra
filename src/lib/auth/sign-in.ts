@@ -1,9 +1,12 @@
 import * as Burnt from 'burnt';
 import * as AppleAuthentication from 'expo-apple-authentication';
-import { SessionChangeProps } from '../../types/auth';
+import { AuthContextType } from '../../context/auth-context';
 import { supabase } from '../db/supabase';
 
-export const signIn = async ({ callbackFn }: SessionChangeProps) => {
+export const signIn = async (
+  callbackFn: Parameters<AuthContextType['signIn']>[0],
+  provider: Parameters<AuthContextType['signIn']>[1]
+) => {
   try {
     const credential: AppleAuthentication.AppleAuthenticationCredential =
       await AppleAuthentication.signInAsync({
@@ -14,7 +17,7 @@ export const signIn = async ({ callbackFn }: SessionChangeProps) => {
       });
     if (credential.identityToken) {
       const { error } = await supabase.auth.signInWithIdToken({
-        provider: 'apple',
+        provider,
         token: credential.identityToken,
       });
       if (!error) {
