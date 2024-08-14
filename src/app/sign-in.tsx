@@ -21,6 +21,8 @@ const SignIn = () => {
     checkAvailability();
   }, []);
 
+  // Handle edge case where the user navigations to the sign-in page
+  // while already being signed.
   if (session) {
     return <Redirect href="/" />;
   }
