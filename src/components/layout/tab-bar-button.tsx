@@ -19,7 +19,7 @@ const TabBarButton = ({
 }: TabBarButtonProps) => {
   return (
     <Pressable
-      className="flex flex-1 items-center justify-center gap-px"
+      className="flex-1 items-center justify-center gap-px"
       accessibilityRole="button"
       accessibilityState={isFocused ? { selected: true } : {}}
       accessibilityLabel={options.tabBarAccessibilityLabel}

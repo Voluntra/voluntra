@@ -2,6 +2,7 @@ import { SessionProvider } from '@components/auth/session-provider';
 import Fallback from '@components/fallback';
 import Blur from '@components/layout/blur';
 import NavBackground from '@components/layout/nav-background';
+import { useReactNavigationDevTools } from '@dev-plugins/react-navigation';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { ThemeProvider } from '@react-navigation/native';
 import 'expo-dev-client';
@@ -9,7 +10,7 @@ import { registerDevMenuItems } from 'expo-dev-menu';
 import { useFonts } from 'expo-font';
 import * as QuickActions from 'expo-quick-actions';
 import { RouterAction, useQuickActionRouting } from 'expo-quick-actions/router';
-import { Stack } from 'expo-router';
+import { Stack, useNavigationContainerRef } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 import { useEffect } from 'react';
 import { ErrorBoundary } from 'react-error-boundary';
@@ -27,6 +28,10 @@ const RootLayout = () => {
 
   // Enable linking to the `href` param when a quick action is used.
   useQuickActionRouting();
+
+  // Add React Navigation development plugin
+  const navigationRef = useNavigationContainerRef();
+  useReactNavigationDevTools(navigationRef);
 
   useEffect(() => {
     // Set quick actions from config
