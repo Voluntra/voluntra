@@ -42,7 +42,7 @@ const Discover = () => {
 
   return (
     <FlatList
-      // contentInsetAdjustmentBehavior="automatic"
+      contentInsetAdjustmentBehavior="automatic"
       contentContainerStyle={{ gap: 16, paddingHorizontal: 16 }}
       className="min-h-screen flex-1 w-full h-full"
       data={filteredData}
