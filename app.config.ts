@@ -90,7 +90,4 @@ export default (): ExpoConfig => ({
     'expo-apple-authentication',
     'expo-secure-store',
   ],
-  experiments: {
-    typedRoutes: true,
-  },
 });

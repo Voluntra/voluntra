@@ -1,9 +1,9 @@
+import Events from '@appTypes/streaming/events';
+import Streamable from '@components/streamable';
+import { useHaptics } from '@hooks/useHaptics';
 import { useEffect, useState } from 'react';
 import { Pressable, ScrollView, Text } from 'react-native';
 import EventSource, { EventSourceListener } from 'react-native-sse';
-import Streamable from '../../../components/streamable';
-import { useHaptics } from '../../../hooks/useHaptics';
-import Events from '../../../types/streaming/events';
 
 const Dashboard = () => {
   const [stream, setStream] = useState(false);

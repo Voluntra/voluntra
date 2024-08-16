@@ -2,8 +2,11 @@ import { SessionProvider } from '@components/auth/session-provider';
 import Fallback from '@components/fallback';
 import Blur from '@components/layout/blur';
 import NavBackground from '@components/layout/nav-background';
+import { devMenuItems } from '@config/dev-menu';
+import { actions } from '@config/quick-actions';
 import { useReactNavigationDevTools } from '@dev-plugins/react-navigation';
 import Ionicons from '@expo/vector-icons/Ionicons';
+import theme from '@lib/theme';
 import { ThemeProvider } from '@react-navigation/native';
 import 'expo-dev-client';
 import { registerDevMenuItems } from 'expo-dev-menu';
@@ -15,9 +18,6 @@ import { StatusBar } from 'expo-status-bar';
 import { useEffect } from 'react';
 import { ErrorBoundary } from 'react-error-boundary';
 import { Platform } from 'react-native';
-import { devMenuItems } from '../config/dev-menu';
-import { actions } from '../config/quick-actions';
-import theme from '../lib/theme';
 
 const RootLayout = () => {
   // Handle expo vector icons' initial load

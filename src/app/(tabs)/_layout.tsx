@@ -1,17 +1,17 @@
+import Blur from '@components/layout/blur';
+import NavBackground from '@components/layout/nav-background';
+import TabBar from '@components/layout/tab-bar';
+import { tabsList } from '@config/tabs';
+import { useAuth } from '@hooks/useAuth';
+import { registerForPushNotificationsAsync } from '@lib/notifications';
+import { startOnboarding } from '@lib/onboarding';
+import theme from '@lib/theme';
 import { ThemeProvider } from '@react-navigation/native';
 import * as Burnt from 'burnt';
 import * as Notifications from 'expo-notifications';
 import { Redirect, Tabs } from 'expo-router';
 import { useEffect } from 'react';
 import { Platform, Text } from 'react-native';
-import Blur from '../../components/layout/blur';
-import NavBackground from '../../components/layout/nav-background';
-import TabBar from '../../components/layout/tab-bar';
-import { tabsList } from '../../config/tabs';
-import { useAuth } from '../../hooks/useAuth';
-import { registerForPushNotificationsAsync } from '../../lib/notifications';
-import { startOnboarding } from '../../lib/onboarding';
-import theme from '../../lib/theme';
 
 const TabsLayout = () => {
   const { session, loading } = useAuth();

@@ -20,8 +20,11 @@ export const headerOptions: ComponentProps<typeof Stack>['screenOptions'] = {
   headerLargeTitleStyle: {
     fontFamily: 'Poppins-SemiBold',
   },
+  headerBackTitleStyle: {
+    fontFamily: 'Poppins-Medium',
+  },
   headerTitleStyle: {
-    fontSize: 26,
+    fontSize: 20,
     fontFamily: 'Poppins-SemiBold',
   },
 };

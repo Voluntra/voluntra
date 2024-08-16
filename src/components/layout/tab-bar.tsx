@@ -1,3 +1,5 @@
+import { tabsList } from '@config/tabs';
+import { useHaptics } from '@hooks/useHaptics';
 import { BottomTabBarProps } from '@react-navigation/bottom-tabs';
 import { useState } from 'react';
 import { LayoutChangeEvent, Platform, View } from 'react-native';
@@ -7,8 +9,6 @@ import Animated, {
   useSharedValue,
   withSpring,
 } from 'react-native-reanimated';
-import { tabsList } from 'src/config/tabs';
-import { useHaptics } from '../../hooks/useHaptics';
 import Blur from './blur';
 import NavBackground from './nav-background';
 import TabBarButton from './tab-bar-button';

@@ -1,10 +1,10 @@
+import AppleAuthButton from '@components/auth/apple-auth-button';
+import { useAuth } from '@hooks/useAuth';
+import { useHaptics } from '@hooks/useHaptics';
 import * as AppleAuthentication from 'expo-apple-authentication';
 import { Redirect, router } from 'expo-router';
 import { useEffect, useState } from 'react';
 import { View } from 'react-native';
-import AppleAuthButton from '../components/auth/apple-auth-button';
-import { useAuth } from '../hooks/useAuth';
-import { useHaptics } from '../hooks/useHaptics';
 
 const SignIn = () => {
   const [isAvailable, setIsAvailable] = useState(false);

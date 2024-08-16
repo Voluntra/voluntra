@@ -1,7 +1,7 @@
 import Ionicons from '@expo/vector-icons/Ionicons';
+import { palette } from '@lib/palette';
 import { Image } from 'expo-image';
 import { Text, View } from 'react-native';
-import { palette } from 'src/lib/palette';
 
 export interface OrganizationProps {
   title: string;
@@ -21,8 +21,6 @@ const Organization = ({ title, rating }: OrganizationProps) => {
         placeholder={{ blurhash }}
         contentFit="cover"
         transition={1000}
-        onError={(error) => console.error('Image Load Error:', error)}
-        onLoad={() => console.log('Image Loaded Successfully')}
       />
 
       <View className="flex w-full flex-row justify-between items-center align-middle p-2 pb-0">

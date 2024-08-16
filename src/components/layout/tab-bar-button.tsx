@@ -1,9 +1,8 @@
+import { iconName } from '@config/tabs';
 import { Feather } from '@expo/vector-icons';
+import { palette } from '@lib/palette';
 import { BottomTabNavigationOptions } from '@react-navigation/bottom-tabs';
-import React from 'react';
 import { Pressable, PressableProps, Text } from 'react-native';
-import { iconName } from '../../config/tabs';
-import { palette } from '../../lib/palette';
 
 interface TabBarButtonProps extends PressableProps {
   routeName: string;

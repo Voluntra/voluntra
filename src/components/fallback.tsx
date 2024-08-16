@@ -1,6 +1,6 @@
 import { Feather } from '@expo/vector-icons';
+import { palette } from '@lib/palette';
 import { Text, View } from 'react-native';
-import { palette } from '../lib/palette';
 
 const Fallback = () => {
   return (

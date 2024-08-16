@@ -1,8 +1,7 @@
 import * as AppleAuthentication from 'expo-apple-authentication';
-import React from 'react';
 
 interface AppleAuthButtonProps {
-  onPress: () => Promise;
+  onPress: () => Promise<void>;
 }
 
 const AppleAuthButton = ({ onPress }: AppleAuthButtonProps) => {

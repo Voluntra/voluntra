@@ -1,9 +1,9 @@
+import { AuthContext } from '@context/auth-context';
+import { signIn } from '@lib/auth/sign-in';
+import { signOut } from '@lib/auth/sign-out';
+import { supabase } from '@lib/db/supabase';
 import { Session } from '@supabase/supabase-js';
-import React, { PropsWithChildren, useEffect, useState } from 'react';
-import { AuthContext } from '../../context/auth-context';
-import { signIn } from '../../lib/auth/sign-in';
-import { signOut } from '../../lib/auth/sign-out';
-import { supabase } from '../../lib/db/supabase';
+import { PropsWithChildren, useEffect, useState } from 'react';
 
 export const SessionProvider = ({ children }: PropsWithChildren) => {
   const [session, setSession] = useState<Session | null>(null);

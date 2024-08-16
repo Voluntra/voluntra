@@ -1,7 +1,6 @@
-import React from 'react';
+import { useAuth } from '@hooks/useAuth';
+import { useHaptics } from '@hooks/useHaptics';
 import { Pressable, ScrollView, Text } from 'react-native';
-import { useAuth } from '../../../hooks/useAuth';
-import { useHaptics } from '../../../hooks/useHaptics';
 
 const Settings = () => {
   const { signOut } = useAuth();

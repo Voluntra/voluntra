@@ -1,5 +1,5 @@
+import MonthlyGoal from '@components/home/monthly-goal';
 import { ScrollView } from 'react-native';
-import MonthlyGoal from '../../../components/home/monthly-goal';
 
 const Home = () => {
   return (

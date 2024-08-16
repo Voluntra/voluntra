@@ -1,10 +1,11 @@
-import { useFuzzySearchList } from '@nozbe/microfuzz/react';
-import { useContext, useEffect } from 'react';
-import { FlatList, Text } from 'react-native';
-import { SearchContext } from 'src/context/search-context';
 import Organization, {
   OrganizationProps,
-} from '../../../components/discover/organization';
+} from '@components/discover/organization';
+import { SearchContext } from '@context/search-context';
+import { useFuzzySearchList } from '@nozbe/microfuzz/react';
+import { Link } from 'expo-router';
+import { useContext } from 'react';
+import { FlatList, Text } from 'react-native';
 
 /**
  * Placeholder list of organizations until the backend list is ready.
@@ -38,8 +39,6 @@ const Discover = () => {
     mapResultItem: ({ item }) => item,
   });
 
-  useEffect(() => console.log(filteredData), [filteredData]);
-
   return (
     <FlatList
       contentInsetAdjustmentBehavior="automatic"
@@ -50,8 +49,11 @@ const Discover = () => {
         <Text className="font-popRegular text-neutral-100">Nothing found!</Text>
       }
       renderItem={({ item: { rating, title } }) => {
-        console.log('Rendering Organization:', { title, rating });
-        return <Organization title={title} rating={rating} />;
+        return (
+          <Link href="/discover/organization/1">
+            <Organization title={title} rating={rating} />
+          </Link>
+        );
       }}
       keyExtractor={(item) => item.title}
       scrollEnabled={true}
