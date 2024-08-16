@@ -31,26 +31,26 @@ const MonthlyGoal = ({ hoursLeft, monthlyGoal }: MonthlyGoalProps) => {
   ];
 
   return (
-    <View className="h-28 bg-neutral-900 rounded-xl shadow-sm p-5 flex flex-row justify-between align-middle items-center border border-neutral-800 overflow-hidden">
+    <View className="flex h-28 flex-row items-center justify-between overflow-hidden rounded-xl border border-neutral-800 bg-neutral-900 p-5 align-middle shadow-sm">
       {/* Background Linear Gradient */}
       <LinearGradient
         colors={[palette['neutral']['800'], palette['neutral']['900']]}
-        className="absolute left-0 right-0 top-0 bottom-0"
+        className="absolute bottom-0 left-0 right-0 top-0"
       />
 
       {/* Dynamic text identifying the component and hours left to volunteer */}
-      <View className="flex flex-col gap-PX justify-center align-middle">
+      <View className="gap-PX flex flex-col justify-center align-middle">
         <Text className="font-popMedium text-2xl text-neutral-100">
           Monthly Goal
         </Text>
-        <Text className="text-neutral-400 font-popRegular text-base">
+        <Text className="font-popRegular text-base text-neutral-400">
           {hoursLeft} {hoursLeft > 1 ? 'hours' : 'hour'} of volunteering left
         </Text>
       </View>
 
       {/* TODO: Find a suitable alternative for this chart componenet, looks janky */}
       {/* Donut pie chart to visually display the percentage of the monthly goal completed */}
-      <View className="w-24 h-24 flex justify-center align-middle items-center">
+      <View className="flex h-24 w-24 items-center justify-center align-middle">
         <DonutChart
           data={data}
           strokeWidth={12}
@@ -72,7 +72,7 @@ const MonthlyGoal = ({ hoursLeft, monthlyGoal }: MonthlyGoalProps) => {
           animationType="slide"
         />
         <Animated.Text
-          className="absolute inset-0 flex items-center justify-center text-neutral-100 font-popMedium text-2xl top-[34px]"
+          className="absolute inset-0 top-[34px] flex items-center justify-center font-popMedium text-2xl text-neutral-100"
           entering={FadeIn}
         >
           {((hoursLeft / monthlyGoal) * 100).toFixed(0)}

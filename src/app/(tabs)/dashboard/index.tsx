@@ -13,7 +13,7 @@ const Dashboard = () => {
   const successHaptic = useHaptics('success');
 
   useEffect(() => {
-    let source: EventSource<Events> | null = null;
+    let source: EventSource | null = null;
 
     if (stream) {
       source = new EventSource<Events>('https://www.voluntra.org/api/workers', {
@@ -28,7 +28,7 @@ const Dashboard = () => {
         withCredentials: true,
       });
 
-      const listener: EventSourceListener<Events> = (event) => {
+      const listener: EventSourceListener = (event) => {
         switch (event.type) {
           case 'open': {
             setData([]);
@@ -79,14 +79,14 @@ const Dashboard = () => {
 
   return (
     <ScrollView
-      className="m-page min-h-screen flex"
+      className="m-page flex min-h-screen"
       contentInsetAdjustmentBehavior="automatic"
     >
       <Pressable
         onPress={onPress}
-        className="bg-neutral-900 w-full h-14 rounded-xl flex items-center justify-center mb-4 active:opacity-80 border border-neutral-800"
+        className="mb-4 flex h-14 w-full items-center justify-center rounded-xl border border-neutral-800 bg-neutral-900 active:opacity-80"
       >
-        <Text className="text-foreground text-lg font-popRegular active:opacity-80">
+        <Text className="font-popRegular text-lg text-foreground active:opacity-80">
           Generate
         </Text>
       </Pressable>

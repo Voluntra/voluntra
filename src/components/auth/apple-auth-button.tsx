@@ -2,7 +2,7 @@ import * as AppleAuthentication from 'expo-apple-authentication';
 import React from 'react';
 
 interface AppleAuthButtonProps {
-  onPress: () => Promise<void>;
+  onPress: () => Promise;
 }
 
 const AppleAuthButton = ({ onPress }: AppleAuthButtonProps) => {
@@ -13,7 +13,7 @@ const AppleAuthButton = ({ onPress }: AppleAuthButtonProps) => {
         AppleAuthentication.AppleAuthenticationButtonStyle.WHITE_OUTLINE
       }
       cornerRadius={12}
-      className="w-full h-12"
+      className="h-12 w-full"
       onPress={onPress}
     />
   );

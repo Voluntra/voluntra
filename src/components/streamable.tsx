@@ -7,8 +7,8 @@ interface StreamableProps {
 
 const Streamable = ({ data }: StreamableProps) => {
   return (
-    <View className="bg-neutral-900 rounded-xl w-full border-neutral-800 border p-3">
-      <View className="flex-wrap flex-row">
+    <View className="w-full rounded-xl border border-neutral-800 bg-neutral-900 p-3">
+      <View className="flex-row flex-wrap">
         {data.map((text, idx) => (
           <Animated.View
             key={text + idx}
@@ -16,7 +16,7 @@ const Streamable = ({ data }: StreamableProps) => {
             className="flex-row items-start"
           >
             <Text
-              className={`text-neutral-100 font-popRegular text-base ${
+              className={`font-popRegular text-base text-neutral-100 ${
                 idx === 0 ? 'ml-1' : ''
               }`}
             >
