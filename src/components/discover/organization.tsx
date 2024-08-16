@@ -1,6 +1,5 @@
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { Image } from 'expo-image';
-import React from 'react';
 import { Text, View } from 'react-native';
 import { palette } from 'src/lib/palette';
 
@@ -14,14 +13,16 @@ const blurhash =
 
 const Organization = ({ title, rating }: OrganizationProps) => {
   return (
-    <View className="border-neutral-800 w-full flex-1 items-center justify-center rounded-xl border bg-neutral-900 overflow-hidden">
+    <View className="border-neutral-800 items-center justify-center rounded-xl border bg-neutral-900 overflow-hidden">
       {/* Organization Image */}
       <Image
-        className="flex w-full aspect-video bg-foreground items-center justify-center"
+        className="flex w-full aspect-video items-center justify-center"
         source="https://picsum.photos/seed/696/3000/2000"
         placeholder={{ blurhash }}
         contentFit="cover"
         transition={1000}
+        onError={(error) => console.error('Image Load Error:', error)}
+        onLoad={() => console.log('Image Loaded Successfully')}
       />
 
       <View className="flex w-full flex-row justify-between items-center align-middle p-2 pb-0">

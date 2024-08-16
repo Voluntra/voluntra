@@ -11,7 +11,7 @@ const Blur = ({ tint, intensity, ...props }: BlurViewProps) => {
   return (
     <BlurView
       tint="systemUltraThinMaterialDark"
-      intensity={70}
+      intensity={100}
       className="absolute bottom-0 left-0 right-0 top-0"
       {...props}
     />

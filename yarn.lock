@@ -1867,6 +1867,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@nozbe/microfuzz@npm:^1.0.0":
+  version: 1.0.0
+  resolution: "@nozbe/microfuzz@npm:1.0.0"
+  checksum: 10c0/16ce1b36b521f3990b83b08d2a6d1f6eb43fe240d0ebfb600e8f469187a1303c6aa576925b6c0bebee8a8df2f8e8e768e12b1c67d4ac50133468b7a02c46efa9
+  languageName: node
+  linkType: hard
+
 "@npmcli/agent@npm:^2.0.0":
   version: 2.2.2
   resolution: "@npmcli/agent@npm:2.2.2"
@@ -11958,6 +11965,7 @@ __metadata:
     "@babel/core": "npm:^7.24.0"
     "@babel/preset-typescript": "npm:^7.23.3"
     "@dev-plugins/react-navigation": "npm:^0.0.6"
+    "@nozbe/microfuzz": "npm:^1.0.0"
     "@react-native-async-storage/async-storage": "npm:1.23.1"
     "@supabase/supabase-js": "npm:^2.45.1"
     "@types/aes-js": "npm:^3.1.4"

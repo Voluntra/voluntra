@@ -23,17 +23,17 @@ const TabBarButton = ({
       accessibilityRole="button"
       accessibilityState={isFocused ? { selected: true } : {}}
       accessibilityLabel={options.tabBarAccessibilityLabel}
-      hitSlop={10}
+      hitSlop={15}
       {...props}
     >
       <Feather
         name={iconName[routeName]}
         size={26}
-        color={isFocused ? palette['purple']['100'] : palette['neutral']['100']}
+        color={isFocused ? palette['purple']['100'] : palette['neutral']['200']}
       />
       <Text
         className={`${
-          isFocused ? 'text-purple-100' : 'text-neutral-100'
+          isFocused ? 'text-purple-100' : 'text-neutral-200'
         } font-popRegular text-xs capitalize`}
       >
         {routeName.replace(/[()]/g, '')}{' '}

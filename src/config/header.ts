@@ -9,6 +9,7 @@ import { palette } from '../lib/palette';
 
 export const headerOptions: ComponentProps<typeof Stack>['screenOptions'] = {
   headerTransparent: true,
+  autoHideHomeIndicator: true,
   headerShadowVisible: false,
   headerLargeTitleShadowVisible: false,
   headerLargeTitle: true,

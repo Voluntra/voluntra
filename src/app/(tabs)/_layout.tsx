@@ -73,7 +73,7 @@ const TabsLayout = () => {
           headerShown: false,
         }}
       >
-        {tabsList.map(({ name, title, }) => (
+        {tabsList.map(({ name, title }) => (
           <Tabs.Screen key={name} name={name} options={{ title }} />
         ))}
       </Tabs>
