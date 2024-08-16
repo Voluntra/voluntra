@@ -8,7 +8,9 @@ import { schedulePushNotification } from '../lib/notifications';
  *
  * which are available in development mode only.
  */
-export const devMenuItems: Parameters[0][number][] = [
+export const devMenuItems: Parameters<
+  typeof registerDevMenuItems
+>[0][number][] = [
   {
     name: 'Schedule Push Notification',
     callback: async () => {

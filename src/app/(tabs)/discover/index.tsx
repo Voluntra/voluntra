@@ -1,14 +1,10 @@
 import { FlatList, View } from 'react-native';
 import Organization from '../../../components/discover/organization';
 
-type Organization = {
-  title: string;
-};
-
 /**
  * Placeholder list of organizations until the backend is ready.
  */
-const organizations: Organization[] = [
+const organizations: { title: string }[] = [
   {
     title: 'Americorps',
   },

@@ -13,7 +13,7 @@ const Dashboard = () => {
   const successHaptic = useHaptics('success');
 
   useEffect(() => {
-    let source: EventSource | null = null;
+    let source: EventSource<Events> | null = null;
 
     if (stream) {
       source = new EventSource<Events>('https://www.voluntra.org/api/workers', {
@@ -28,7 +28,7 @@ const Dashboard = () => {
         withCredentials: true,
       });
 
-      const listener: EventSourceListener = (event) => {
+      const listener: EventSourceListener<Events> = (event) => {
         switch (event.type) {
           case 'open': {
             setData([]);
@@ -64,7 +64,7 @@ const Dashboard = () => {
         source.close();
       }
     };
-  }, [stream]);
+  }, [stream, successHaptic]);
 
   const onPress = () => {
     selectionHaptic();

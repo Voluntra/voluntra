@@ -4,8 +4,8 @@ import { AuthContextType } from '../../context/auth-context';
 import { supabase } from '../db/supabase';
 
 export const signIn = async (
-  callbackFn: Parameters[0],
-  provider: Parameters[1]
+  callbackFn: Parameters<AuthContextType['signIn']>[0],
+  provider: Parameters<AuthContextType['signIn']>[1]
 ) => {
   try {
     const credential: AppleAuthentication.AppleAuthenticationCredential =

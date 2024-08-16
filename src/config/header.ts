@@ -7,7 +7,7 @@ import { palette } from '../lib/palette';
  * any boilerplate options for headers.
  */
 
-export const headerOptions: ComponentProps['screenOptions'] = {
+export const headerOptions: ComponentProps<typeof Stack>['screenOptions'] = {
   headerTransparent: true,
   headerShadowVisible: false,
   headerLargeTitleShadowVisible: false,
