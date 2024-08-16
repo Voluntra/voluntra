@@ -24,14 +24,14 @@ const SignIn = () => {
   // Handle edge case where the user navigations to the sign-in page
   // while already being signed.
   if (session) {
-    return <Redirect href="/home" />;
+    return <Redirect href="/(home)" />;
   }
 
   const onPress = async () => {
     selectionHaptic();
     signIn(() => {
       successHaptic();
-      router.replace('/home');
+      router.replace('/');
     }, 'apple');
   };
 

@@ -57,7 +57,6 @@ const TabsLayout = () => {
   return (
     <ThemeProvider value={theme}>
       <Tabs
-        initialRouteName="home"
         tabBar={(props) => <TabBar {...props} />}
         screenOptions={{
           headerBackground: Platform.select({
@@ -74,7 +73,7 @@ const TabsLayout = () => {
           headerShown: false,
         }}
       >
-        {tabsList.map(({ name, title }) => (
+        {tabsList.map(({ name, title, }) => (
           <Tabs.Screen key={name} name={name} options={{ title }} />
         ))}
       </Tabs>

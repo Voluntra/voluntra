@@ -36,7 +36,7 @@ const TabBarButton = ({
           isFocused ? 'text-purple-100' : 'text-neutral-500'
         } font-popRegular text-xs capitalize`}
       >
-        {routeName}
+        {routeName.replace(/[()]/g, '')}{' '}
       </Text>
     </Pressable>
   );

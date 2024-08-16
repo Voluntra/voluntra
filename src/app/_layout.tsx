@@ -44,7 +44,6 @@ const RootLayout = () => {
       <ThemeProvider value={theme}>
         <SessionProvider>
           <Stack
-            initialRouteName="home"
             screenOptions={{
               headerTransparent: true,
               headerTitleStyle: {

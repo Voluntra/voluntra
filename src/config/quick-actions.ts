@@ -9,7 +9,7 @@ import { RouterAction } from 'expo-quick-actions/router';
  */
 export const actions: RouterAction[] = [
   {
-    title: 'Search',
+    title: 'Discover',
     icon: 'search',
     id: '1',
     params: { href: '/discover' },

@@ -7,6 +7,7 @@ import Animated, {
   useSharedValue,
   withSpring,
 } from 'react-native-reanimated';
+import { tabsList } from 'src/config/tabs';
 import { useHaptics } from '../../hooks/useHaptics';
 import Blur from './blur';
 import NavBackground from './nav-background';
@@ -18,12 +19,9 @@ const TabBar = ({ state, descriptors, navigation }: BottomTabBarProps) => {
 
   const lightHaptic = useHaptics('light');
 
-  // Specify the routes you want to include
-  const includedRoutes = ['home', 'discover', 'dashboard', 'settings'];
-
-  // Filter routes to include only the specified routes
+  // Filter routes to include only routes defined in the tabs configuration
   const filteredRoutes = state.routes.filter((route) =>
-    includedRoutes.includes(route.name)
+    tabsList.some((tab) => tab.name === route.name)
   );
 
   // Calculate the number of omitted routes
