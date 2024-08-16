@@ -3,7 +3,7 @@ import React from 'react';
 import { Text, View } from 'react-native';
 import { DonutChart, DonutItem } from 'react-native-circular-chart';
 import Animated, { FadeIn } from 'react-native-reanimated';
-import palette from '../../lib/palette';
+import { palette } from '../../lib/palette';
 
 interface MonthlyGoalProps {
   hoursLeft: number;

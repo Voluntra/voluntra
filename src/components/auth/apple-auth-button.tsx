@@ -13,7 +13,7 @@ const AppleAuthButton = ({ onPress }: AppleAuthButtonProps) => {
         AppleAuthentication.AppleAuthenticationButtonStyle.WHITE_OUTLINE
       }
       cornerRadius={12}
-      className="w-full h-11"
+      className="w-full h-12"
       onPress={onPress}
     />
   );

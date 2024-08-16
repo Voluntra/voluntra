@@ -24,20 +24,20 @@ const SignIn = () => {
   // Handle edge case where the user navigations to the sign-in page
   // while already being signed.
   if (session) {
-    return <Redirect href="/" />;
+    return <Redirect href="/home" />;
   }
 
   const onPress = async () => {
     selectionHaptic();
     signIn(() => {
       successHaptic();
-      router.replace('/');
+      router.replace('/home');
     }, 'apple');
   };
 
   return (
     <View className="pt-offset">
-      <View className="min-h-screen m-page flex items-center">
+      <View className="m-page flex min-h-screen items-center">
         {isAvailable && <AppleAuthButton onPress={onPress} />}
       </View>
     </View>

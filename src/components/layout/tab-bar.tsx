@@ -18,9 +18,12 @@ const TabBar = ({ state, descriptors, navigation }: BottomTabBarProps) => {
 
   const lightHaptic = useHaptics('light');
 
-  // Filter routes to exclude built-in expo routes
-  const filteredRoutes = state.routes.filter(
-    (route) => !['_sitemap', '+not-found'].includes(route.name)
+  // Specify the routes you want to include
+  const includedRoutes = ['home', 'discover', 'dashboard', 'settings'];
+
+  // Filter routes to include only the specified routes
+  const filteredRoutes = state.routes.filter((route) =>
+    includedRoutes.includes(route.name)
   );
 
   // Calculate the number of omitted routes
@@ -43,12 +46,12 @@ const TabBar = ({ state, descriptors, navigation }: BottomTabBarProps) => {
 
   return (
     <View
-      className="flex flex-row absolute bottom-7 justify-between items-center mx-6 py-4 rounded-full overflow-hidden align-middle border border-neutral-800"
+      className="absolute bottom-7 mx-6 flex flex-row items-center justify-between overflow-hidden rounded-full border border-neutral-800 py-4 align-middle"
       onLayout={onTabBarLayout}
     >
       {/* Animated circle that indicates focus */}
       <Animated.View
-        className="absolute bg-purple-700 rounded-full mx-[5px] z-10"
+        className="absolute z-10 mx-[5px] rounded-full bg-purple-700"
         style={[
           animatedStyle,
           {

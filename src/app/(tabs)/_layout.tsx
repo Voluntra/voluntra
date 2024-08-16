@@ -44,7 +44,7 @@ const TabsLayout = () => {
 
   if (loading) {
     return (
-      <Text className="text-neutral-100 font-popRegular pt-offset">
+      <Text className="pt-offset font-popRegular text-neutral-100">
         Loading...
       </Text>
     );
@@ -57,7 +57,7 @@ const TabsLayout = () => {
   return (
     <ThemeProvider value={theme}>
       <Tabs
-        initialRouteName="index"
+        initialRouteName="home"
         tabBar={(props) => <TabBar {...props} />}
         screenOptions={{
           headerBackground: Platform.select({
@@ -71,6 +71,7 @@ const TabsLayout = () => {
             fontFamily: 'Poppins-SemiBold',
           },
           headerShadowVisible: false,
+          headerShown: false,
         }}
       >
         {tabsList.map(({ name, title }) => (

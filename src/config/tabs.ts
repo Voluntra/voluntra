@@ -16,7 +16,7 @@ type IconMap = {
  */
 export const tabsList: Tab[] = [
   {
-    name: 'index',
+    name: 'home',
     title: 'Home',
     iconName: 'home',
   },

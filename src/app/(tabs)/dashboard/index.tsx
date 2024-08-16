@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
-import { Pressable, Text, View } from 'react-native';
+import { Pressable, ScrollView, Text } from 'react-native';
 import EventSource, { EventSourceListener } from 'react-native-sse';
-import Streamable from '../../components/streamable';
-import { useHaptics } from '../../hooks/useHaptics';
-import Events from '../../types/streaming/events';
+import Streamable from '../../../components/streamable';
+import { useHaptics } from '../../../hooks/useHaptics';
+import Events from '../../../types/streaming/events';
 
 const Dashboard = () => {
   const [stream, setStream] = useState(false);
@@ -78,19 +78,20 @@ const Dashboard = () => {
   };
 
   return (
-    <View className="pt-offset pb-offset">
-      <View className="m-page min-h-screen flex items-center">
-        <Pressable
-          onPress={onPress}
-          className="bg-neutral-900 w-full h-14 rounded-xl flex items-center justify-center mb-4 active:opacity-80 border border-neutral-800"
-        >
-          <Text className="text-foreground text-lg font-popRegular active:opacity-80">
-            Generate
-          </Text>
-        </Pressable>
-        {data.length > 0 && <Streamable data={data} />}
-      </View>
-    </View>
+    <ScrollView
+      className="m-page min-h-screen flex"
+      contentInsetAdjustmentBehavior="automatic"
+    >
+      <Pressable
+        onPress={onPress}
+        className="bg-neutral-900 w-full h-14 rounded-xl flex items-center justify-center mb-4 active:opacity-80 border border-neutral-800"
+      >
+        <Text className="text-foreground text-lg font-popRegular active:opacity-80">
+          Generate
+        </Text>
+      </Pressable>
+      {data.length > 0 && <Streamable data={data} />}
+    </ScrollView>
   );
 };
 

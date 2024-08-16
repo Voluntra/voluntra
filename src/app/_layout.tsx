@@ -1,3 +1,7 @@
+import { SessionProvider } from '@components/auth/session-provider';
+import Fallback from '@components/fallback';
+import Blur from '@components/layout/blur';
+import NavBackground from '@components/layout/nav-background';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { ThemeProvider } from '@react-navigation/native';
 import 'expo-dev-client';
@@ -10,10 +14,6 @@ import { StatusBar } from 'expo-status-bar';
 import { useEffect } from 'react';
 import { ErrorBoundary } from 'react-error-boundary';
 import { Platform } from 'react-native';
-import { SessionProvider } from '../components/auth/session-provider';
-import Fallback from '../components/fallback';
-import Blur from '../components/layout/blur';
-import NavBackground from '../components/layout/nav-background';
 import { devMenuItems } from '../config/dev-menu';
 import { actions } from '../config/quick-actions';
 import theme from '../lib/theme';
@@ -39,15 +39,15 @@ const RootLayout = () => {
       <ThemeProvider value={theme}>
         <SessionProvider>
           <Stack
-            initialRouteName="index"
+            initialRouteName="home"
             screenOptions={{
-              animation: 'fade',
               headerTransparent: true,
               headerTitleStyle: {
                 fontSize: 26,
                 fontFamily: 'Poppins-SemiBold',
               },
               headerShadowVisible: false,
+              animation: 'fade',
               headerShown: false,
             }}
           >
