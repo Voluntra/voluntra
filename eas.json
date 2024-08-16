@@ -3,7 +3,11 @@
     "version": ">= 5.9.3"
   },
   "build": {
+    "production": {
+      "node": "20.16.0"
+    },
     "development": {
+      "extends": "production",
       "developmentClient": true,
       "distribution": "internal",
       "env": {
@@ -11,9 +15,9 @@
       }
     },
     "preview": {
+      "extends": "production",
       "distribution": "internal"
-    },
-    "production": {}
+    }
   },
   "submit": {
     "production": {}
