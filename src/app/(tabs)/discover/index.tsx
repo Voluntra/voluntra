@@ -46,7 +46,7 @@ const Discover = () => {
       className="min-h-screen flex-1 w-full h-full"
       data={filteredData}
       ListEmptyComponent={
-        <Text className="font-popRegular text-neutral-100">Nothing found!</Text>
+        <Text className="font-popRegular text-foreground">Nothing found!</Text>
       }
       renderItem={({ item: { rating, title } }) => {
         return (

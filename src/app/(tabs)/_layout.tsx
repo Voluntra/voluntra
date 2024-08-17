@@ -44,7 +44,7 @@ const TabsLayout = () => {
 
   if (loading) {
     return (
-      <Text className="pt-offset font-popRegular text-neutral-100">
+      <Text className="pt-offset font-popRegular text-foreground">
         Loading...
       </Text>
     );

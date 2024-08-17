@@ -39,7 +39,7 @@ const MonthlyGoal = ({ hoursLeft, monthlyGoal }: MonthlyGoalProps) => {
 
       {/* Dynamic text identifying the component and hours left to volunteer */}
       <View className="gap-PX flex flex-col justify-center align-middle">
-        <Text className="font-popMedium text-2xl text-neutral-100">
+        <Text className="font-popMedium text-2xl text-foreground">
           Monthly Goal
         </Text>
         <Text className="font-popRegular text-base text-neutral-400">
@@ -71,7 +71,7 @@ const MonthlyGoal = ({ hoursLeft, monthlyGoal }: MonthlyGoalProps) => {
           animationType="slide"
         />
         <Animated.Text
-          className="absolute inset-0 top-[34px] flex items-center justify-center font-popMedium text-2xl text-neutral-100"
+          className="absolute inset-0 top-[34px] flex items-center justify-center font-popMedium text-2xl text-foreground"
           entering={FadeIn}
         >
           {((hoursLeft / monthlyGoal) * 100).toFixed(0)}

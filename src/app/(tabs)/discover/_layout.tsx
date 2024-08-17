@@ -13,7 +13,7 @@ const DiscoverLayout = () => {
 
   return (
     <SearchContext.Provider value={searchTerms}>
-      <Stack screenOptions={{}}>
+      <Stack>
         <Stack.Screen
           name="index"
           options={{

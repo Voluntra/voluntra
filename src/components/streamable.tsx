@@ -16,7 +16,7 @@ const Streamable = ({ data }: StreamableProps) => {
             className="flex-row items-start"
           >
             <Text
-              className={`font-popRegular text-base text-neutral-100 ${
+              className={`font-popRegular text-base text-foreground ${
                 idx === 0 ? 'ml-1' : ''
               }`}
             >

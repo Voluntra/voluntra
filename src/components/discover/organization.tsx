@@ -25,12 +25,12 @@ const Organization = ({ title, rating }: OrganizationProps) => {
 
       <View className="flex w-full flex-row justify-between items-center align-middle p-2 pb-0">
         {/* Organization Title */}
-        <Text className="font-medium text-lg text-neutral-100">{title}</Text>
+        <Text className="font-medium text-lg text-foreground">{title}</Text>
 
         {/* Organization Rating */}
         <View className="flex flex-row justify-center items-center align-middle space-x-1">
           <Ionicons name="star" size={16} color={palette['yellow']['100']} />
-          <Text className="font-medium text-lg text-neutral-100">{rating}</Text>
+          <Text className="font-medium text-lg text-foreground">{rating}</Text>
         </View>
       </View>
       <Text className="text-neutral-300 font-popRegular p-2 pt-0 flex w-full justify-start">

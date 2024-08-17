@@ -6,7 +6,7 @@ const Page = () => {
       className="m-page flex min-h-screen"
       contentInsetAdjustmentBehavior="automatic"
     >
-      <Text className="font-popRegular text-neutral-100">ID</Text>
+      <Text className="font-popRegular text-foreground">ID</Text>
     </ScrollView>
   );
 };
