@@ -44,12 +44,13 @@ const TabBar = ({ state, descriptors, navigation }: BottomTabBarProps) => {
 
   return (
     <View
-      className="absolute bottom-7 mx-6 flex flex-row items-center justify-between overflow-hidden rounded-full border border-neutral-800 py-4 align-middle"
+      className="absolute bottom-7 mx-6 flex flex-row items-center justify-between overflow-hidden rounded-full border py-4 align-middle"
+      style={{ borderColor: 'rgba(93, 93, 93, .7)' }}
       onLayout={onTabBarLayout}
     >
       {/* Animated circle that indicates focus */}
       <Animated.View
-        className="absolute z-10 mx-[5px] rounded-full bg-purple-700"
+        className="absolute z-10 mx-[5px] rounded-full bg-purple-900"
         style={[
           animatedStyle,
           {
