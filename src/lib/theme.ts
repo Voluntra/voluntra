@@ -1,5 +1,5 @@
 import { DarkTheme } from '@react-navigation/native';
-import { palette } from '../lib/palette';
+import { palette } from './tailwind';
 
 /**
  * This theme object is passed to the `ThemeProvider` from `react-navigation`,

@@ -1,5 +1,5 @@
 import Ionicons from '@expo/vector-icons/Ionicons';
-import { palette } from '@lib/palette';
+import { palette } from '@lib/tailwind';
 import { Image } from 'expo-image';
 import { Text, View } from 'react-native';
 

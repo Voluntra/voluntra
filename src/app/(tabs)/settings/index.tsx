@@ -14,10 +14,10 @@ const Settings = () => {
 
   return (
     <ScrollView
-      className="m-page flex min-h-screen"
+      contentInset={{ bottom: 90 }}
       contentInsetAdjustmentBehavior="automatic"
     >
-      <View className="flex-1 align-middle justify-between flex-col space-y-4">
+      <View className="m-page flex-1 align-middle justify-between flex-col space-y-4">
         {/* General section heading*/}
         <View className="mb-4 pt-5">
           <Heading text="General" />

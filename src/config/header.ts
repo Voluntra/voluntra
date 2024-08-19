@@ -1,6 +1,6 @@
+import { palette } from '@lib/tailwind';
 import { Stack } from 'expo-router';
 import { ComponentProps } from 'react';
-import { palette } from '../lib/palette';
 
 /**
  * To ensure consistency across the application, this object is used to define

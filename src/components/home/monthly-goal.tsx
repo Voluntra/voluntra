@@ -1,4 +1,4 @@
-import { palette } from '@lib/palette';
+import { palette } from '@lib/tailwind';
 import { LinearGradient } from 'expo-linear-gradient';
 import { Text, View } from 'react-native';
 import { DonutChart, DonutItem } from 'react-native-circular-chart';

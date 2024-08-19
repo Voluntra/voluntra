@@ -6,3 +6,5 @@ import tailwindConfig from '../../tailwind.config';
  * TODO: Add dynamic typing to the `palette` constant.
  */
 export const palette = resolveConfig(tailwindConfig).theme.colors;
+
+export const config = resolveConfig(tailwindConfig).theme;

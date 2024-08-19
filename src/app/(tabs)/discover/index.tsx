@@ -42,8 +42,12 @@ const Discover = () => {
   return (
     <FlatList
       contentInsetAdjustmentBehavior="automatic"
-      contentContainerStyle={{ gap: 16, paddingHorizontal: 16 }}
-      className="min-h-screen flex-1 w-full h-full"
+      contentContainerStyle={{
+        gap: 16,
+        paddingHorizontal: 16,
+      }}
+      contentInset={{ bottom: 90 }}
+      className="min-h-screen flex-1 w-full"
       data={filteredData}
       ListEmptyComponent={
         <Text className="font-popRegular text-foreground">Nothing found!</Text>

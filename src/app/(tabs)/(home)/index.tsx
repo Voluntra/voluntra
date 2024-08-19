@@ -5,6 +5,7 @@ const Home = () => {
   return (
     <ScrollView
       className="m-page flex min-h-screen"
+      contentInset={{ bottom: 90 }}
       contentInsetAdjustmentBehavior="automatic"
     >
       <MonthlyGoal hoursLeft={6} monthlyGoal={8} />

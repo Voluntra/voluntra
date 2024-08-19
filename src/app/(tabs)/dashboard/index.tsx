@@ -80,6 +80,7 @@ const Dashboard = () => {
   return (
     <ScrollView
       className="m-page flex min-h-screen"
+      contentInset={{ bottom: 90 }}
       contentInsetAdjustmentBehavior="automatic"
     >
       <Pressable
