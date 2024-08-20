@@ -2,12 +2,12 @@ import { Feather } from '@expo/vector-icons';
 import { palette } from '@lib/tailwind';
 import { Text, View } from 'react-native';
 
-export interface Setting {
+export interface SettingProps {
   title: string;
   iconName: keyof typeof Feather.glyphMap;
 }
 
-const Setting = ({ title, iconName }: Setting) => {
+const Setting = ({ title, iconName }: SettingProps) => {
   return (
     <View className="flex-row w-full justify-between items-center align-middle">
       {/* Setting name and icon */}

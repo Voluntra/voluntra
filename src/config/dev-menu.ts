@@ -2,6 +2,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import 'expo-dev-client';
 import { registerDevMenuItems } from 'expo-dev-menu';
 import { schedulePushNotification } from '../lib/notifications';
+import { keyName } from './onboarding';
 
 /**
  * This array is a type-safe method to register custom menu items,
@@ -26,12 +27,14 @@ export const devMenuItems: Parameters<
     },
     shouldCollapse: true,
   },
-  // To actually test onboarding, the app must be reloaded after this item is clicked
   {
     name: 'Test Onboarding Process',
     callback: async () => {
-      await AsyncStorage.setItem('onboarding', 'false');
+      console.info(
+        `Testing onboard process by setting key ${keyName} to false`
+      );
+      await AsyncStorage.setItem(keyName, 'false');
     },
-    shouldCollapse: false,
+    shouldCollapse: true,
   },
 ];

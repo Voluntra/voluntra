@@ -6,6 +6,7 @@ import { generalList, supportList } from '@config/settings';
 import { useAuth } from '@hooks/useAuth';
 import { useHaptics } from '@hooks/useHaptics';
 import * as Application from 'expo-application';
+import { Fragment } from 'react';
 import { Pressable, Text, View } from 'react-native';
 
 const Settings = () => {
@@ -24,12 +25,12 @@ const Settings = () => {
 
         {/* General section items*/}
         {generalList.map(({ title, iconName }, idx) => (
-          <>
-            <Setting title={title} iconName={iconName} key={title + iconName} />
+          <Fragment key={title}>
+            <Setting title={title} iconName={iconName} key={title} />
             {idx !== generalList.length - 1 && (
-              <Separator key={iconName + title} />
+              <Separator key={`separator-${title}`} />
             )}
-          </>
+          </Fragment>
         ))}
 
         {/* Support section heading */}
@@ -39,12 +40,12 @@ const Settings = () => {
 
         {/* Support section items*/}
         {supportList.map(({ title, iconName }, idx) => (
-          <>
-            <Setting title={title} iconName={iconName} key={title + iconName} />
+          <Fragment key={title}>
+            <Setting title={title} iconName={iconName} key={title} />
             {idx !== generalList.length - 1 && (
-              <Separator key={iconName + title} />
+              <Separator key={`separator-${title}`} />
             )}
-          </>
+          </Fragment>
         ))}
 
         {/* Debug information */}

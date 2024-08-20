@@ -1,9 +1,9 @@
-import { Setting } from '@components/settings/setting';
+import { SettingProps } from '@components/settings/setting';
 
 /**
  * No duplicate settings (combo w/ title + iconName) are allowed, else React will render two items with the same key.
  */
-export const generalList: Setting[] = [
+export const generalList: SettingProps[] = [
   {
     title: 'Account information',
     iconName: 'user',
@@ -25,7 +25,7 @@ export const generalList: Setting[] = [
 /**
  * No duplicate settings (combo w/ title + iconName) are allowed, else React will render two items with the same key.
  */
-export const supportList: Setting[] = [
+export const supportList: SettingProps[] = [
   {
     title: 'Report an issue',
     iconName: 'alert-triangle',
