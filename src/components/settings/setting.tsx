@@ -2,7 +2,7 @@ import { Feather } from '@expo/vector-icons';
 import { palette } from '@lib/tailwind';
 import { Text, View } from 'react-native';
 
-interface Setting {
+export interface Setting {
   title: string;
   iconName: keyof typeof Feather.glyphMap;
 }

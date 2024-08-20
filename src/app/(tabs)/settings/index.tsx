@@ -1,10 +1,12 @@
+import PageView from '@components/layout/page-view';
 import Heading from '@components/settings/heading';
 import { Separator } from '@components/settings/separator';
 import Setting from '@components/settings/setting';
+import { generalList, supportList } from '@config/settings';
 import { useAuth } from '@hooks/useAuth';
 import { useHaptics } from '@hooks/useHaptics';
 import * as Application from 'expo-application';
-import { Pressable, ScrollView, Text, View } from 'react-native';
+import { Pressable, Text, View } from 'react-native';
 
 const Settings = () => {
   const { signOut } = useAuth();
@@ -13,24 +15,22 @@ const Settings = () => {
   const successHaptic = useHaptics('success');
 
   return (
-    <ScrollView
-      contentInset={{ bottom: 90 }}
-      contentInsetAdjustmentBehavior="automatic"
-    >
+    <PageView>
       <View className="m-page flex-1 align-middle justify-between flex-col space-y-4">
         {/* General section heading*/}
-        <View className="mb-4 pt-5">
+        <View className="mb-4">
           <Heading text="General" />
         </View>
 
         {/* General section items*/}
-        <Setting title="Account information" iconName="user" />
-        <Separator />
-        <Setting title="Notifications" iconName="bell" />
-        <Separator />
-        <Setting title="Appearance" iconName="settings" />
-        <Separator />
-        <Setting title="Volunteering" iconName="activity" />
+        {generalList.map(({ title, iconName }, idx) => (
+          <>
+            <Setting title={title} iconName={iconName} key={title + iconName} />
+            {idx !== generalList.length - 1 && (
+              <Separator key={iconName + title} />
+            )}
+          </>
+        ))}
 
         {/* Support section heading */}
         <View className="mb-4 pt-5">
@@ -38,9 +38,14 @@ const Settings = () => {
         </View>
 
         {/* Support section items*/}
-        <Setting title="Report an issue" iconName="alert-triangle" />
-        <Separator />
-        <Setting title="Give us your feedback" iconName="message-circle" />
+        {supportList.map(({ title, iconName }, idx) => (
+          <>
+            <Setting title={title} iconName={iconName} key={title + iconName} />
+            {idx !== generalList.length - 1 && (
+              <Separator key={iconName + title} />
+            )}
+          </>
+        ))}
 
         {/* Debug information */}
         <View className="flex flex-row justify-between items-center align-middle pt-5">
@@ -68,7 +73,7 @@ const Settings = () => {
           </Text>
         </Pressable>
       </View>
-    </ScrollView>
+    </PageView>
   );
 };
 

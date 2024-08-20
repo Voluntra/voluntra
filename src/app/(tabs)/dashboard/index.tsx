@@ -1,8 +1,9 @@
 import Events from '@appTypes/streaming/events';
+import PageView from '@components/layout/page-view';
 import Streamable from '@components/streamable';
 import { useHaptics } from '@hooks/useHaptics';
 import { useEffect, useState } from 'react';
-import { Pressable, ScrollView, Text } from 'react-native';
+import { Pressable, Text } from 'react-native';
 import EventSource, { EventSourceListener } from 'react-native-sse';
 
 const Dashboard = () => {
@@ -78,11 +79,7 @@ const Dashboard = () => {
   };
 
   return (
-    <ScrollView
-      className="m-page flex min-h-screen"
-      contentInset={{ bottom: 90 }}
-      contentInsetAdjustmentBehavior="automatic"
-    >
+    <PageView className="m-page flex min-h-screen">
       <Pressable
         onPress={onPress}
         className="mb-4 flex h-14 w-full items-center justify-center rounded-xl border border-neutral-800 bg-neutral-900 active:opacity-80"
@@ -92,7 +89,7 @@ const Dashboard = () => {
         </Text>
       </Pressable>
       {data.length > 0 && <Streamable data={data} />}
-    </ScrollView>
+    </PageView>
   );
 };
 
