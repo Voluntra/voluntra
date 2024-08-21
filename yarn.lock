@@ -9756,6 +9756,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"react-native-animated-pagination-dots@npm:^0.1.73":
+  version: 0.1.73
+  resolution: "react-native-animated-pagination-dots@npm:0.1.73"
+  peerDependencies:
+    react: "*"
+    react-native: "*"
+    react-native-svg: "*"
+  checksum: 10c0/a6dbc78f421502a8a0a4d1ef96ffe90711e9dba254f9175e81959dac0a8a9f4f0f210763b8ed4d22071b3ccc59900c0c50100513a9f0fbd8331b384af5223a8d
+  languageName: node
+  linkType: hard
+
 "react-native-circular-chart@npm:^1.0.9":
   version: 1.0.9
   resolution: "react-native-circular-chart@npm:1.0.9"
@@ -11925,6 +11936,7 @@ __metadata:
     react: "npm:18.2.0"
     react-error-boundary: "npm:^4.0.13"
     react-native: "npm:0.74.5"
+    react-native-animated-pagination-dots: "npm:^0.1.73"
     react-native-circular-chart: "npm:^1.0.9"
     react-native-context-menu-view: "npm:^1.16.0"
     react-native-gesture-handler: "npm:~2.16.1"

@@ -1,36 +1,62 @@
-import Feature, { FeatureProps } from '@components/onboard/feature';
-import { keyName } from '@config/onboarding';
+import Feature from '@components/onboard/feature';
+import { keyName, onboardingFeatures } from '@config/onboarding';
 import { useHaptics } from '@hooks/useHaptics';
 import { setKey } from '@lib/onboarding';
 import { palette } from '@lib/tailwind';
 import { LinearGradient } from 'expo-linear-gradient';
 import { router } from 'expo-router';
-import { useRef, useState } from 'react';
-import { Pressable, SafeAreaView, Text, View } from 'react-native';
-import PagerView from 'react-native-pager-view';
+import { useMemo, useRef, useState } from 'react';
+import {
+  Animated,
+  Dimensions,
+  Pressable,
+  SafeAreaView,
+  Text,
+  View,
+} from 'react-native';
+import { ExpandingDot } from 'react-native-animated-pagination-dots';
+import PagerView, {
+  PagerViewOnPageScrollEventData,
+} from 'react-native-pager-view';
 
-const featureList: FeatureProps[] = [
-  {
-    title: 'Powerful Dashboard',
-    description:
-      'Set goals, track your progress, and get insights to help you improve',
-  },
-  {
-    title: 'Powerful Dashboard',
-    description:
-      'Set goals, track your progress, and get insights to help you improve',
-  },
-  {
-    title: 'Powerful Dashboard',
-    description:
-      'Set goals, track your progress, and get insights to help you improve',
-  },
-];
+const AnimatedPagerView = Animated.createAnimatedComponent(PagerView);
 
 const Onboard = () => {
   const [currentPage, setCurrentPage] = useState(0);
   const viewPagerRef = useRef<PagerView>(null);
+
+  const width = Dimensions.get('window').width;
+  const scrollOffsetAnimatedValue = useRef(new Animated.Value(0)).current;
+  const positionAnimatedValue = useRef(new Animated.Value(0)).current;
+  const inputRange = [0, onboardingFeatures.length];
+  const scrollX = Animated.add(
+    scrollOffsetAnimatedValue,
+    positionAnimatedValue
+  ).interpolate({
+    inputRange,
+    outputRange: [0, onboardingFeatures.length * width],
+  });
+
   const selectionHaptic = useHaptics();
+
+  const onPageScroll = useMemo(
+    () =>
+      Animated.event<PagerViewOnPageScrollEventData>(
+        [
+          {
+            nativeEvent: {
+              offset: scrollOffsetAnimatedValue,
+              position: positionAnimatedValue,
+            },
+          },
+        ],
+        {
+          useNativeDriver: false,
+        }
+      ),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    []
+  );
 
   const onPress = () => {
     selectionHaptic();
@@ -42,7 +68,7 @@ const Onboard = () => {
     <SafeAreaView className="m-page min-h-screen flex-col justify-center items-center align-middle relative">
       {/* Feature carousel */}
       <View className="w-full h-2/3 relative">
-        <PagerView
+        <AnimatedPagerView
           className="w-full h-full"
           initialPage={0}
           overdrag
@@ -50,27 +76,32 @@ const Onboard = () => {
             setCurrentPage(e.nativeEvent.position);
           }}
           ref={viewPagerRef}
+          onPageScroll={onPageScroll}
         >
-          {featureList.map(({ title, description }, idx) => (
+          {onboardingFeatures.map(({ title, description }, idx) => (
             <View className="justify-center items-center" key={idx}>
               <Feature title={title} description={description} />
             </View>
           ))}
-        </PagerView>
+        </AnimatedPagerView>
 
         {/* Feature carousel page indicator */}
-        <View className="absolute bottom-4 w-full flex-row justify-center space-x-3 items-center align-middle mb-16">
-          {featureList.map((_, idx) => (
-            <Pressable
-              className={`rounded-full h-2 w-2 ${currentPage === idx ? 'bg-purple-100' : 'bg-neutral-700'} `}
-              hitSlop={15}
-              onPress={() => {
-                viewPagerRef.current.setPage(idx);
-              }}
-              key={idx}
-            />
-          ))}
-        </View>
+        <ExpandingDot
+          data={onboardingFeatures}
+          expandingDotWidth={30}
+          inActiveDotColor={palette['neutral']['500']}
+          activeDotColor={palette['purple']['100']}
+          scrollX={scrollX as Animated.Value}
+          dotStyle={{
+            width: 10,
+            height: 10,
+            borderRadius: 5,
+            marginHorizontal: 5,
+          }}
+          containerStyle={{
+            bottom: 20,
+          }}
+        />
       </View>
 
       {/* Exit on-boarding button */}

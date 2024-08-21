@@ -44,6 +44,7 @@
     "react": "18.2.0",
     "react-error-boundary": "^4.0.13",
     "react-native": "0.74.5",
+    "react-native-animated-pagination-dots": "^0.1.73",
     "react-native-circular-chart": "^1.0.9",
     "react-native-gesture-handler": "~2.16.1",
     "react-native-get-random-values": "^1.11.0",
