@@ -19,10 +19,14 @@ export default (): ExpoConfig => ({
   },
   assetBundlePatterns: ['**/*'],
   ios: {
+    usesAppleSignIn: true,
     supportsTablet: false,
     bundleIdentifier: IS_DEV
       ? 'org.voluntra.voluntra.dev'
       : 'org.voluntra.voluntra',
+    config: {
+      usesNonExemptEncryption: false,
+    },
   },
   android: {
     googleServicesFile: process.env.GOOGLE_SERVICES_JSON,
@@ -83,8 +87,7 @@ export default (): ExpoConfig => ({
     'expo-build-properties',
     'expo-asset',
     'expo-font',
+    'expo-apple-authentication',
+    'expo-secure-store',
   ],
-  experiments: {
-    typedRoutes: true,
-  },
 });

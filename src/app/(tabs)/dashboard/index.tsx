@@ -1,13 +1,17 @@
-import * as Haptics from 'expo-haptics';
+import Events from '@appTypes/streaming/events';
+import PageView from '@components/layout/page-view';
+import Streamable from '@components/streamable';
+import { useHaptics } from '@hooks/useHaptics';
 import { useEffect, useState } from 'react';
-import { Pressable, Text, View } from 'react-native';
+import { Pressable, Text } from 'react-native';
 import EventSource, { EventSourceListener } from 'react-native-sse';
-import Streamable from '../components/streamable';
-import Events from '../types/streaming/events';
 
 const Dashboard = () => {
   const [stream, setStream] = useState(false);
   const [data, setData] = useState<string[]>([]);
+
+  const selectionHaptic = useHaptics();
+  const successHaptic = useHaptics('success');
 
   useEffect(() => {
     let source: EventSource<Events> | null = null;
@@ -29,7 +33,7 @@ const Dashboard = () => {
         switch (event.type) {
           case 'open': {
             setData([]);
-            Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
+            successHaptic();
             break;
           }
           case 'update': {
@@ -61,10 +65,10 @@ const Dashboard = () => {
         source.close();
       }
     };
-  }, [stream]);
+  }, [stream, successHaptic]);
 
   const onPress = () => {
-    Haptics.selectionAsync();
+    selectionHaptic();
 
     if (data) {
       // Reset state variable, and therefore the `Streamable` component
@@ -75,19 +79,17 @@ const Dashboard = () => {
   };
 
   return (
-    <View className="pt-offset pb-offset">
-      <View className="m-page min-h-screen flex items-center">
-        <Pressable
-          onPress={onPress}
-          className="bg-neutral-900 w-full h-14 rounded-xl flex items-center justify-center mb-4 active:opacity-80 border border-neutral-800"
-        >
-          <Text className="text-foreground text-lg font-popRegular active:opacity-80">
-            Generate
-          </Text>
-        </Pressable>
-        {data.length > 0 && <Streamable data={data} />}
-      </View>
-    </View>
+    <PageView className="m-page flex min-h-screen">
+      <Pressable
+        onPress={onPress}
+        className="mb-4 flex h-14 w-full items-center justify-center rounded-xl border border-neutral-800 bg-neutral-900 active:opacity-80"
+      >
+        <Text className="font-popRegular text-lg text-foreground active:opacity-80">
+          Generate
+        </Text>
+      </Pressable>
+      {data.length > 0 && <Streamable data={data} />}
+    </PageView>
   );
 };
 

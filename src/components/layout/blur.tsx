@@ -10,9 +10,9 @@ import { BlurView, BlurViewProps } from 'expo-blur';
 const Blur = ({ tint, intensity, ...props }: BlurViewProps) => {
   return (
     <BlurView
-      tint={'systemUltraThinMaterialDark'}
-      intensity={70}
-      className="absolute top-0 bottom-0 left-0 right-0"
+      tint="systemUltraThinMaterialDark"
+      intensity={100}
+      className="absolute bottom-0 left-0 right-0 top-0"
       {...props}
     />
   );

@@ -1,11 +1,10 @@
+import { iconName } from '@config/tabs';
 import { Feather } from '@expo/vector-icons';
+import { palette } from '@lib/tailwind';
 import { BottomTabNavigationOptions } from '@react-navigation/bottom-tabs';
-import React from 'react';
-import { Pressable, PressableProps, Text, View } from 'react-native';
-import { iconName } from '../../config/tabs';
-import palette from '../../lib/palette';
+import { Pressable, PressableProps, Text } from 'react-native';
 
-interface TabBarButtonProps extends PressableProps, React.RefAttributes<View> {
+interface TabBarButtonProps extends PressableProps {
   routeName: string;
   isFocused: boolean;
   options: BottomTabNavigationOptions;
@@ -19,24 +18,24 @@ const TabBarButton = ({
 }: TabBarButtonProps) => {
   return (
     <Pressable
-      className="flex-1 flex justify-center items-center gap-px"
+      className="flex-1 items-center justify-center gap-px"
       accessibilityRole="button"
       accessibilityState={isFocused ? { selected: true } : {}}
       accessibilityLabel={options.tabBarAccessibilityLabel}
-      hitSlop={10}
+      hitSlop={15}
       {...props}
     >
       <Feather
         name={iconName[routeName]}
         size={26}
-        color={isFocused ? palette['purple']['100'] : palette['neutral']['500']}
+        color={isFocused ? palette['purple']['100'] : palette['neutral']['200']}
       />
       <Text
         className={`${
-          isFocused ? 'text-purple-100' : 'text-neutral-500'
-        }  capitalize text-xs font-popRegular`}
+          isFocused ? 'text-purple-100' : 'text-neutral-200'
+        } font-popRegular text-xs capitalize`}
       >
-        {routeName === 'index' ? 'home' : routeName}
+        {routeName.replace(/[()]/g, '')}{' '}
       </Text>
     </Pressable>
   );

@@ -1,13 +1,16 @@
 {
   "compilerOptions": {
-    "types": ["nativewind/types", "node"]
+    "types": ["nativewind/types", "node"],
+    "baseUrl": ".",
+    "paths": {
+      "@components/*": ["src/components/*"],
+      "@config/*": ["src/config/*"],
+      "@context/*": ["src/context/*"],
+      "@hooks/*": ["src/hooks/*"],
+      "@lib/*": ["src/lib/*"],
+      "@appTypes/*": ["src/types/*"]
+    }
   },
   "extends": "expo/tsconfig.base",
-  "include": [
-    "**/*.ts",
-    "**/*.tsx",
-    ".expo/types/**/*.ts",
-    "expo-env.d.ts",
-    "tailwind.config.ts"
-  ]
+  "include": ["**/*.ts", "**/*.tsx", "tailwind.config.ts"]
 }

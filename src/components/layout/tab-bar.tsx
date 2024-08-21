@@ -1,5 +1,6 @@
+import { tabsList } from '@config/tabs';
+import { useHaptics } from '@hooks/useHaptics';
 import { BottomTabBarProps } from '@react-navigation/bottom-tabs';
-import * as Haptics from 'expo-haptics';
 import { useState } from 'react';
 import { LayoutChangeEvent, Platform, View } from 'react-native';
 import Animated, {
@@ -16,9 +17,11 @@ const TabBar = ({ state, descriptors, navigation }: BottomTabBarProps) => {
   const [dimensions, setDimensions] = useState({ height: 20, width: 100 });
   const tabPositionX = useSharedValue(0);
 
-  // Filter routes to exclude built-in expo routes
-  const filteredRoutes = state.routes.filter(
-    (route) => !['_sitemap', '+not-found'].includes(route.name)
+  const lightHaptic = useHaptics('light');
+
+  // Filter routes to include only routes defined in the tabs configuration
+  const filteredRoutes = state.routes.filter((route) =>
+    tabsList.some((tab) => tab.name === route.name)
   );
 
   // Calculate the number of omitted routes
@@ -41,12 +44,13 @@ const TabBar = ({ state, descriptors, navigation }: BottomTabBarProps) => {
 
   return (
     <View
-      className="flex flex-row absolute bottom-7 justify-between items-center mx-6 py-4 rounded-full overflow-hidden align-middle border border-neutral-800"
+      className="absolute bottom-7 mx-6 flex flex-row items-center justify-between overflow-hidden rounded-full border py-4 align-middle"
+      style={{ borderColor: 'rgba(93, 93, 93, .7)' }}
       onLayout={onTabBarLayout}
     >
       {/* Animated circle that indicates focus */}
       <Animated.View
-        className="absolute bg-purple-700 rounded-full mx-[5px] z-10"
+        className="absolute z-10 mx-[5px] rounded-full bg-purple-900"
         style={[
           animatedStyle,
           {
@@ -82,7 +86,7 @@ const TabBar = ({ state, descriptors, navigation }: BottomTabBarProps) => {
 
           if (!isFocused && !event.defaultPrevented) {
             navigation.navigate(route.name, route.params);
-            Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+            lightHaptic();
           }
         };
 
