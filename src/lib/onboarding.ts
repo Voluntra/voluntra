@@ -1,5 +1,4 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import * as Constants from 'expo-constants';
 import { keyName } from '../config/onboarding';
 
 type KeyValues = 'true' | 'false';
@@ -43,9 +42,6 @@ export const hasOnboarded = async () => {
  * This function is a wrapper that begins the onboarding process. It checks if the the `keyName` is found,
  * if it is not found, it will call the appropriate functions.
  *
- * This function will *not* set the `keyName` to true at any point in production. However, to ease development
- * the `keyName` will automatically be set to true to avoid soft locking the user out of the app.
- *
  * @param onKeyNotFound This function cannot be called unless `keyName` is *not* found.
  * @param onKeyFoundFn This function cannot be called unless `keyName` *is* found.
  */
@@ -56,10 +52,6 @@ export const startOnboarding = async (
   const val = await findKey(keyName);
   // If the user has not seen the onboarding screen
   if (val === null || val === 'false') {
-    // If the dev build is being used, automatically set the key to true
-    if (Constants.ExecutionEnvironment.Standalone) {
-      setKey(keyName, 'true');
-    }
     onKeyNotFound && onKeyNotFound();
   } else {
     onKeyFoundFn && onKeyFoundFn();
