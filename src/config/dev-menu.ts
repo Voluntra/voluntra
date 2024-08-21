@@ -17,7 +17,7 @@ export const devMenuItems: Parameters<
     callback: async () => {
       await schedulePushNotification(
         {
-          title: 'Test Notification',
+          title: 'New shift opened',
           body: 'Sent by Voluntra',
         },
         {

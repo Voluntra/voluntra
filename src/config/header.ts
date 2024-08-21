@@ -6,7 +6,6 @@ import { ComponentProps } from 'react';
  * To ensure consistency across the application, this object is used to define
  * any boilerplate options for headers.
  */
-
 export const headerOptions: ComponentProps<typeof Stack>['screenOptions'] = {
   headerTransparent: true,
   autoHideHomeIndicator: true,
