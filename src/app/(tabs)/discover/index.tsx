@@ -3,9 +3,10 @@ import Organization, {
 } from '@components/discover/organization';
 import { SearchContext } from '@context/search-context';
 import { useFuzzySearchList } from '@nozbe/microfuzz/react';
+import { FlashList } from '@shopify/flash-list';
 import { Link } from 'expo-router';
 import { useContext } from 'react';
-import { FlatList, Text } from 'react-native';
+import { Text, View } from 'react-native';
 
 /**
  * Placeholder list of organizations until the backend list is ready.
@@ -40,10 +41,9 @@ const Discover = () => {
   });
 
   return (
-    <FlatList
+    <FlashList
       contentInsetAdjustmentBehavior="automatic"
       contentContainerStyle={{
-        gap: 16,
         paddingHorizontal: 16,
       }}
       contentInset={{ bottom: 90 }}
@@ -52,6 +52,7 @@ const Discover = () => {
       ListEmptyComponent={
         <Text className="font-popRegular text-foreground">Nothing found!</Text>
       }
+      ItemSeparatorComponent={() => <View className="h-4" />}
       renderItem={({ item: { rating, title } }) => {
         return (
           <Link href="/discover/organization/1">
@@ -62,6 +63,7 @@ const Discover = () => {
       keyExtractor={(item) => item.title}
       scrollEnabled={true}
       extraData={searchValue}
+      estimatedItemSize={245}
     />
   );
 };

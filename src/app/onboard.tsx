@@ -1,10 +1,10 @@
-import { Text, View } from 'react-native';
+import { SafeAreaView, Text } from 'react-native';
 
 const Onboard = () => {
   return (
-    <View className="m-page min-h-screen flex flex-col justify-center items-center align-middle">
-      <Text className="font-popRegular text-foreground">Onboarding</Text>
-    </View>
+    <SafeAreaView className="m-page min-h-screen flex-col justify-center items-center align-middle">
+      <Text className="text-foreground font-popRegular">Onboarding Page</Text>
+    </SafeAreaView>
   );
 };
 

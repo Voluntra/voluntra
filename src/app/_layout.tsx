@@ -5,10 +5,13 @@ import NavBackground from '@components/layout/nav-background';
 import { devMenuItems } from '@config/dev-menu';
 import { actions } from '@config/quick-actions';
 import { useReactNavigationDevTools } from '@dev-plugins/react-navigation';
+import Feather from '@expo/vector-icons/Feather';
+import Ionicons from '@expo/vector-icons/Ionicons';
 import theme from '@lib/theme';
 import { ThemeProvider } from '@react-navigation/native';
 import 'expo-dev-client';
 import { registerDevMenuItems } from 'expo-dev-menu';
+import { useFonts } from 'expo-font';
 import * as QuickActions from 'expo-quick-actions';
 import { RouterAction, useQuickActionRouting } from 'expo-quick-actions/router';
 import { Stack, useNavigationContainerRef } from 'expo-router';
@@ -18,6 +21,9 @@ import { ErrorBoundary } from 'react-error-boundary';
 import { Platform } from 'react-native';
 
 const RootLayout = () => {
+  // Handle vector icons' intial load
+  useFonts({ Ionicons: Ionicons.font, Feather: Feather.font });
+
   // Register custom dev menu items
   registerDevMenuItems(devMenuItems);
 
