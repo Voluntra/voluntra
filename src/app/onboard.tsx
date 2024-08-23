@@ -22,7 +22,7 @@ import PagerView, {
 const AnimatedPagerView = Animated.createAnimatedComponent(PagerView);
 
 const Onboard = () => {
-  const [currentPage, setCurrentPage] = useState(0);
+  const [, setCurrentPage] = useState(0);
   const viewPagerRef = useRef<PagerView>(null);
 
   const width = Dimensions.get('window').width;
