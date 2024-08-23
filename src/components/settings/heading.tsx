@@ -1,4 +1,4 @@
-import { Text } from 'react-native';
+import { Text, View } from 'react-native';
 
 interface HeadingProps {
   text: string;
@@ -6,9 +6,11 @@ interface HeadingProps {
 
 const Heading = ({ text }: HeadingProps) => {
   return (
-    <Text className="font-popSemiBold text-2xl text-left text-foreground">
-      {text}
-    </Text>
+    <View>
+      <Text className="font-medium text-base text-left text-foreground">
+        {text}
+      </Text>
+    </View>
   );
 };
 

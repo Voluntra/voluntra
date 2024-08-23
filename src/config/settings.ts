@@ -34,4 +34,14 @@ export const supportList: SettingProps[] = [
     title: 'Give us your feedback',
     iconName: 'message-circle',
   },
+  {
+    title: 'Debug Information',
+    iconName: 'code',
+  },
+  {
+    title: 'Log out',
+    iconName: 'log-out',
+    destructive: true,
+    arrowShown: false,
+  },
 ];
