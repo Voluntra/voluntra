@@ -6,6 +6,7 @@ import { generalList, supportList } from '@config/settings';
 import { useAuth } from '@hooks/useAuth';
 import { useHaptics } from '@hooks/useHaptics';
 import * as Application from 'expo-application';
+import { Link } from 'expo-router';
 import { Fragment } from 'react';
 import { Pressable, Text, View } from 'react-native';
 
@@ -26,7 +27,9 @@ const Settings = () => {
         {/* General section items*/}
         {generalList.map(({ title, iconName }, idx) => (
           <Fragment key={title}>
-            <Setting title={title} iconName={iconName} key={title} />
+            <Link href="/modal">
+              <Setting title={title} iconName={iconName} key={title} />
+            </Link>
             {idx !== generalList.length - 1 && (
               <Separator key={`separator-${title}`} />
             )}
@@ -41,7 +44,9 @@ const Settings = () => {
         {/* Support section items*/}
         {supportList.map(({ title, iconName }, idx) => (
           <Fragment key={title}>
-            <Setting title={title} iconName={iconName} key={title} />
+            <Link href="/modal">
+              <Setting title={title} iconName={iconName} key={title} />
+            </Link>
             {idx !== generalList.length - 1 && (
               <Separator key={`separator-${title}`} />
             )}

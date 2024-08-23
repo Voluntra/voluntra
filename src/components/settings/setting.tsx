@@ -13,14 +13,14 @@ const Setting = ({ title, iconName }: SettingProps) => {
       {/* Setting name and icon */}
 
       <View className="flex space-x-2 items-center align-middle flex-row">
-        <Feather name={iconName} size={26} color={palette['neutral']['100']} />
+        <Feather name={iconName} size={22} color={palette['neutral']['100']} />
         <Text className="font-medium text-foreground text-xl">{title}</Text>
       </View>
 
       {/* Setting arrow */}
       <Feather
         name="chevron-right"
-        size={26}
+        size={22}
         color={palette['neutral']['100']}
       />
     </View>

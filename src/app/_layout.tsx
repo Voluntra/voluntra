@@ -68,6 +68,14 @@ const RootLayout = () => {
               }}
             />
             <Stack.Screen name="onboard" />
+            <Stack.Screen
+              name="modal"
+              options={{
+                headerShown: true,
+                presentation: 'modal',
+                animation: 'slide_from_bottom',
+              }}
+            />
           </Stack>
         </SessionProvider>
       </ThemeProvider>
