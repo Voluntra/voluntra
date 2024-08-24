@@ -17,9 +17,13 @@ const Setting = ({
   iconColor = palette['foreground'] as string,
   destructive = false,
   arrowShown = true,
+  onPress,
 }: SettingProps) => {
   return (
-    <Pressable className="flex-row w-full justify-between items-center align-middle">
+    <Pressable
+      className="flex-row w-full justify-between items-center align-middle"
+      onPress={onPress}
+    >
       {/* Setting name and icon */}
       <View className="flex space-x-2 items-center align-middle flex-row">
         <View className="bg-neutral-900 rounded-xl flex p-2">

@@ -1,3 +1,4 @@
+import Gradient from '@components/gradient';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { palette } from '@lib/tailwind';
 import { Image } from 'expo-image';
@@ -13,7 +14,10 @@ const blurhash =
 
 const Organization = ({ title, rating }: OrganizationProps) => {
   return (
-    <View className="border-neutral-800 items-center justify-center rounded-xl border bg-neutral-900 overflow-hidden">
+    <View className="border-neutral-900 items-center justify-center rounded-xl border overflow-hidden">
+      {/* Background Linear Gradient */}
+      <Gradient />
+
       {/* Organization Image */}
       <Image
         className="flex w-full aspect-video items-center justify-center"

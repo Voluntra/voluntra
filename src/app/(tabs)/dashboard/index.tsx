@@ -82,7 +82,7 @@ const Dashboard = () => {
     <PageView className="m-page flex min-h-screen">
       <Pressable
         onPress={onPress}
-        className="mb-4 flex h-14 w-full items-center justify-center rounded-xl border border-neutral-800 bg-neutral-900 active:opacity-80"
+        className="mb-4 flex h-14 w-full items-center justify-center rounded-xl border border-neutral-900 bg-black active:opacity-80"
       >
         <Text className="font-popRegular text-lg text-foreground active:opacity-80">
           Generate

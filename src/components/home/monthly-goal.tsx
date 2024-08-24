@@ -1,5 +1,5 @@
+import Gradient from '@components/gradient';
 import { palette } from '@lib/tailwind';
-import { LinearGradient } from 'expo-linear-gradient';
 import { Text, View } from 'react-native';
 import { DonutChart, DonutItem } from 'react-native-circular-chart';
 import Animated, { FadeIn } from 'react-native-reanimated';
@@ -30,12 +30,9 @@ const MonthlyGoal = ({ hoursLeft, monthlyGoal }: MonthlyGoalProps) => {
   ];
 
   return (
-    <View className="flex h-28 flex-row items-center justify-between overflow-hidden rounded-xl border border-neutral-800 bg-neutral-900 p-5 align-middle shadow-sm">
+    <View className="flex h-28 flex-row items-center justify-between overflow-hidden rounded-xl border border-neutral-900 p-5 align-middle shadow-sm">
       {/* Background Linear Gradient */}
-      <LinearGradient
-        colors={[palette['neutral']['800'], palette['neutral']['900']]}
-        className="absolute bottom-0 left-0 right-0 top-0"
-      />
+      <Gradient />
 
       {/* Dynamic text identifying the component and hours left to volunteer */}
       <View className="gap-PX flex flex-col justify-center align-middle">

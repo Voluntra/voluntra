@@ -1,7 +1,7 @@
 import { StyleSheet, View } from 'react-native';
 
 const NavBackground = () => {
-  return <View className="bg-neutral-900" style={StyleSheet.absoluteFill} />;
+  return <View className="bg-black" style={StyleSheet.absoluteFill} />;
 };
 
 export default NavBackground;

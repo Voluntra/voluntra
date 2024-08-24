@@ -7,7 +7,7 @@ interface StreamableProps {
 
 const Streamable = ({ data }: StreamableProps) => {
   return (
-    <View className="w-full rounded-xl border border-neutral-800 bg-neutral-900 p-3">
+    <View className="w-full rounded-xl border border-neutral-900 bg-black p-3">
       <View className="flex-row flex-wrap">
         {data.map((text, idx) => (
           <Animated.View

@@ -10,12 +10,9 @@ import { View } from 'react-native';
 
 const Settings = () => {
   const { signOut } = useAuth();
-
-  const selectionHaptic = useHaptics();
   const successHaptic = useHaptics('success');
 
   const handlePress = () => {
-    selectionHaptic();
     signOut(() => {
       successHaptic();
     });
@@ -24,10 +21,10 @@ const Settings = () => {
   return (
     <PageView>
       <View className="m-page flex-1 align-middle justify-between flex-col space-y-4">
+        {/* General section*/}
         <View className="space-y-2">
-          {/* General section heading*/}
           <Heading text="General" />
-          {/* General section items*/}
+
           <View className="p-4 bg-black border border-neutral-900 rounded-xl">
             {generalList.map((props, idx) => (
               <Fragment key={props.title}>
@@ -38,14 +35,19 @@ const Settings = () => {
           </View>
         </View>
 
+        {/* Support section */}
         <View className="space-y-2">
-          {/* Support section heading */}
           <Heading text="Support" />
-          {/* Support section items*/}
+
           <View className="p-4 bg-black border border-neutral-900 rounded-xl">
             {supportList.map((props, idx) => (
               <Fragment key={props.title}>
-                <Setting {...props} />
+                <Setting
+                  {...props}
+                  onPress={
+                    idx === supportList.length - 1 ? handlePress : props.onPress
+                  }
+                />
                 {idx !== supportList.length - 1 && <Separator />}
               </Fragment>
             ))}

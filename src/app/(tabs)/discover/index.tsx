@@ -46,7 +46,7 @@ const Discover = () => {
       contentContainerStyle={{
         paddingHorizontal: 16,
       }}
-      contentInset={{ bottom: 90 }}
+      contentInset={{ bottom: 90, top: 3 }}
       className="min-h-screen flex-1 w-full"
       data={filteredData}
       ListEmptyComponent={
