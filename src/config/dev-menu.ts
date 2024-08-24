@@ -38,7 +38,7 @@ export const devMenuItems: Parameters<
   {
     name: 'Naviate to onboarding screen',
     callback: () => {
-      router.replace('/onboard');
+      router.replace('/onboarding');
     },
     shouldCollapse: true,
   },

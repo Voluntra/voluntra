@@ -3,27 +3,45 @@ import Feature from '@components/onboard/feature';
 import Button from '@components/ui/pressable';
 import { keyName, onboardingFeatures } from '@config/onboarding';
 import { useHaptics } from '@hooks/useHaptics';
+import { registerForPushNotificationsAsync } from '@lib/notifications';
 import { setKey } from '@lib/onboarding';
 import { palette } from '@lib/tailwind';
+import * as Notifications from 'expo-notifications';
 import { router } from 'expo-router';
-import { useMemo, useRef, useState } from 'react';
-import { Animated, Dimensions, SafeAreaView, Text, View } from 'react-native';
+import { useEffect, useMemo, useRef, useState } from 'react';
+import {
+  Dimensions,
+  Animated as ReactAnimated,
+  SafeAreaView,
+  Text,
+  View,
+} from 'react-native';
 import { ExpandingDot } from 'react-native-animated-pagination-dots';
 import PagerView, {
   PagerViewOnPageScrollEventData,
 } from 'react-native-pager-view';
+import Animated, {
+  Easing,
+  useAnimatedStyle,
+  useSharedValue,
+  withTiming,
+} from 'react-native-reanimated';
 
-const AnimatedPagerView = Animated.createAnimatedComponent(PagerView);
+const AnimatedPagerView = ReactAnimated.createAnimatedComponent(PagerView);
 
 const Onboard = () => {
-  const [, setCurrentPage] = useState(0);
+  const [currentPage, setCurrentPage] = useState(0);
   const viewPagerRef = useRef<PagerView>(null);
+  const successHaptic = useHaptics('success');
 
   const width = Dimensions.get('window').width;
-  const scrollOffsetAnimatedValue = useRef(new Animated.Value(0)).current;
-  const positionAnimatedValue = useRef(new Animated.Value(0)).current;
+  const buttonOpacity = useSharedValue(0.6);
+
+  const scrollOffsetAnimatedValue = useRef(new ReactAnimated.Value(0)).current;
+  const positionAnimatedValue = useRef(new ReactAnimated.Value(0)).current;
+
   const inputRange = [0, onboardingFeatures.length];
-  const scrollX = Animated.add(
+  const scrollX = ReactAnimated.add(
     scrollOffsetAnimatedValue,
     positionAnimatedValue
   ).interpolate({
@@ -31,11 +49,9 @@ const Onboard = () => {
     outputRange: [0, onboardingFeatures.length * width],
   });
 
-  const successHaptic = useHaptics('success');
-
   const onPageScroll = useMemo(
     () =>
-      Animated.event<PagerViewOnPageScrollEventData>(
+      ReactAnimated.event<PagerViewOnPageScrollEventData>(
         [
           {
             nativeEvent: {
@@ -51,7 +67,36 @@ const Onboard = () => {
     [positionAnimatedValue, scrollOffsetAnimatedValue]
   );
 
+  useEffect(() => {
+    buttonOpacity.value = withTiming(
+      currentPage === onboardingFeatures.length - 1 ? 1 : 0.6,
+      {
+        duration: 200,
+        easing: Easing.ease,
+      }
+    );
+  }, [currentPage]);
+
+  const buttonAnimatedStyle = useAnimatedStyle(() => {
+    return {
+      opacity: buttonOpacity.value,
+    };
+  });
+
   const onPress = () => {
+    // Handle receiving push notifications while app is foregrounded
+    Notifications.setNotificationHandler({
+      handleNotification: async () => ({
+        shouldShowAlert: true,
+        shouldPlaySound: true,
+        shouldSetBadge: false,
+      }),
+    });
+
+    // Register user to receive push notifications
+    registerForPushNotificationsAsync();
+
+    // Redirect user to the home screen - onboarding is complete
     successHaptic();
     setKey(keyName, 'true');
     router.replace('/');
@@ -84,7 +129,7 @@ const Onboard = () => {
           expandingDotWidth={30}
           inActiveDotColor={palette['neutral']['500']}
           activeDotColor={palette['purple']['100']}
-          scrollX={scrollX as Animated.Value}
+          scrollX={scrollX as ReactAnimated.Value}
           dotStyle={{
             width: 10,
             height: 10,
@@ -98,15 +143,23 @@ const Onboard = () => {
       </View>
 
       {/* Exit on-boarding button */}
-      <Button
-        className="w-full absolute bottom-14 overflow-hidden"
-        onPress={onPress}
+      <Animated.View
+        style={[
+          buttonAnimatedStyle,
+          { width: '100%', position: 'absolute', bottom: 14 },
+        ]}
       >
-        <Gradient />
-        <Text className="font-popRegular text-lg text-foreground active:opacity-80">
-          Get Started
-        </Text>
-      </Button>
+        <Button
+          className={`w-full absolute bottom-14 overflow-hidden ${currentPage !== onboardingFeatures.length - 1 ? 'opacity-50' : ''}`}
+          disabled={currentPage !== onboardingFeatures.length - 1}
+          onPress={onPress}
+        >
+          <Gradient />
+          <Text className="font-popRegular text-lg text-foreground active:opacity-80">
+            Get Started
+          </Text>
+        </Button>
+      </Animated.View>
     </SafeAreaView>
   );
 };

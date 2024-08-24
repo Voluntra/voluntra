@@ -67,7 +67,7 @@ const RootLayout = () => {
                 }),
               }}
             />
-            <Stack.Screen name="onboard" />
+            <Stack.Screen name="onboarding" />
             <Stack.Screen
               name="modal"
               options={{

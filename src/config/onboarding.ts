@@ -9,13 +9,13 @@ export const onboardingFeatures: FeatureProps[] = [
       'Set goals, track your progress, and get insights to help you improve',
   },
   {
-    title: 'Powerful Dashboard',
+    title: 'Efficient Discovery',
     description:
-      'Set goals, track your progress, and get insights to help you improve',
+      'Not sure where to volunteer? Our search algorithm will help you find the perfect opportunity',
   },
   {
-    title: 'Powerful Dashboard',
+    title: 'Get Notified',
     description:
-      'Set goals, track your progress, and get insights to help you improve',
+      'Enable notifications to stay up-to-date with your volunteer opportunities',
   },
 ];

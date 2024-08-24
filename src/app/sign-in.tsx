@@ -23,7 +23,7 @@ const SignIn = () => {
   }, []);
 
   const onPress = async () => {
-    const onKeyNotFound = () => router.replace('/onboard');
+    const onKeyNotFound = () => router.replace('/onboarding');
     const onKeyFound = () => router.replace('/');
 
     selectionHaptic();

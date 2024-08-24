@@ -1151,6 +1151,18 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@dev-plugins/react-query@npm:^0.0.7":
+  version: 0.0.7
+  resolution: "@dev-plugins/react-query@npm:0.0.7"
+  dependencies:
+    flatted: "npm:^3.2.9"
+  peerDependencies:
+    "@tanstack/react-query": "*"
+    expo: "*"
+  checksum: 10c0/35aecb2dfc9e4307856acce5339a0437a6a84a21adf6492bbfeef58c4de3d4033827b7c7efdc72dff3e0758d6ed426d61813344a57b3389dae419ce6be20f795
+  languageName: node
+  linkType: hard
+
 "@egjs/hammerjs@npm:^2.0.17":
   version: 2.0.17
   resolution: "@egjs/hammerjs@npm:2.0.17"
@@ -2705,6 +2717,24 @@ __metadata:
     "@supabase/realtime-js": "npm:2.10.2"
     "@supabase/storage-js": "npm:2.6.0"
   checksum: 10c0/60a3b52667ab190fbb3a2eb406dafe9afbfe222f5a3a68616bbe289a19573fd94048b95edf4e16e35957913e07908f3499503831a4bce8b94d193d71b0a45206
+  languageName: node
+  linkType: hard
+
+"@tanstack/query-core@npm:5.52.0":
+  version: 5.52.0
+  resolution: "@tanstack/query-core@npm:5.52.0"
+  checksum: 10c0/6f2309294d23721e4508241a4e109d6134bd125b732271217181ae99cc7994ec02ff964397e08bc5e9af5302e3838a3f3259d6e49fdf6fc8aaf324bc4fde4939
+  languageName: node
+  linkType: hard
+
+"@tanstack/react-query@npm:^5.52.1":
+  version: 5.52.1
+  resolution: "@tanstack/react-query@npm:5.52.1"
+  dependencies:
+    "@tanstack/query-core": "npm:5.52.0"
+  peerDependencies:
+    react: ^18 || ^19
+  checksum: 10c0/a07697446311e908173bcce25ccbf019d7ffde19a7607b6791195414f1b337754f48d3d40b8100283e0fea556295240ecf9fe7bb39b3c1f3040d1ac38da03485
   languageName: node
   linkType: hard
 
@@ -11892,10 +11922,12 @@ __metadata:
     "@babel/core": "npm:^7.24.0"
     "@babel/preset-typescript": "npm:^7.23.3"
     "@dev-plugins/react-navigation": "npm:^0.0.6"
+    "@dev-plugins/react-query": "npm:^0.0.7"
     "@nozbe/microfuzz": "npm:^1.0.0"
     "@react-native-async-storage/async-storage": "npm:1.23.1"
     "@shopify/flash-list": "npm:1.6.4"
     "@supabase/supabase-js": "npm:^2.45.1"
+    "@tanstack/react-query": "npm:^5.52.1"
     "@types/aes-js": "npm:^3.1.4"
     "@types/babel__core": "npm:^7.20.5"
     "@types/jest": "npm:^29.5.11"
