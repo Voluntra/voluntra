@@ -9,7 +9,7 @@ import { ThemeProvider } from '@react-navigation/native';
 import * as Notifications from 'expo-notifications';
 import { Redirect, Tabs } from 'expo-router';
 import { useEffect } from 'react';
-import { Platform, Text } from 'react-native';
+import { Platform, Text, View } from 'react-native';
 
 const TabsLayout = () => {
   const { session, loading } = useAuth();
@@ -45,7 +45,11 @@ const TabsLayout = () => {
   return (
     <ThemeProvider value={theme}>
       <Tabs
-        tabBar={(props) => <TabBar {...props} />}
+        tabBar={(props) => (
+          <View className="mx-[14px]">
+            <TabBar {...props} />
+          </View>
+        )}
         screenOptions={{
           headerBackground: Platform.select({
             android: () => <NavBackground />,

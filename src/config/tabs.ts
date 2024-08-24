@@ -1,3 +1,4 @@
+import { TuningValue } from '@appTypes/tabs';
 import { Feather } from '@expo/vector-icons';
 
 interface Tab {
@@ -45,3 +46,27 @@ export const iconName: IconMap = tabsList.reduce((acc, tab) => {
   acc[tab.name] = tab.iconName;
   return acc;
 }, {} as IconMap);
+
+export const tuningValues: [
+  TuningValue,
+  TuningValue,
+  TuningValue,
+  TuningValue,
+] = [
+  {
+    tabPosition: -3,
+    width: 25,
+  },
+  {
+    tabPosition: 13,
+    width: 15,
+  },
+  {
+    tabPosition: 10,
+    width: 5,
+  },
+  {
+    tabPosition: 0,
+    width: 15,
+  },
+];

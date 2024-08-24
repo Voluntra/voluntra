@@ -1,8 +1,5 @@
 import { TextInput } from 'react-native';
-import Animated, {
-  LinearTransition,
-  ReduceMotion,
-} from 'react-native-reanimated';
+import Animated, { LinearTransition } from 'react-native-reanimated';
 import Gradient from './gradient';
 
 interface StreamableProps {
@@ -13,7 +10,7 @@ const Streamable = ({ data }: StreamableProps) => {
   return (
     <Animated.View
       className="w-full rounded-xl border border-neutral-800 overflow-hidden p-3"
-      layout={LinearTransition.reduceMotion(ReduceMotion.System).duration(250)}
+      layout={LinearTransition.duration(250)}
     >
       <Gradient />
       <TextInput multiline className="p-0">
