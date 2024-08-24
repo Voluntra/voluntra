@@ -1,19 +1,13 @@
+import Gradient from '@components/gradient';
 import Feature from '@components/onboard/feature';
+import Button from '@components/ui/pressable';
 import { keyName, onboardingFeatures } from '@config/onboarding';
 import { useHaptics } from '@hooks/useHaptics';
 import { setKey } from '@lib/onboarding';
 import { palette } from '@lib/tailwind';
-import { LinearGradient } from 'expo-linear-gradient';
 import { router } from 'expo-router';
 import { useMemo, useRef, useState } from 'react';
-import {
-  Animated,
-  Dimensions,
-  Pressable,
-  SafeAreaView,
-  Text,
-  View,
-} from 'react-native';
+import { Animated, Dimensions, SafeAreaView, Text, View } from 'react-native';
 import { ExpandingDot } from 'react-native-animated-pagination-dots';
 import PagerView, {
   PagerViewOnPageScrollEventData,
@@ -37,7 +31,7 @@ const Onboard = () => {
     outputRange: [0, onboardingFeatures.length * width],
   });
 
-  const selectionHaptic = useHaptics();
+  const successHaptic = useHaptics('success');
 
   const onPageScroll = useMemo(
     () =>
@@ -54,12 +48,11 @@ const Onboard = () => {
           useNativeDriver: false,
         }
       ),
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    []
+    [positionAnimatedValue, scrollOffsetAnimatedValue]
   );
 
   const onPress = () => {
-    selectionHaptic();
+    successHaptic();
     setKey(keyName, 'true');
     router.replace('/');
   };
@@ -105,19 +98,15 @@ const Onboard = () => {
       </View>
 
       {/* Exit on-boarding button */}
-      <LinearGradient
-        colors={[palette['neutral']['900'], palette['black']]}
-        className="absolute bottom-14 w-full rounded-xl border border-neutral-900 active:opacity-80"
+      <Button
+        className="w-full absolute bottom-14 overflow-hidden"
+        onPress={onPress}
       >
-        <Pressable
-          className="flex h-14 w-full items-center justify-center"
-          onPress={onPress}
-        >
-          <Text className="font-popRegular text-lg text-foreground active:opacity-80">
-            Get Started
-          </Text>
-        </Pressable>
-      </LinearGradient>
+        <Gradient />
+        <Text className="font-popRegular text-lg text-foreground active:opacity-80">
+          Get Started
+        </Text>
+      </Button>
     </SafeAreaView>
   );
 };

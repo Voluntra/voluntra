@@ -1,5 +1,9 @@
-import { Text, View } from 'react-native';
-import Animated, { FadeIn } from 'react-native-reanimated';
+import { TextInput } from 'react-native';
+import Animated, {
+  LinearTransition,
+  ReduceMotion,
+} from 'react-native-reanimated';
+import Gradient from './gradient';
 
 interface StreamableProps {
   data: string[];
@@ -7,25 +11,22 @@ interface StreamableProps {
 
 const Streamable = ({ data }: StreamableProps) => {
   return (
-    <View className="w-full rounded-xl border border-neutral-900 bg-black p-3">
-      <View className="flex-row flex-wrap">
+    <Animated.View
+      className="w-full rounded-xl border border-neutral-800 overflow-hidden p-3"
+      layout={LinearTransition.reduceMotion(ReduceMotion.System).duration(250)}
+    >
+      <Gradient />
+      <TextInput multiline className="p-0">
         {data.map((text, idx) => (
-          <Animated.View
+          <Animated.Text
             key={text + idx}
-            entering={FadeIn}
-            className="flex-row items-start"
+            className="font-popRegular text-base text-foreground"
           >
-            <Text
-              className={`font-popRegular text-base text-foreground ${
-                idx === 0 ? 'ml-1' : ''
-              }`}
-            >
-              {text}
-            </Text>
-          </Animated.View>
+            {text}
+          </Animated.Text>
         ))}
-      </View>
-    </View>
+      </TextInput>
+    </Animated.View>
   );
 };
 

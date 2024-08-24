@@ -31,7 +31,7 @@ export const supportList: SettingProps[] = [
     iconName: 'alert-triangle',
   },
   {
-    title: 'Give us your feedback',
+    title: 'Send feedback',
     iconName: 'message-circle',
   },
   {

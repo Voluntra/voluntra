@@ -2,7 +2,7 @@ import { Pressable, PressableProps, View } from 'react-native';
 
 export const pressableVariants = {
   default:
-    'flex h-14 w-full items-center justify-center rounded-xl border border-neutral-800 bg-neutral-900 active:opacity-80',
+    'flex items-center justify-center rounded-xl border border-neutral-800 bg-neutral-900 active:opacity-80',
 };
 
 export const pressableSizes = {
@@ -14,8 +14,8 @@ export const pressableSizes = {
 };
 
 interface ButtonProps extends PressableProps, React.RefAttributes<View> {
-  variant: keyof typeof pressableVariants;
-  size: keyof typeof pressableSizes;
+  variant?: keyof typeof pressableVariants;
+  size?: keyof typeof pressableSizes;
 }
 
 const Button = ({

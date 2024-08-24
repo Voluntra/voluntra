@@ -1,9 +1,11 @@
 import Events from '@appTypes/streaming/events';
+import Gradient from '@components/gradient';
 import PageView from '@components/layout/page-view';
 import Streamable from '@components/streamable';
+import Button from '@components/ui/pressable';
 import { useHaptics } from '@hooks/useHaptics';
 import { useEffect, useState } from 'react';
-import { Pressable, Text } from 'react-native';
+import { Text } from 'react-native';
 import EventSource, { EventSourceListener } from 'react-native-sse';
 
 const Dashboard = () => {
@@ -80,14 +82,12 @@ const Dashboard = () => {
 
   return (
     <PageView className="m-page flex min-h-screen">
-      <Pressable
-        onPress={onPress}
-        className="mb-4 flex h-14 w-full items-center justify-center rounded-xl border border-neutral-900 bg-black active:opacity-80"
-      >
+      <Button onPress={onPress} className="overflow-hidden w-full mb-3">
+        <Gradient />
         <Text className="font-popRegular text-lg text-foreground active:opacity-80">
           Generate
         </Text>
-      </Pressable>
+      </Button>
       {data.length > 0 && <Streamable data={data} />}
     </PageView>
   );
