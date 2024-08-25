@@ -1,8 +1,8 @@
 import Events from '@appTypes/streaming/events';
 import Gradient from '@components/gradient';
 import PageView from '@components/layout/page-view';
-import Streamable from '@components/streamable';
 import Button from '@components/ui/pressable';
+import Streamable from '@components/ui/streamable';
 import { useHaptics } from '@hooks/useHaptics';
 import { useEffect, useState } from 'react';
 import { Text } from 'react-native';

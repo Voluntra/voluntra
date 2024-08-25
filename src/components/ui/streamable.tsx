@@ -1,6 +1,6 @@
+import Gradient from '@components/gradient';
 import { TextInput } from 'react-native';
 import Animated, { LinearTransition } from 'react-native-reanimated';
-import Gradient from './gradient';
 
 interface StreamableProps {
   data: string[];
