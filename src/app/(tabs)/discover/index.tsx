@@ -1,44 +1,49 @@
-import Organization, {
-  OrganizationProps,
-} from '@components/discover/organization';
+import { AmericorpsApiResponse } from '@appTypes/backend';
+import Organization from '@components/discover/organization';
 import { SearchContext } from '@context/search-context';
-import { useFuzzySearchList } from '@nozbe/microfuzz/react';
 import { FlashList } from '@shopify/flash-list';
+import { useQuery } from '@tanstack/react-query';
+import axios from 'axios';
 import { Link } from 'expo-router';
 import { useContext } from 'react';
 import { Text, View } from 'react-native';
 
-/**
- * Placeholder list of organizations until the backend list is ready.
- */
-const organizations: OrganizationProps[] = [
-  {
-    title: 'Americorps',
-    rating: 4.5,
-  },
-  {
-    title: 'City Year',
-    rating: 4.3,
-  },
-  {
-    title: 'Peace Corps',
-    rating: 4.7,
-  },
-  {
-    title: 'Teach for America',
-    rating: 4.8,
-  },
-];
+const fetchAmericorpsData = async () => {
+  const payload = {
+    location: '20001',
+    distance: '20',
+    categories: [],
+    skills: [],
+    greatFor: ['teens'],
+    sortCriteria: null,
+    keywords: [],
+    virtual: false,
+    dateRanges: [],
+  };
+
+  const { data } = await axios.post<AmericorpsApiResponse>(
+    'https://www.voluntra.org/api/volunteer/americorps',
+    payload
+  );
+  return data;
+};
 
 const Discover = () => {
+  const { data, isLoading } = useQuery<AmericorpsApiResponse, Error>({
+    queryKey: ['americorps'],
+    queryFn: fetchAmericorpsData,
+  });
+
   const searchValue = useContext(SearchContext);
 
-  const filteredData = useFuzzySearchList({
-    list: organizations,
-    queryText: searchValue,
-    getText: ({ title, rating }) => [title, rating.toString()],
-    mapResultItem: ({ item }) => item,
-  });
+  // const filteredData = useFuzzySearchList({
+  //   list: data.data.volunteerMatchAPI.data.searchOpportunities.opportunities,
+  //   queryText: searchValue,
+  //   getText: ({ title }) => [title],
+  //   mapResultItem: ({ item }) => item,
+  // });
+
+  if (isLoading) return <Text className="text-neutral-100">Loading...</Text>;
 
   return (
     <FlashList
@@ -48,19 +53,19 @@ const Discover = () => {
       }}
       contentInset={{ bottom: 90, top: 3 }}
       className="min-h-screen flex-1 w-full"
-      data={filteredData}
+      data={data.data.volunteerMatchAPI.data.searchOpportunities.opportunities}
       ListEmptyComponent={
         <Text className="font-popRegular text-foreground">Nothing found!</Text>
       }
       ItemSeparatorComponent={() => <View className="h-4" />}
-      renderItem={({ item: { rating, title } }) => {
+      renderItem={({ item: { title } }) => {
         return (
           <Link href="/discover/organization/1">
-            <Organization title={title} rating={rating} />
+            <Organization title={title} rating={4.2} />
           </Link>
         );
       }}
-      keyExtractor={(item) => item.title}
+      keyExtractor={(item) => item.id.toString()}
       scrollEnabled={true}
       extraData={searchValue}
       estimatedItemSize={245}
