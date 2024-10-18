@@ -1,47 +1,55 @@
-import { AmericorpsApiResponse } from '@appTypes/backend';
 import Organization from '@components/discover/organization';
 import { SearchContext } from '@context/search-context';
-import { FlashList } from '@shopify/flash-list';
+import { FlashList, ListRenderItemInfo } from '@shopify/flash-list';
 import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
 import { Link } from 'expo-router';
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { Text, View } from 'react-native';
 
-const fetchAmericorpsData = async () => {
-  const payload = {
-    location: '20001',
-    distance: '20',
-    categories: [],
-    skills: [],
-    greatFor: ['teens'],
-    sortCriteria: null,
-    keywords: [],
-    virtual: false,
-    dateRanges: [],
+interface Metadata {
+  message: string;
+  data: {
+    name: string;
+    time: string;
+    location: string;
+    description: string;
+    requirements: string;
   };
+}
 
-  const { data } = await axios.post<AmericorpsApiResponse>(
-    'https://www.voluntra.org/api/volunteer/americorps',
-    payload
+const fetchAmericorpsData = async () => {
+  console.log('fetching data');
+  const { data } = await axios.post<Metadata>(
+    'http://192.168.86.195:3000/api/volunteer/storm'
   );
-  return data;
+
+  console.log(data);
+
+  return [data.data];
+};
+
+export const useFetch = (enabled: boolean) => {
+  return useQuery<Metadata['data'][], Error>({
+    queryKey: ['americorps'],
+    queryFn: fetchAmericorpsData,
+    enabled, // Control when the query should run
+  });
 };
 
 const Discover = () => {
-  const { data, isLoading } = useQuery<AmericorpsApiResponse, Error>({
-    queryKey: ['americorps'],
-    queryFn: fetchAmericorpsData,
-  });
+  const [enabled, setEnabled] = useState(false);
+  const { data, isLoading, refetch } = useFetch(enabled);
 
   const searchValue = useContext(SearchContext);
+  const [refreshing, setRefreshing] = useState(false);
 
-  // const filteredData = useFuzzySearchList({
-  //   list: data.data.volunteerMatchAPI.data.searchOpportunities.opportunities,
-  //   queryText: searchValue,
-  //   getText: ({ title }) => [title],
-  //   mapResultItem: ({ item }) => item,
-  // });
+  const onRefresh = async () => {
+    setRefreshing(true);
+    setEnabled(true); // Enable the query
+    await refetch();
+    setRefreshing(false);
+  };
 
   if (isLoading) return <Text className="text-neutral-100">Loading...</Text>;
 
@@ -53,22 +61,24 @@ const Discover = () => {
       }}
       contentInset={{ bottom: 90, top: 3 }}
       className="min-h-screen flex-1 w-full"
-      data={data.data.volunteerMatchAPI.data.searchOpportunities.opportunities}
+      data={data}
       ListEmptyComponent={
         <Text className="font-popRegular text-foreground">Nothing found!</Text>
       }
       ItemSeparatorComponent={() => <View className="h-4" />}
-      renderItem={({ item: { title } }) => {
+      renderItem={(item: ListRenderItemInfo<Metadata['data']>) => {
         return (
           <Link href="/discover/organization/1">
-            <Organization title={title} rating={4.2} />
+            <Organization title={item.item.name} rating={4.2} />
           </Link>
         );
       }}
-      keyExtractor={(item) => item.id.toString()}
+      keyExtractor={(item) => item.name}
       scrollEnabled={true}
       extraData={searchValue}
       estimatedItemSize={245}
+      refreshing={refreshing}
+      onRefresh={onRefresh}
     />
   );
 };

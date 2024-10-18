@@ -1,5 +1,4 @@
 import Events from '@appTypes/streaming/events';
-import Gradient from '@components/gradient';
 import PageView from '@components/layout/page-view';
 import Button from '@components/ui/pressable';
 import Streamable from '@components/ui/streamable';
@@ -83,7 +82,6 @@ const Dashboard = () => {
   return (
     <PageView className="m-page flex min-h-screen">
       <Button onPress={onPress} className="overflow-hidden w-full mb-3">
-        <Gradient />
         <Text className="font-popRegular text-lg text-foreground active:opacity-80">
           Generate
         </Text>

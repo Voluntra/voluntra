@@ -1,6 +1,7 @@
 import Gradient from '@components/gradient';
 import { TextInput } from 'react-native';
 import Animated, { LinearTransition } from 'react-native-reanimated';
+import { pressableVariants } from './pressable';
 
 interface StreamableProps {
   data: string[];
@@ -9,7 +10,7 @@ interface StreamableProps {
 const Streamable = ({ data }: StreamableProps) => {
   return (
     <Animated.View
-      className="w-full rounded-xl border border-neutral-800 overflow-hidden p-3"
+      className={`${pressableVariants.default} w-full overflow-hidden p-3`}
       layout={LinearTransition.duration(250)}
     >
       <Gradient />

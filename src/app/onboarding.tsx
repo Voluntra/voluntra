@@ -1,4 +1,3 @@
-import Gradient from '@components/gradient';
 import Feature from '@components/onboard/feature';
 import Button from '@components/ui/pressable';
 import { keyName, onboardingFeatures } from '@config/onboarding';
@@ -154,7 +153,6 @@ const Onboard = () => {
           disabled={currentPage !== onboardingFeatures.length - 1}
           onPress={onPress}
         >
-          <Gradient />
           <Text className="font-popRegular text-lg text-foreground active:opacity-80">
             Get Started
           </Text>

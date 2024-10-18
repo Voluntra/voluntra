@@ -49,7 +49,7 @@ const DiscoverLayout = () => {
             autoHideHomeIndicator: true,
             headerShadowVisible: false,
             headerBlurEffect: 'systemUltraThinMaterialDark',
-            headerTitle: 'Organization',
+            headerTitle: 'Shifts',
           }}
         />
       </Stack>
