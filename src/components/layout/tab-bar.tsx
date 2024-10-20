@@ -57,7 +57,7 @@ const TabBar = ({ state, descriptors, navigation }: BottomTabBarProps) => {
     >
       {/* Animated circle that indicates focus */}
       <Animated.View
-        className="absolute z-10 rounded-full bg-purple-900 ml-1"
+        className="absolute z-10 rounded-full bg-blue-600 ml-1"
         style={[
           animatedStyle,
           {

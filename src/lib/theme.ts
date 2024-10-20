@@ -12,12 +12,12 @@ import { palette } from './tailwind';
 const theme = {
   dark: true,
   colors: {
-    primary: palette.purple['100'],
+    primary: palette.blue['100'],
     background: palette.background as string,
     card: palette.neutral['900'],
     text: palette.foreground as string,
     border: palette.neutral['800'],
-    notification: palette.purple['100'],
+    notification: palette.blue['100'],
   },
 } satisfies typeof DarkTheme;
 

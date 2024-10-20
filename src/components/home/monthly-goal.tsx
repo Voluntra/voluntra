@@ -20,12 +20,12 @@ const MonthlyGoal = ({ hoursLeft, monthlyGoal }: MonthlyGoalProps) => {
     {
       name: 'hours',
       value: monthlyGoal - hoursLeft,
-      color: palette['purple']['700'],
+      color: palette['blue']['600'],
     },
     {
       name: 'hours',
       value: hoursLeft,
-      color: palette['purple']['100'],
+      color: palette['blue']['100'],
     },
   ];
 

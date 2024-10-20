@@ -127,7 +127,7 @@ const Onboard = () => {
           data={onboardingFeatures}
           expandingDotWidth={30}
           inActiveDotColor={palette['neutral']['500']}
-          activeDotColor={palette['purple']['100']}
+          activeDotColor={palette['blue']['100']}
           scrollX={scrollX as ReactAnimated.Value}
           dotStyle={{
             width: 10,
