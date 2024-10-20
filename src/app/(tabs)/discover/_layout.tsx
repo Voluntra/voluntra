@@ -18,16 +18,7 @@ const DiscoverLayout = () => {
           name="index"
           options={{
             ...headerOptions,
-            headerTitle: 'Discover',
-            headerSearchBarOptions: {
-              onFocus: () => selectionHaptic(),
-              onCancelButtonPress: () => {
-                selectionHaptic();
-                searchTerms && setSearchTerms(null);
-              },
-              onChangeText: (e) => setSearchTerms(e.nativeEvent.text),
-              placeholder: 'What are you looking for?',
-            },
+            headerTitle: 'Enlist Shifts',
           }}
         />
         <Stack.Screen
