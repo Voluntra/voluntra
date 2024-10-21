@@ -11,7 +11,6 @@ import { useEffect, useMemo, useRef, useState } from 'react';
 import {
   Dimensions,
   Animated as ReactAnimated,
-  SafeAreaView,
   Text,
   View,
 } from 'react-native';
@@ -102,9 +101,9 @@ const Onboard = () => {
   };
 
   return (
-    <SafeAreaView className="m-page min-h-screen flex-col justify-center items-center align-middle relative">
+    <View className="m-page min-h-screen flex-col justify-center items-center align-middle relative">
       {/* Feature carousel */}
-      <View className="w-full h-2/3 relative">
+      <View className="w-full">
         <AnimatedPagerView
           className="w-full h-full"
           initialPage={0}
@@ -115,19 +114,21 @@ const Onboard = () => {
           ref={viewPagerRef}
           onPageScroll={onPageScroll}
         >
-          {onboardingFeatures.map(({ title, description }, idx) => (
-            <View className="justify-center items-center" key={idx}>
-              <Feature title={title} description={description} />
+          {onboardingFeatures.map((props, idx) => (
+            <View className="justify-center items-center mb-64" key={idx}>
+              <Feature {...props} />
             </View>
           ))}
         </AnimatedPagerView>
+      </View>
 
-        {/* Feature carousel page indicator */}
+      {/* Feature carousel page indicator */}
+      <View className="absolute bottom-24">
         <ExpandingDot
           data={onboardingFeatures}
           expandingDotWidth={30}
           inActiveDotColor={palette['neutral']['500']}
-          activeDotColor={palette['blue']['100']}
+          activeDotColor={palette['blue']['600']}
           scrollX={scrollX as ReactAnimated.Value}
           dotStyle={{
             width: 10,
@@ -136,7 +137,7 @@ const Onboard = () => {
             marginHorizontal: 5,
           }}
           containerStyle={{
-            bottom: 20,
+            bottom: 140,
           }}
         />
       </View>
@@ -158,7 +159,7 @@ const Onboard = () => {
           </Text>
         </Button>
       </Animated.View>
-    </SafeAreaView>
+    </View>
   );
 };
 

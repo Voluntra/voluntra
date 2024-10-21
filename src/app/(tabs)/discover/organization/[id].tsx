@@ -1,6 +1,7 @@
 import Button from '@components/ui/pressable';
 import Feather from '@expo/vector-icons/Feather';
 import { palette } from '@lib/tailwind';
+import * as Burnt from 'burnt';
 import { useState } from 'react';
 import { Text, View } from 'react-native';
 import Animated, { FadeOut, LinearTransition } from 'react-native-reanimated';
@@ -12,6 +13,12 @@ const Page = () => {
 
   const handleButtonPress = () => {
     setShiftActive(false);
+
+    Burnt.toast({
+      title: 'Attendance Confirmed',
+      preset: 'done',
+      haptic: 'success',
+    });
   };
 
   return (

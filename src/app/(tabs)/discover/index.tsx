@@ -21,7 +21,7 @@ interface Metadata {
 const fetchAmericorpsData = async () => {
   console.log('fetching data');
   const { data } = await axios.post<Metadata>(
-    'http://192.168.86.195:3000/api/volunteer/storm'
+    'https://www.voluntra.org/api/volunteer/storm'
   );
 
   console.log(data);

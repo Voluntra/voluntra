@@ -49,7 +49,7 @@ const TabBar = ({ state, descriptors, navigation }: BottomTabBarProps) => {
 
   return (
     <View
-      className="absolute bottom-7 w-full align-middle justify-between px-5 flex-row items-center overflow-hidden rounded-full border py-4"
+      className="absolute bottom-7 w-full align-middle justify-between px-10 flex-row items-center overflow-hidden rounded-full border py-4"
       style={{
         borderColor: 'rgba(93, 93, 93, .5)',
       }}

@@ -27,11 +27,6 @@ export const tabsList: Tab[] = [
     iconName: 'compass',
   },
   {
-    name: 'dashboard',
-    title: 'Dashboard',
-    iconName: 'bar-chart-2',
-  },
-  {
     name: 'settings',
     title: 'Settings',
     iconName: 'settings',
@@ -47,26 +42,17 @@ export const iconName: IconMap = tabsList.reduce((acc, tab) => {
   return acc;
 }, {} as IconMap);
 
-export const tuningValues: [
-  TuningValue,
-  TuningValue,
-  TuningValue,
-  TuningValue,
-] = [
+export const tuningValues: [TuningValue, TuningValue, TuningValue] = [
   {
     tabPosition: -3,
-    width: 25,
-  },
-  {
-    tabPosition: 13,
     width: 15,
   },
   {
-    tabPosition: 10,
-    width: 5,
+    tabPosition: 6,
+    width: 15,
   },
   {
-    tabPosition: 0,
-    width: 15,
+    tabPosition: 5,
+    width: 10,
   },
 ];

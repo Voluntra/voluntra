@@ -59,7 +59,7 @@ const RootLayout = () => {
             <Stack.Screen
               name="sign-in"
               options={{
-                headerTitle: 'Sign In',
+                headerTitle: 'Storm Shield',
                 headerShown: true,
                 headerBackground: Platform.select({
                   android: () => <NavBackground />,
