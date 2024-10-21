@@ -23,13 +23,8 @@ export const tabsList: Tab[] = [
   },
   {
     name: 'discover',
-    title: 'Discover',
+    title: 'Manage',
     iconName: 'compass',
-  },
-  {
-    name: 'dashboard',
-    title: 'Dashboard',
-    iconName: 'bar-chart-2',
   },
   {
     name: 'settings',
@@ -51,22 +46,17 @@ export const tuningValues: [
   TuningValue,
   TuningValue,
   TuningValue,
-  TuningValue,
 ] = [
-  {
-    tabPosition: -3,
-    width: 25,
-  },
-  {
-    tabPosition: 13,
-    width: 15,
-  },
-  {
-    tabPosition: 10,
-    width: 5,
-  },
-  {
-    tabPosition: 0,
-    width: 15,
-  },
-];
+    {
+      tabPosition: 13,
+      width: 15,
+    },
+    {
+      tabPosition: 10,
+      width: 5,
+    },
+    {
+      tabPosition: 0,
+      width: 0,
+    },
+  ];

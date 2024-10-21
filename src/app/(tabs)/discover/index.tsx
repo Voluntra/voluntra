@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import {
   Text,
   View,
@@ -10,10 +10,15 @@ import {
   FlatList,
 } from 'react-native';
 import axios from 'axios';
-import organization from '@components/discover/organization';
+import { useNavigation, NavigationProp } from '@react-navigation/native';
 import Organization from '@components/discover/organization';
 
-// Define the ShiftData type
+// Define the navigation types directly in the file
+type RootStackParamList = {
+  Discover: undefined;
+  OpportunityDetails: { shift: ShiftData };
+};
+
 interface ShiftData {
   description: string;
   time: string;
@@ -21,7 +26,11 @@ interface ShiftData {
   ageRequirements: string;
   location: string;
   image: string | null;
+  category: string;
 }
+
+// Use the navigation prop with defined types
+type DiscoverNavigationProp = NavigationProp<RootStackParamList, 'Discover'>;
 
 // Enlist new shift function with a promise return type
 const enlistNewShift = async (shiftData: ShiftData): Promise<void> => {
@@ -35,6 +44,8 @@ const enlistNewShift = async (shiftData: ShiftData): Promise<void> => {
 };
 
 const Discover = () => {
+  const navigation = useNavigation<DiscoverNavigationProp>(); // Use typed navigation
+
   const [formData, setFormData] = useState<ShiftData>({
     description: '',
     time: '',
@@ -42,6 +53,7 @@ const Discover = () => {
     ageRequirements: '',
     location: '',
     image: null,
+    category: 'Hurricane', // Default category
   });
 
   const [showForm, setShowForm] = useState(false);
@@ -57,8 +69,13 @@ const Discover = () => {
       ageRequirements: '',
       location: '',
       image: null,
+      category: 'Hurricane', // Reset category
     });
     setShowForm(false);
+  };
+
+  const handleCategorySelect = (category: string) => {
+    setFormData({ ...formData, category });
   };
 
   return (
@@ -124,6 +141,30 @@ const Discover = () => {
             style={styles.input}
           />
 
+          {/* Category Selection */}
+          <Text style={styles.sectionTitle}>Select Category:</Text>
+          <View style={styles.categoryContainer}>
+            {['Hurricane', 'Storm', 'Other'].map((category) => (
+              <TouchableOpacity
+                key={category}
+                onPress={() => handleCategorySelect(category)}
+                style={[
+                  styles.categoryButton,
+                  formData.category === category && styles.categoryButtonSelected,
+                ]}
+              >
+                <Text
+                  style={[
+                    styles.categoryButtonText,
+                    formData.category === category && styles.categoryButtonTextSelected,
+                  ]}
+                >
+                  {category}
+                </Text>
+              </TouchableOpacity>
+            ))}
+          </View>
+
           {/* Submit and Cancel Buttons */}
           <View style={styles.buttonContainer}>
             <TouchableOpacity onPress={handleUploadShift} style={styles.uploadButton}>
@@ -145,10 +186,18 @@ const Discover = () => {
         data={shifts}
         keyExtractor={(item, index) => index.toString()}
         renderItem={({ item }) => (
-          <Organization
-            title={item.organization}
-            rating={4.5} // Static rating for now, you can change this as needed
-          />
+          <TouchableOpacity
+            onPress={() =>
+              navigation.navigate('OpportunityDetails', { shift: item })
+            }
+            style={styles.organizationContainer} // Added new style for padding
+          >
+            <Organization
+              title={item.organization}
+              rating={4.5} // Static rating for now
+              category={item.category} // Pass category
+            />
+          </TouchableOpacity>
         )}
         style={styles.shiftList}
         contentContainerStyle={{ paddingVertical: 10 }}
@@ -207,6 +256,33 @@ const styles = StyleSheet.create({
     borderColor: '#3A3A3A',
     borderWidth: 1,
   },
+  sectionTitle: {
+    color: '#ffffff',
+    fontSize: 16,
+    fontWeight: '600',
+    marginVertical: 10,
+  },
+  categoryContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    marginBottom: 16,
+  },
+  categoryButton: {
+    paddingVertical: 10,
+    paddingHorizontal: 15,
+    borderRadius: 20,
+    borderColor: '#6C63FF',
+    borderWidth: 1,
+  },
+  categoryButtonSelected: {
+    backgroundColor: '#6C63FF',
+  },
+  categoryButtonText: {
+    color: '#6C63FF',
+  },
+  categoryButtonTextSelected: {
+    color: '#fff',
+  },
   buttonContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
@@ -237,6 +313,11 @@ const styles = StyleSheet.create({
   shiftList: {
     flex: 1,
     marginTop: 20,
+  },
+  organizationContainer: {
+    padding: 12, // Added padding to give more space around each item
+    marginBottom: 8, // Added margin to separate the items
+    borderRadius: 8, // Optional: adds a rounded corner look
   },
 });
 
