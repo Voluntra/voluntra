@@ -5,7 +5,7 @@ import { tabsList } from '@config/tabs';
 import { useReactQueryDevTools } from '@dev-plugins/react-query';
 import { useAuth } from '@hooks/useAuth';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { Tabs } from 'expo-router';
+import { Redirect, Tabs } from 'expo-router';
 import { Platform, Text, View } from 'react-native';
 
 const queryClient = new QueryClient({});
@@ -22,9 +22,9 @@ const TabsLayout = () => {
     );
   }
 
-  // if (!loading && !session) {
-  //   return <Redirect href="/sign-in" />;
-  // }
+  if (!loading && !session) {
+    return <Redirect href="/sign-in" />;
+  }
 
   return (
     <QueryClientProvider client={queryClient}>

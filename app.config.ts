@@ -3,7 +3,7 @@ import { ExpoConfig } from 'expo/config';
 const IS_DEV = process.env.APP_VARIANT === 'development';
 
 export default (): ExpoConfig => ({
-  name: IS_DEV ? 'Storm Shield (Dev)' : 'Storm',
+  name: IS_DEV ? 'Storm (dev)' : 'Storm Shield',
   slug: 'voluntra',
   version: '1.0.0',
   orientation: 'portrait',
