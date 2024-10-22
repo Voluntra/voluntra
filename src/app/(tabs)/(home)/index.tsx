@@ -8,7 +8,7 @@ const Home = () => {
   return (
     <PageView className="m-page flex min-h-screen">
       <Animated.View layout={LinearTransition}>
-        <MonthlyGoal hoursLeft={6} monthlyGoal={8} />
+        <MonthlyGoal hoursLeft={7} monthlyGoal={8} />
         <View className="mt-3">
           <Dismissable />
         </View>

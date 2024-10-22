@@ -20,6 +20,7 @@ const SignIn = () => {
       const availability = await AppleAuthentication.isAvailableAsync();
       setIsAvailable(availability);
     };
+
     checkAvailability();
   }, []);
 

@@ -1,4 +1,3 @@
-import Gradient from '@components/gradient';
 import { palette } from '@lib/tailwind';
 import { Text, View } from 'react-native';
 import { DonutChart, DonutItem } from 'react-native-circular-chart';
@@ -30,12 +29,11 @@ const MonthlyGoal = ({ hoursLeft, monthlyGoal }: MonthlyGoalProps) => {
   ];
 
   return (
-    <View className="flex h-28 flex-row items-center justify-between overflow-hidden rounded-xl border border-neutral-900 p-5 align-middle shadow-sm">
+    <View className="flex h-28 flex-row items-center justify-between overflow-hidden rounded-xl border border-neutral-900 bg-black p-5 align-middle shadow-sm">
       {/* Background Linear Gradient */}
-      <Gradient />
 
       {/* Dynamic text identifying the component and hours left to volunteer */}
-      <View className="gap-PX flex flex-col justify-center align-middle">
+      <View className="gap-px flex flex-col justify-center align-middle">
         <Text className="font-popMedium text-2xl text-foreground">
           Monthly Goal
         </Text>
