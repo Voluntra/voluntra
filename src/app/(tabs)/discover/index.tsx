@@ -1,4 +1,6 @@
 import Organization from '@components/discover/organization';
+import FormField from '@components/ui/form-field';
+import Button from '@components/ui/pressable';
 import { NavigationProp, useNavigation } from '@react-navigation/native';
 import axios from 'axios';
 import * as Burnt from 'burnt';
@@ -9,7 +11,6 @@ import {
   Modal,
   SafeAreaView,
   Text,
-  TextInput,
   TouchableOpacity,
   View,
 } from 'react-native';
@@ -110,12 +111,9 @@ const Discover = () => {
   return (
     <SafeAreaView className="flex-1 p-4">
       <View className="items-center justify-center mb-5">
-        <TouchableOpacity
-          onPress={() => setShowForm(true)}
-          className="bg-purple-600 mt-6 py-3 px-6 rounded-full shadow-lg"
-        >
+        <Button className="px-4 py-2" onPress={() => setShowForm(true)}>
           <Text className="text-white text-lg font-bold">Enlist Shift</Text>
-        </TouchableOpacity>
+        </Button>
       </View>
 
       <Modal
@@ -141,58 +139,53 @@ const Discover = () => {
             ]}
           >
             <View
-              className="bg-neutral-900 rounded-xl p-4 my-3 shadow-lg"
+              className="bg-black border border-neutral-900 rounded-xl p-4 my-3 shadow-lg"
               style={{ maxHeight: '80%', width: '100%' }}
             >
               <Text className="text-2xl font-semibold text-white text-center mb-4">
                 Enlist New Shift
               </Text>
 
+              {/* Category Selection */}
+              <Text className="text-white text-lg font-semibold my-2">
+                Shift Information:
+              </Text>
+
               {/* Form Fields */}
-              <TextInput
-                placeholder="Organization Name"
-                placeholderTextColor="#aaa"
+              <FormField
+                placeholder="Shift Title"
                 value={formData.organization}
                 onChangeText={(text) =>
                   setFormData({ ...formData, organization: text })
                 }
-                className="bg-gray-800 text-white p-3 rounded-lg mb-2 border border-gray-700"
               />
-              <TextInput
+              <FormField
                 placeholder="Description"
-                placeholderTextColor="#aaa"
                 value={formData.description}
                 onChangeText={(text) =>
                   setFormData({ ...formData, description: text })
                 }
-                className="bg-gray-800 text-white p-3 rounded-lg mb-2 border border-gray-700"
               />
-              <TextInput
+              <FormField
                 placeholder="Time"
-                placeholderTextColor="#aaa"
                 value={formData.time}
                 onChangeText={(text) =>
                   setFormData({ ...formData, time: text })
                 }
-                className="bg-gray-800 text-white p-3 rounded-lg mb-2 border border-gray-700"
               />
-              <TextInput
+              <FormField
                 placeholder="Age Requirements"
-                placeholderTextColor="#aaa"
                 value={formData.ageRequirements}
                 onChangeText={(text) =>
                   setFormData({ ...formData, ageRequirements: text })
                 }
-                className="bg-gray-800 text-white p-3 rounded-lg mb-2 border border-gray-700"
               />
-              <TextInput
+              <FormField
                 placeholder="Location"
-                placeholderTextColor="#aaa"
                 value={formData.location}
                 onChangeText={(text) =>
                   setFormData({ ...formData, location: text })
                 }
-                className="bg-gray-800 text-white p-3 rounded-lg mb-2 border border-gray-700"
               />
 
               {/* Category Selection */}
@@ -206,15 +199,15 @@ const Discover = () => {
                     onPress={() => handleCategorySelect(category)}
                     className={`py-2 px-4 rounded-full border ${
                       formData.category === category
-                        ? 'bg-purple-600 border-purple-600'
-                        : 'border-purple-600'
+                        ? 'bg-blue-600 border-blue-600'
+                        : 'border-blue-600'
                     }`}
                   >
                     <Text
                       className={`${
                         formData.category === category
                           ? 'text-white'
-                          : 'text-purple-600'
+                          : 'text-blue-600'
                       }`}
                     >
                       {category}
@@ -224,24 +217,24 @@ const Discover = () => {
               </View>
 
               {/* Submit and Cancel Buttons */}
-              <View className="flex-row justify-between mt-5">
-                <TouchableOpacity
+              <View className="flex-row justify-between mt-5 space-x-3">
+                <Button
                   onPress={handleUploadShift}
-                  className="bg-purple-600 py-2 px-4 rounded-full flex-1 mr-2"
+                  className="py-2 px-4 flex-1"
                 >
                   <Text className="text-white text-lg font-bold text-center">
                     Upload Shift
                   </Text>
-                </TouchableOpacity>
+                </Button>
 
-                <TouchableOpacity
+                <Button
                   onPress={() => setShowForm(false)}
-                  className="bg-purple-800 py-2 px-4 rounded-full flex-1 ml-2"
+                  className="py-2 px-4 flex-1"
                 >
-                  <Text className="text-white text-lg font-bold text-center">
+                  <Text className="text-foreground text-lg font-bold text-center">
                     Cancel
                   </Text>
-                </TouchableOpacity>
+                </Button>
               </View>
             </View>
           </Animated.View>

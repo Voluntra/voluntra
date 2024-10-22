@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
 import Blur from '@components/layout/blur';
 import NavBackground from '@components/layout/nav-background';
 import { headerOptions } from '@config/header';
 import { SearchContext } from '@context/search-context';
 import { useHaptics } from '@hooks/useHaptics';
 import { Stack } from 'expo-router';
+import React, { useState } from 'react';
 import { Platform } from 'react-native';
 
 // Define your ShiftData interface for TypeScript
@@ -28,7 +28,7 @@ const DiscoverLayout = () => {
           name="index"
           options={{
             ...headerOptions,
-            headerTitle: 'Enlist Shifts',
+            headerTitle: 'Dashboard',
           }}
         />
         <Stack.Screen
@@ -56,7 +56,7 @@ const DiscoverLayout = () => {
         <Stack.Screen
           name="OpportunityDetails"
           options={{
-            headerTitle: 'Opportunity Details',
+            headerTitle: 'Details',
             headerTitleStyle: {
               fontSize: 20,
               fontFamily: 'Poppins-SemiBold',
