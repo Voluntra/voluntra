@@ -84,5 +84,5 @@
     "semver": ">=7.5.2"
   },
   "private": true,
-  "packageManager": "yarn@4.4.0"
+  "packageManager": "yarn@4.5.1"
 }

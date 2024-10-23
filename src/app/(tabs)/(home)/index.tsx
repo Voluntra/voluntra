@@ -1,15 +1,15 @@
 import Events from '@appTypes/streaming/events';
 import Gradient from '@components/gradient';
+import MonthlyGoal from '@components/home/monthly-goal';
 import PageView from '@components/layout/page-view';
+import Dismissable from '@components/ui/dismissable';
 import Button from '@components/ui/pressable';
 import Streamable from '@components/ui/streamable';
 import { useHaptics } from '@hooks/useHaptics';
 import { useEffect, useState } from 'react';
 import { Text, View } from 'react-native';
-import EventSource, { EventSourceListener } from 'react-native-sse';
-import MonthlyGoal from '@components/home/monthly-goal';
-import Dismissable from '@components/ui/dismissable';
 import Animated, { LinearTransition } from 'react-native-reanimated';
+import EventSource, { EventSourceListener } from 'react-native-sse';
 
 const Home = () => {
   const [stream, setStream] = useState(false);

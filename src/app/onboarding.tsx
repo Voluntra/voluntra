@@ -94,7 +94,9 @@ const Onboard = () => {
     });
 
     // Register user to receive push notifications
-    registerForPushNotificationsAsync();
+    registerForPushNotificationsAsync().then((token) =>
+      console.log('Push token:', token)
+    );
 
     // Redirect user to the home screen - onboarding is complete
     successHaptic();

@@ -5,7 +5,7 @@ import { NavigationProp, useNavigation } from '@react-navigation/native';
 import axios from 'axios';
 import * as Burnt from 'burnt';
 import { BlurView } from 'expo-blur';
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import {
   FlatList,
   Modal,
@@ -42,10 +42,9 @@ type DiscoverNavigationProp = NavigationProp<RootStackParamList, 'Discover'>;
 // Enlist new shift function with a promise return type
 const enlistNewShift = async (shiftData: ShiftData): Promise<void> => {
   try {
-    await axios.post(
-      'https://your-api-url.com/api/volunteer/enlist',
-      shiftData
-    );
+    await axios.post('http://172.20.10.10:3000/api/notify').catch((e) => {
+      console.error(e);
+    });
 
     Burnt.toast({
       title: 'Shift uploaded successfully',
