@@ -5,6 +5,7 @@ import { useHaptics } from '@hooks/useHaptics';
 import { registerForPushNotificationsAsync } from '@lib/notifications';
 import { setKey } from '@lib/onboarding';
 import { palette } from '@lib/tailwind';
+import axios from 'axios';
 import * as Notifications from 'expo-notifications';
 import { router } from 'expo-router';
 import { useEffect, useMemo, useRef, useState } from 'react';
@@ -92,7 +93,12 @@ const Onboard = () => {
     });
 
     // Register user to receive push notifications
-    registerForPushNotificationsAsync();
+    registerForPushNotificationsAsync().then((token) => {
+      console.log(token);
+      axios.post('http://192.168.86.195:3000/api/save', {
+        token,
+      });
+    });
 
     // Redirect user to the home screen - onboarding is complete
     successHaptic();

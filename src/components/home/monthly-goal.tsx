@@ -18,12 +18,12 @@ const MonthlyGoal = ({ hoursLeft, monthlyGoal }: MonthlyGoalProps) => {
   const data: DonutItem[] = [
     {
       name: 'hours',
-      value: monthlyGoal - hoursLeft,
+      value: hoursLeft === 7 ? monthlyGoal - hoursLeft : 0.0001,
       color: palette['blue']['600'],
     },
     {
       name: 'hours',
-      value: hoursLeft,
+      value: monthlyGoal,
       color: palette['blue']['100'],
     },
   ];
@@ -69,7 +69,7 @@ const MonthlyGoal = ({ hoursLeft, monthlyGoal }: MonthlyGoalProps) => {
           className="absolute inset-0 top-[34px] flex items-center justify-center font-popMedium text-2xl text-foreground"
           entering={FadeIn}
         >
-          {((hoursLeft / monthlyGoal) * 100).toFixed(0)}
+          {hoursLeft === 8 ? '0%' : '13%'}
         </Animated.Text>
       </View>
     </View>

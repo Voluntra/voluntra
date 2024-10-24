@@ -1,3 +1,4 @@
+import { useNavigationStore } from '@appTypes/store';
 import Button from '@components/ui/pressable';
 import Feather from '@expo/vector-icons/Feather';
 import { palette } from '@lib/tailwind';
@@ -10,9 +11,11 @@ import { useFetch } from '..';
 const Page = () => {
   const { data } = useFetch(true);
   const [shiftActive, setShiftActive] = useState(true);
+  const { homePageVisits, incrementHomePageVisits } = useNavigationStore();
 
   const handleButtonPress = () => {
     setShiftActive(false);
+    incrementHomePageVisits();
 
     Burnt.toast({
       title: 'Attendance Confirmed',

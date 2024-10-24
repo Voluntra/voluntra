@@ -57,7 +57,8 @@
     "react-native-sse": "^1.2.1",
     "react-native-svg": "15.2.0",
     "react-native-url-polyfill": "^2.0.0",
-    "typescript": "~5.3.3"
+    "typescript": "~5.3.3",
+    "zustand": "^5.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.24.0",
